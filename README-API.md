@@ -51,8 +51,8 @@ Returns the information about the current user that is logged in.
 
 * Require Authentication: true
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: api/users/user
   * Body: none
 
 * Successful Response
@@ -77,8 +77,8 @@ information.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: POST
+  * URL: api/session
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -143,8 +143,8 @@ user's information.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: POST
+  * URL: api/users/register
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -216,8 +216,8 @@ Returns all the spots.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: api/spots
   * Body: none
 
 * Successful Response

@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-[Lairbnb](https://user-images.githubusercontent.com/92779080/181626548-bd7b6137-27aa-4f8b-9f95-3e8f41614a20.png)
+![Lairbnb](https://user-images.githubusercontent.com/92779080/181626548-bd7b6137-27aa-4f8b-9f95-3e8f41614a20.png)
 
 
 ## API Documentation

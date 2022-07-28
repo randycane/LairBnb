@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const sessionRouter = require('./session.js');
+const usersRouter = require('./users.js');
 
 // GET /api/restore-user
 const { restoreUser } = require('../../utils/auth.js');
@@ -12,6 +14,11 @@ router.use(restoreUser);
 //     return res.json(req.user);
 //   }
 // );
+
+// connect the rouers exported from here to the api files:
+router.use('/session', sessionRouter);
+
+router.use('/users', usersRouter);
 
 //Test the api router:
 router.post('/test', function(req, res) {

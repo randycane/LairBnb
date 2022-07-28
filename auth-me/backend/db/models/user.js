@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model, Validator
-} = require('sequelize');
+const { Model, Validator} = require('sequelize');
 
 const bcrypt = require('bcryptjs');
 
@@ -57,7 +55,9 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: {
+        message: "This username is already in use"
+      },
       validate: {
         len: [4, 30],
         isNotEmail(value) {
@@ -70,10 +70,12 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: {
+        message: "Email is already in use"
+      },
+      isEmail: true,
       validate: {
         len: [3, 256],
-        isEmail: true
       }
     },
         hashedPassword: {

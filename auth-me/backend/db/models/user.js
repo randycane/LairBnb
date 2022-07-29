@@ -73,9 +73,9 @@ module.exports = (sequelize, DataTypes) => {
       unique: {
         message: "Email is already in use"
       },
-      isEmail: true,
       validate: {
         len: [3, 256],
+        isEmail: true,
       }
     },
         hashedPassword: {

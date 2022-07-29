@@ -27,8 +27,8 @@ router.post('/test', function(req, res) {
 
 //Test user auth middlewares:
 // GET /api/set-token-cookie
-const { setTokenCookie } = require('../../utils/auth.js');
-const { User } = require('../../db/models');
+// const { setTokenCookie } = require('../../utils/auth.js');
+// const { User } = require('../../db/models');
 // router.get('/set-token-cookie', async (_req, res) => {
 //   const user = await User.findOne({
 //       where: {

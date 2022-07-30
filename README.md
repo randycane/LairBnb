@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![Lairbnb](https://files.slack.com/files-pri/T03GU501J-F03RNA47QSF/airbnb_dbdiagram.png)
+![airbnb_dbdiagram](https://user-images.githubusercontent.com/92779080/181995351-36cd3c20-8664-4ab2-addc-7f0c7db1d56b.png)
 
 
 ## API Documentation

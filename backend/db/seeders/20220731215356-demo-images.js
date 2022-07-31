@@ -5,31 +5,36 @@ const validImages = [
   spotId: 1,
     reviewId: 1,
     previewImage: 1,
-    url: "raven"
+    url: "raven",
+    userId: 2
   },
   {
   spotId: 2,
   reviewId: 2,
   previewImage: 1,
-  url: "vegetables"
+    url: "vegetables",
+    userId: 3,
   },
   {
     spotId: 3,
     reviewId: 3,
     previewImage: 1,
-    url: "noodles"
+    url: "noodles",
+    userId:4,
   },
   {
     spotId: 4,
     reviewId: 5,
     previewImage: 1,
-    url: "wine"
+    url: "wine",
+    userId: 5,
   },
   {
     spotId: 5,
     reviewId: 4,
     previewImage: 1,
-    url: "bunk"
+    url: "bunk",
+    userId: 1
   }
 ]
 

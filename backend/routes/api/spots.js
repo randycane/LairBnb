@@ -45,6 +45,17 @@ router.get('/', async (req, res) => {
     res.json(spots);
 })
 
+//Get Spots owned by Current User:
+router.get('/current', requireAuth, async (req, res) => {
+    const mySpot = await Spot.findAll(
+      {
+        where: {
+          ownerId: req.user.id
+        }
+      })
+    res.json(mySpot);
+  })
+
 // Create a spot:
 router.post('/', requireAuth, validateSpot, async (req, res) => {
     newSpot = req.body;

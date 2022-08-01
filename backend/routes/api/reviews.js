@@ -33,6 +33,42 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json(myReview)
 })
 
+//Edit a review:
+router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
+    const stars = req.body;
+    let reviewId = req.params.reviewId;
+    let reviewBody = req.body;
+    let id = req.user.id;
+
+    if (stars > 5 || stars < 1) {
+        return res.status(400).json({
+            message: "Stars must be a number from 1 to 5.",
+            statusCode: 400,
+        })
+    }
+
+    let thisReview = await Review.findByPk(reviewId);
+    if (!thisReview) {
+        return res.status(404).json({
+            message: "This review does not exist.",
+            statusCode: 404,
+        })
+    }
+    if (thisReview.userId !== id) {
+        return res.status(403).json({
+            message: "You are not authorized to edit this.",
+            statusCode: 403,
+        })
+    }
+    thisReview = await Review.update(reviewBody, {
+        where: {
+            id: reviewId
+        }
+    });
+    thisReview = await Review.findByPk(reviewId);
+    return res.json(thisReview);
+})
+
 // Add an image to a review based on review Id:
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const { url } = req.body;

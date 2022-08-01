@@ -15,10 +15,12 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       spotId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        //allowNull: true
       },
       reviewId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        //allowNull: true
       },
       userId: {
         type: Sequelize.INTEGER,

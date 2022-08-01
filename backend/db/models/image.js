@@ -21,17 +21,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     previewImage: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
     },
     spotId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      //allowNull: true
     },
     reviewId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      //allowNull: true
     },
     userId: {
       type: DataTypes.INTEGER,

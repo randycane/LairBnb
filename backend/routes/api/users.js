@@ -8,20 +8,26 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 //Sign up
-router.post('/', async (req, res) => {
-      const { email, password, username } = req.body;
-      const user = await User.signup({ email, username, password });
+// router.post('/', async (req, res) => {
+//       const { firstName, lastName, email, password, username } = req.body;
+//       const user = await User.signup({ firstName, lastName, email, username, password });
 
-      await setTokenCookie(res, user);
+//       await setTokenCookie(res, user);
 
-      return res.json({
-        user
-      });
-    }
-);
+//       return res.json({
+//         user
+//       });
+//     }
+// );
 
 
 const validateSignup = [
+    check('firstName')
+     .exists({ checkFalsy: true })
+      .withMessage('First name cannot be empty.'),
+    check('lastName')
+      . exists({ checkFalsy: true })
+      .withMessage('Last name cannot be empty.'),
     check('email')
       .exists({ checkFalsy: true })
       .isEmail()
@@ -42,18 +48,42 @@ const validateSignup = [
   ];
 
 
-// Sign up
+// Sign up with auth:
 router.post('/',validateSignup, async (req, res) => {
-      const { email, password, username } = req.body;
-      const user = await User.signup({ email, username, password });
+    const { firstName, lastName, email, password, username } = req.body;
 
-      await setTokenCookie(res, user);
+  const checkEmail = await User.findOne({
+        where: {email}
+  })
+  if (checkEmail) {
+    res.status(403);
+    res.json({
+      message: "User with that email already exists!"
+    })
+  }
 
-      return res.json({
-        user,
-      });
-    }
-  );
+  try {
+    const user = await User.signup({ firstName, lastName, email, username, password });
+    const token = await setTokenCookie(res, user);
+
+    const newUser = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      token: token
+    };
+
+    return res.json(newUser);
+
+  } catch (error) {
+    res.status(403);
+    res.json({
+      "message": "User with that email is already in use.",
+      "statusCode": 403,
+    })
+  }
+});
 
 
 

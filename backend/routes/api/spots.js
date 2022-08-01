@@ -54,7 +54,43 @@ router.get('/current', requireAuth, async (req, res) => {
         }
       })
     res.json(mySpot);
-  })
+})
+
+//Get details of Spot by its Id:
+router.get('/:spotId', async (req, res) => {
+    const spotDeets = await Spot.findByPk(req.params.spotId, {
+        include: [
+            {
+                model: Image,
+                attributes: ["url"],
+            },
+            { model: User, attributes: ["id", "firstName", "lastName"] }
+        ],
+    });
+    if (!spotDeets) {
+        res.status(404);
+        return res.json({
+            message: "Spot could not be found.", statusCode: 404,
+        })
+    }
+    const revDeets = await Spot.findByPk(req.params.spotId, {
+        include: {
+            model: Review,
+            attributes: [],
+        },
+        attributes: [
+            [sequelize.fn("COUNT", sequelize.col("*")), "numReviews"],
+            [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
+        ],
+        raw: true,
+    })
+
+    const allDeets = spotDeets.toJSON();
+    allDeets.numReviews = revDeets.numReviews;
+    allDeets.avgStarRating = revDeets.avgStarRating;
+
+    res.json(allDeets);
+})
 
 // Create a spot:
 router.post('/', requireAuth, validateSpot, async (req, res) => {

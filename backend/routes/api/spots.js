@@ -1,6 +1,6 @@
 const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Spot, Image, User, Review, sequelize} = require('../../db/models');
+const { Spot, Image, User, Review, Booking, sequelize} = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { Op } = require("sequelize");
@@ -43,6 +43,18 @@ const validateSpot = [
 router.get('/', async (req, res) => {
     let spots = await Spot.findAll({});
     res.json(spots);
+})
+
+// Create a spot:
+router.post('/', requireAuth, validateSpot, async (req, res) => {
+    newSpot = req.body;
+    newSpot.ownerId = req.user.id;
+
+    let spot = await Spot.create(newSpot);
+    spot = await Spot.findByPk(newSpot.id)
+
+    res.status(201);
+    return res.json(newSpot);
 })
 
 //Get Spots owned by Current User:
@@ -109,19 +121,64 @@ router.get('/:spotId/reviews', async (req, res) => {
         }
     })
     res.json(spotReview)
-})
+});
 
-// Create a spot:
-router.post('/', requireAuth, validateSpot, async (req, res) => {
-    newSpot = req.body;
-    newSpot.ownerId = req.user.id;
+// Create a booking based on Spot Id:
+router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+    const spotId = req.params.spotId;
+    let bookDeets = req.body;
+    bookDeets.spotId = spotId;
+    bookDeets.userId = req.user.id;
 
-    let spot = await Spot.create(newSpot);
-    spot = await Spot.findByPk(newSpot.id)
+    const tryBook = await Spot.findByPk(spotId);
+    if (!tryBook) {
+        return res.status(404).json({
+            message: "Spot could not be found.",
+            statusCode: 404,
+        })
+    }
+    //spot must not belong to current user:
+    if (bookDeets.userId === tryBook.ownerId) {
+        return res.status(403).json({
+            message: "You cannot book your own spot",
+            statusCode: 403,
+        })
+    }
+    // Body validation error, ex: end date coming before start:
+    if (bookDeets.endDate <= bookDeets.startDate) {
+        return res.status(400).json({
+            message: "Your end date cannot be booked before the start date",
+            statusCode: 400,
+        })
+    }
+    // Booking conflicts:
+    let bookConflict = await Booking.findAll({
+        where: {
+            spotId: spotId,
+            [Op.and]: [
+                { startDate: bookDeets.startDate },
+                { endDate: bookDeets.endDate },
+            ]
+        }
 
-    res.status(201);
-    return res.json(newSpot);
-})
+    });
+    // if this conflict array ever exists, throw the error:
+    if (bookConflict.length) {
+        return res.status(403).json({
+            "message": "Sorry, this spot is already booked for the specified dates",
+            "statusCode": 403,
+            "errors": {
+                "startDate": "Start date conflicts with an existing booking",
+                "endDate": "End date conflicts with an existing booking"
+            }
+        })
+    }
+
+    let newBook = await Booking.create(bookDeets)
+    newBook = await Booking.findByPk(newBook.id);
+    return res.json(newBook);
+});
+
 
 //Edit a spot:
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {

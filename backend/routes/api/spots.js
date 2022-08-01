@@ -133,6 +133,57 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     return res.json(edittedSpot);
 })
 
+// Create a review for a spot:
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+    const { userId, spotId, review, stars } = req.body;
+    const toReview = await Spot.findByPk(req.params.spotId);
+
+    const errorObj = {
+        message: "Validation Error",
+        statusCode: 400,
+        error: {},
+    }
+    if (!toReview) {
+        return res.status(404).json({
+            message: "This spot cannot be found.", statusCode: 404,
+        });
+    }
+    const reviewed = await Review.findAll({
+        where: {
+            [Op.and]: [
+                {spotId: req.params.spotId },
+                {userId: req.user.id},
+            ],
+        },
+    })
+    // if the review or star logic is violated:
+    if (!review) errorObj.error.review = "Review text is necessary."
+    if (stars < 1 || stars > 5) {
+        errorObj.error.stars = "Stars must be number between 1 and 5."
+    }
+
+    if (!review || !stars) {
+        return res.status(400).json(errorObj)
+    }
+
+    if (reviewed.length >= 1) {
+        return res.status(403).json({
+            message: "User already has a review for this spot.",
+            statusCode: 403,
+        })
+    }
+
+    const newReview = await Review.create({
+        userId: req.user.id,
+        spotId: req.params.spotId,
+        review,
+        stars
+    })
+
+    res.status(201);
+    return res.json(newReview);
+})
+
 // Add an image to Spot based on spot Id:
 router.post('/:spotId/images', requireAuth, async (req, res) => {
     let img = await Spot.findByPk(req.params.spotId)

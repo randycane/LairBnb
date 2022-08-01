@@ -32,10 +32,23 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
             message: "Review could not be found!", statusCode: 404,
         })
     }
-
+    // Logic for max number of images
+    const maxImg = await Image.findAll({
+        where: {
+            spotId: rvw.spotId
+        }
+    })
+    if (maxImg.length >= 10) {
+        res.status(403).json({
+            message: "Maximum number of images are on this review",
+            statusCode: 403,
+        })
+    }
+    // end logic to create image:
     const newImg = await Image.create({
         url,
-        reviewId: Review.reviewId
+        spotId: rvw.spotId,
+        userId: req.user.id
     });
     res.json(newImg);
 })

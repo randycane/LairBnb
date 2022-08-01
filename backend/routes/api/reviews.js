@@ -22,6 +22,17 @@ const validateReview = [
     handleValidationErrors
 ];
 
+//Get all Reviews of Current User:
+router.get('/current', requireAuth, async (req, res) => {
+    const id = req.user.id
+    const myReview = await Review.findAll({
+        where: {
+            userId: req.user.id
+        }
+    })
+    res.json(myReview)
+})
+
 // Add an image to a review based on review Id:
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const { url } = req.body;

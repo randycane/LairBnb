@@ -104,6 +104,35 @@ router.post('/', requireAuth, validateSpot, async (req, res) => {
     return res.json(newSpot);
 })
 
+//Edit a spot:
+router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
+    let { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const edittedSpot = await Spot.findByPk(req.params.spotId)
+    if (!edittedSpot) {
+        res.status(404).json({
+            message: "Spot could not be found.", statusCode: 404,
+        })
+    }
+    if (req.user.id !== edittedSpot.ownerId) {
+        res.status(403).json({
+            message: "You must own this spot to edit", statusCode: 403,
+        })
+    }
+    edittedSpot.address = address
+    edittedSpot.city = city
+    edittedSpot.state = state
+    edittedSpot.country = country
+    edittedSpot.lat = lat
+    edittedSpot.lng = lng
+    edittedSpot.name = name
+    edittedSpot.description = description
+    edittedSpot.price = price
+
+    await edittedSpot.save()
+
+    return res.json(edittedSpot);
+})
+
 // Add an image to Spot based on spot Id:
 router.post('/:spotId/images', requireAuth, async (req, res) => {
     let img = await Spot.findByPk(req.params.spotId)

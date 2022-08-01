@@ -92,6 +92,25 @@ router.get('/:spotId', async (req, res) => {
     res.json(allDeets);
 })
 
+// Get all Reviews by a Spot id:
+router.get('/:spotId/reviews', async (req, res) => {
+    const id = req.params.spotId
+    let isReviewed = await Spot.findByPk(id)
+
+    if (!isReviewed) {
+        res.status(404).json({
+            message: "Spot does not exist.",
+            statusCode: 404,
+        })
+    }
+    const spotReview = await Review.findAll({
+        where: {
+            spotId: id
+        }
+    })
+    res.json(spotReview)
+})
+
 // Create a spot:
 router.post('/', requireAuth, validateSpot, async (req, res) => {
     newSpot = req.body;

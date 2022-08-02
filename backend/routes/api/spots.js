@@ -124,28 +124,19 @@ router.get('/:spotId/reviews', async (req, res) => {
 });
 
 // Create a booking based on Spot Id:
-router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
     const spotId = req.params.spotId;
-    let bookDeets = req.body;
-    bookDeets.spotId = spotId;
-    bookDeets.userId = req.user.id;
+    let {startDate, endDate} = req.body;
 
     const tryBook = await Spot.findByPk(spotId);
     if (!tryBook) {
-        return res.status(404).json({
-            message: "Spot could not be found.",
-            statusCode: 404,
-        })
-    }
-    //spot must not belong to current user:
-    if (bookDeets.userId === tryBook.ownerId) {
-        return res.status(403).json({
-            message: "You cannot book your own spot",
-            statusCode: 403,
-        })
+        const error = new Error("Spot could not be found")
+        error.status = 404
+        error.errors = ["Spot with this id does not exist"]
+        return next(error);
     }
     // Body validation error, ex: end date coming before start:
-    if (bookDeets.endDate <= bookDeets.startDate) {
+    if (endDate <= startDate) {
         return res.status(400).json({
             message: "Your end date cannot be booked before the start date",
             statusCode: 400,
@@ -154,28 +145,32 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     // Booking conflicts:
     let bookConflict = await Booking.findAll({
         where: {
-            spotId: spotId,
-            [Op.and]: [
-                { startDate: bookDeets.startDate },
-                { endDate: bookDeets.endDate },
-            ]
-        }
-
-    });
+            [Op.and]: [{
+                startDate: {
+                    [Op.lte]: endDate,
+                },
+                }, {
+                endDate: {
+                    [Op.gte]: startDate,
+                }
+                }],
+            }
+        });
     // if this conflict array ever exists, throw the error:
     if (bookConflict.length) {
-        return res.status(403).json({
-            "message": "Sorry, this spot is already booked for the specified dates",
-            "statusCode": 403,
-            "errors": {
-                "startDate": "Start date conflicts with an existing booking",
-                "endDate": "End date conflicts with an existing booking"
-            }
-        })
+            const error = new Error("Sorry, this spot is booked for these specified dates")
+            error.status = 403
+            error.errors = ["Start date conflicts with an existing booking",
+                "End date conflicts with an exisiting booking"]
+            return next(error)
     }
 
-    let newBook = await Booking.create(bookDeets)
-    newBook = await Booking.findByPk(newBook.id);
+    let newBook = await Booking.create({
+        spotId,
+        startDate,
+        endDate,
+        userId: req.user.id,
+    })
     return res.json(newBook);
 });
 

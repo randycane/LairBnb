@@ -9,8 +9,8 @@ const validBookings = [{
 {
   userId: 5,
   spotId: 4,
-  startDate: "2022-08-09",
-  endDate: "2022-08-11"
+  startDate: "2023-08-09",
+  endDate: "2023-08-11"
   },
   {
     userId: 4,
@@ -47,7 +47,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Bookings', validBookings, null, {})
+    await queryInterface.bulkDelete('Bookings', validBookings, null, {})
     /**
      * Add commands to revert seed here.
      *

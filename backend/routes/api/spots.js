@@ -104,6 +104,11 @@ router.get('/:spotId', async (req, res) => {
     res.json(allDeets);
 })
 
+//Get all bookings for a spot by id:
+router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+    // two cases: one for if you are owner, one for if you are not
+})
+
 // Get all Reviews by a Spot id:
 router.get('/:spotId/reviews', async (req, res) => {
     const id = req.params.spotId

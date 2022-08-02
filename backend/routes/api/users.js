@@ -49,17 +49,17 @@ const validateSignup = [
 
 
 // Sign up with auth:
-router.post('/',validateSignup, async (req, res) => {
+router.post('/',validateSignup, async (req, res, next) => {
     const { firstName, lastName, email, password, username } = req.body;
 
   const checkEmail = await User.findOne({
         where: {email}
   })
   if (checkEmail) {
-    res.status(403);
-    res.json({
-      message: "User with that email already exists!"
-    })
+    const error = new Error("User already exists")
+    error.status = 403
+    error.errors = ["User with that email already exists"]
+    return next(error);
   }
 
   try {

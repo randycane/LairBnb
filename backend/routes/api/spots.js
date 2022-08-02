@@ -135,6 +135,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
     }
 })
 
+
 // Get all Reviews by a Spot id:
 router.get('/:spotId/reviews', async (req, res) => {
     const id = req.params.spotId

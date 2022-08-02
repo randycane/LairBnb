@@ -27,8 +27,8 @@ const validBookings = [{
   {
     userId: 2,
     spotId: 5,
-    startDate: "2022-12-23",
-    endDate: "2022-12-25"
+    startDate: "2022-08-23",
+    endDate: "2022-08-25"
   }
 ]
 

@@ -66,8 +66,30 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
     res.json(abook);
 })
 
+// Delete a booking:
+router.delete('/:bookingId', requireAuth, async (req, res, next) => {
+    let bookDel = await Booking.findByPk(req.params.bookingId)
 
+    if (!bookDel) {
+        const error = new Error("Booking could not be found")
+        error.status = 404
+        return next(error);
+    }
 
+    const { startDate } = bookDel.toJSON();
+    if (new Date(startDate) < new Date()) {
+        const error = new Error("Booking that has been started cannot be deleted")
+        error.status = 403
+        return next(error);
+    }
+
+    await bookDel.destroy()
+
+    res.json({
+        message: "Successfully deleted booking",
+        statusCode: 200,
+    })
+})
 
 
 

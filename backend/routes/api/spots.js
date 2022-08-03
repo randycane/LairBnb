@@ -79,7 +79,7 @@ router.get('/:spotId', async (req, res) => {
             {
                 model: Review,
                 attributes: [[sequelize.fn("COUNT", sequelize.col("*")), "numReviews"],
-                [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]]
+                    [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]],
             },
             {
                 model: User , attributes: ["id", "firstName", "lastName"],
@@ -116,9 +116,9 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
     const aspot = await Spot.findByPk(req.params.spotId);
     if (!aspot) {
-        const error = new Error("This spot could not be found")
-        error.status = 404
-        return next(error);
+        let err = new Error("This spot could not be found")
+        err.status = 404
+        return next(err);
     }
     else if (aspot.ownerId === req.user.id) {
         return res.json({ 'Bookings': isOwnerBooks})

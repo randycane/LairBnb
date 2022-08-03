@@ -245,18 +245,18 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
 
 //Edit a spot:
-router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
+router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
     let { address, city, state, country, lat, lng, name, description, price } = req.body;
     const edittedSpot = await Spot.findByPk(req.params.spotId)
     if (!edittedSpot) {
-        res.status(404).json({
-            message: "Spot could not be found.", statusCode: 404,
-        })
+        let err = new Error("This spot could not be found")
+        err.status = 404
+        return next(err)
     }
     if (req.user.id !== edittedSpot.ownerId) {
-        res.status(403).json({
-            message: "You must own this spot to edit", statusCode: 403,
-        })
+        let err = new Error("You must own this spot to edit")
+        err.status = 403
+        return next(err)
     }
     edittedSpot.address = address
     edittedSpot.city = city
@@ -274,7 +274,7 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
 })
 
 // Create a review for a spot:
-router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
     const { userId, spotId, review, stars } = req.body;
     const toReview = await Spot.findByPk(req.params.spotId);
 
@@ -284,9 +284,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         error: {},
     }
     if (!toReview) {
-        return res.status(404).json({
-            message: "This spot cannot be found.", statusCode: 404,
-        });
+        let err = new Error("This spot could not be found")
+        err.status = 404
+        return next(err)
     }
     const reviewed = await Review.findAll({
         where: {
@@ -307,10 +307,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     }
 
     if (reviewed.length >= 1) {
-        return res.status(403).json({
-            message: "User already has a review for this spot.",
-            statusCode: 403,
-        })
+        let err = new Error("This spot already has a review.")
+        err.status = 403
+        return next(err)
     }
 
     const newReview = await Review.create({
@@ -324,7 +323,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     return res.json(newReview);
 })
 
-// Create an image to Spot based on spot Id:
+// Add an image to Spot based on spot Id:
 router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     let img = await Spot.findByPk(req.params.spotId)
 
@@ -345,10 +344,9 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 router.delete('/:spotId', requireAuth, async (req, res, next) => {
     let spotDel = await Spot.findByPk(req.params.spotId);
     if (!spotDel) {
-        res.status(404).json({
-            message: "This spot could not be found.",
-            statusCode: 404,
-        })
+        let err = new Error("This spot could not be found")
+            err.status = 404
+        return next(err)
     }
 
     await spotDel.destroy();

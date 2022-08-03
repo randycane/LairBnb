@@ -3,7 +3,7 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Spot, Image, User, Review, Booking, sequelize} = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 
 const router = express.Router();
 
@@ -69,34 +69,76 @@ router.get('/current', requireAuth, async (req, res, next) => {
 })
 
 //Get details of Spot by its Id:
-router.get('/:spotId', async (req, res) => {
-    const spotDeets = await Spot.findByPk(req.params.spotId, {
+// router.get('/:spotId', async (req, res) => {
+//     const spotDeets = await Spot.findByPk(req.params.spotId, {
+//         include: [
+//             {
+//                 model: Image,
+//                 attributes: ["id", "spotId", "url"],
+//             },
+//             {
+//                 model: Review,
+//                 attributes: [[sequelize.fn("COUNT", sequelize.col("*")), "numReviews"],
+//                     [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]],
+//             },
+//             {
+//                 model: User,
+//                 as: "Owner",
+//                 attributes: ["id", "firstName", "lastName"],
+//             },
+//         ],
+//     });
+//     // This does not work right now:
+//     if (!spotDeets) {
+//         const err = new Error("Spot could not be found")
+//         err.status = 404
+//         err.errors = ["Spot with that id does not exist!"]
+//         return next(err);
+//     }
+
+
+//     res.json(spotDeets);
+// })
+
+// Get details of spot Id:
+router.get('/:spotId', async (req, res, next) => {
+    const id = req.params.spotId
+    let spotDeets = await Spot.findByPk(id, {
         include: [
             {
                 model: Image,
-                attributes: ["id", "spotId", "url"],
-            },
-            {
-                model: Review,
-                attributes: [[sequelize.fn("COUNT", sequelize.col("*")), "numReviews"],
-                    [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]],
+                attributes: ["id", "spotId",  "url"],
             },
             {
                 model: User,
                 as: "Owner",
-                attributes: ["id", "firstName", "lastName"],
+                attributes: ['id', 'firstName', 'lastName']
             },
-        ],
-    });
-    // This does not work right now:
-    if (!spotDeets) {
-        const err = new Error("Spot could not be found")
+        ]
+    })
+    if(!spotDeets){
+        const err = new Error("Spot couldn't be found")
         err.status = 404
-        err.errors = ["Spot with that id does not exist!"]
-        return next(err);
+        return next(err)
     }
 
-    res.json(spotDeets);
+    const numDeets = await Spot.findByPk(id, {
+                include:
+                    {
+                        model: Review,
+                        attributes: []
+                    },
+                    attributes: [
+                    [sequelize.fn("COUNT", sequelize.col("review")), "numReviews"],
+                    [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
+                    ],
+                    raw:true,
+    })
+
+    let detailout = spotDeets.toJSON()
+    detailout.numReviews = numDeets.numReviews
+    detailout.avgStarRating = numDeets.avgStarRating
+    res.json(detailout);
 })
 
 //Get all bookings for a spot by id:

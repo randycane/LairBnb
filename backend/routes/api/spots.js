@@ -198,7 +198,7 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
     });
 
     res.status(201);
-    return res.json({ spot });
+    return res.json(spot);
 })
 
 //Get Spots owned by Current User:

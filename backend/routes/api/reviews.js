@@ -69,7 +69,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => 
 
 // Add an image to a review based on review Id:
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
-    const { url } = req.body;
+    let id = req.params.reviewId;
     const rvw = await Review.findByPk(req.params.reviewId)
 
     if (!rvw) {
@@ -90,11 +90,17 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     }
     // end logic to create image:
     const newImg = await Image.create({
-        url,
+        url: req.body.url,
         spotId: rvw.spotId,
-        userId: req.user.id
+        userId: req.user.id,
+        reviewId: id
     });
-    res.json(newImg);
+    // return only what they want to see:
+    res.json({
+        id: newImg.id,
+        imageableId: newImg.spotId,
+        url: newImg.url
+    });
 })
 
 // Delete a review:

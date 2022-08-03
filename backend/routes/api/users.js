@@ -62,6 +62,16 @@ router.post('/',validateSignup, async (req, res, next) => {
     return next(err);
   }
 
+  const checkUsername = await User.findOne({
+    where: {username}
+  })
+  if (checkUsername) {
+  const err = new Error("User already exists")
+  err.status = 403,
+  err.errors = { username: "User with that username already exists" }
+  return next(err);
+  }
+
   try {
     const user = await User.signup({ firstName, lastName, email, username, password });
     const token = await setTokenCookie(res, user);
@@ -85,6 +95,16 @@ router.post('/',validateSignup, async (req, res, next) => {
   }
 });
 
+// Get current user:
+router.get('/session', requireAuth, async (req, res) => {
+  const currentUser = {
+    id: req.user.id,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    email: req.user.email,
+  }
+  return res.json(currentUser)
+})
 
 
 

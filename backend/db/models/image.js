@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     spotId: {
       type: DataTypes.INTEGER,
-      //allowNull: true
+      allowNull: false
     },
     reviewId: {
       type: DataTypes.INTEGER,
@@ -40,6 +40,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Image',
+    defaultScope: {
+      attributes: {
+        exclude: ["createdAt", "updatedAt"]
+      }
+    },
   });
   return Image;
 };

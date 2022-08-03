@@ -11,28 +11,28 @@ const validImages = [
   {
   spotId: 2,
   reviewId: 2,
-  previewImage: 1,
+  previewImage: true,
     url: "vegetables",
     userId: 3,
   },
   {
     spotId: 3,
     reviewId: 3,
-    previewImage: 1,
+    previewImage: true,
     url: "noodles",
     userId:4,
   },
   {
     spotId: 4,
     reviewId: 5,
-    previewImage: 1,
+    previewImage: true,
     url: "wine",
     userId: 5,
   },
   {
     spotId: 5,
     reviewId: 4,
-    previewImage: 1,
+    previewImage: true,
     url: "bunk",
     userId: 1
   }

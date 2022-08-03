@@ -34,7 +34,7 @@ router.get('/current', requireAuth, async (req, res) => {
 })
 
 //Edit a review:
-router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
+router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => {
     const stars = req.body;
     let reviewId = req.params.reviewId;
     let reviewBody = req.body;
@@ -49,16 +49,14 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
 
     let thisReview = await Review.findByPk(reviewId);
     if (!thisReview) {
-        return res.status(404).json({
-            message: "This review does not exist.",
-            statusCode: 404,
-        })
+        const err = new Error("Review couldn't be found")
+        err.status = 404
+        return next(err)
     }
     if (thisReview.userId !== id) {
-        return res.status(403).json({
-            message: "You are not authorized to edit this.",
-            statusCode: 403,
-        })
+        const err = new Error("You are not authorized to edit this.")
+        err.status = 403
+        return next(err)
     }
     thisReview = await Review.update(reviewBody, {
         where: {
@@ -86,10 +84,9 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         }
     })
     if (maxImg.length >= 10) {
-        res.status(403).json({
-            message: "Maximum number of images are on this review",
-            statusCode: 403,
-        })
+        const err = new Error("Maximum number of images have been reached.")
+        err.status = 403
+        return next(err)
     }
     // end logic to create image:
     const newImg = await Image.create({
@@ -104,9 +101,9 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 router.delete('/:reviewId', requireAuth, async (req, res, next) => {
     const reviewDel = await Review.findByPk(req.params.reviewId);
     if (!reviewDel) {
-        return res.status(404).json({
-            message: "Review could not be found",
-            statusCode: 404,})
+        const err = new Error("Review couldn't be found")
+        err.status = 404
+        return next(err)
     }
     await reviewDel.destroy();
     res.json({

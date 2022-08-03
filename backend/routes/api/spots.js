@@ -40,10 +40,144 @@ const validateSpot = [
 ];
 
 // Get all spots:
-router.get('/', async (req, res) => {
-    let spots = await Spot.findAll({});
-    res.json(spots);
+// router.get('/', async (req, res) => {
+//     let spots = await Spot.findAll({});
+//     res.json(spots);
+// })
+
+// Get all spots with query params:
+router.get('/', async (req, res, next) => {
+
+    let pagination = {
+      filter: [],
+    };
+    let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } =
+      req.query;
+    const err= {
+      message: "Validation Error",
+      statusCode: 400,
+      errors: {},
+    };
+
+    page = parseInt(page);
+    size = parseInt(size);
+
+    if (Number.isNaN(page)) page = 1;
+    if (Number.isNaN(size)) size = 20;
+
+    pagination.limit = size;
+    pagination.offset = size * (page -1);
+
+    if (page > 10) page = 10;
+    if (size > 20) size = 20;
+
+    if (page < 0) err.errors = "Page must be greater than or equal to 0";
+    if (size < 0) err.errors = "Size must be greater than or equal to 0";
+    if (Number(maxLat) > 90) {
+      error.errors.maxLat = "Maximum latitude is invalid";
+      maxLat = false;
+    }
+    if (Number(minLat) < -90) {
+      err.errors = "Minimum latitude is invalid";
+      minLng = false;
+    }
+    if (Number(maxLng) > 180) {
+      err.errors = "Maximum longitude is invalid";
+      maxLng = false;
+    }
+    if (Number(minLng) < -180) {
+      err.errors = "Minimum longitude is invalid";
+      minLng = false;
+    }
+    if (Number(minPrice) < 0) {
+      err.errors = "Maximum price must be greater than 0";
+      minPrice = false;
+    }
+    if (Number(maxPrice) < 0) {
+      err.errors = "Minimum price must be greater than 0";
+      maxPrice = false;
+    }
+    if (
+        page < 0 ||
+        size < 0 ||
+        (!maxLat && maxLat !== undefined) ||
+        (!minLat && minLat !== undefined) ||
+        (!maxLng && maxLng !== undefined) ||
+        (!minLng && minLng !== undefined) ||
+        (!minPrice && minPrice !== undefined) ||
+        (!maxPrice && maxPrice !== undefined)
+      ) {
+        res.status(400);
+        res.json(err);
+      }
+
+      if (maxLat) {
+        pagination.filter.push({
+          lat: { [Op.lte]: Number(maxLat) },
+        });
+      }
+      if (minLat) {
+        pagination.filter.push({
+          lat: { [Op.gte]: Number(minLat) },
+        });
+      }
+      if (minLng) {
+        pagination.filter.push({
+          lng: { [Op.gte]: Number(minLng) },
+        });
+      }
+      if (maxLng) {
+        pagination.filter.push({
+          lng: { [Op.lte]: Number(maxLng) },
+        });
+      }
+      if (minPrice) {
+        pagination.filter.push({
+          price: { [Op.gte]: Number(minPrice) },
+        });
+      }
+      if (maxPrice) {
+        pagination.filter.push({
+          price: { [Op.lte]: Number(maxPrice) },
+        });
+      }
+
+
+      const Spots = await Spot.findAll({
+        where: {
+            [Op.and]: pagination.filter
+        },
+        limit: pagination.limit,
+        offset: pagination.offset,
+    })
+    for (let spot of Spots) {
+        const spotReviewArray = await spot.getReviews({
+          attributes: [
+            [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
+          ],
+        });
+
+        const avgRating = spotReviewArray[0].dataValues.avgStarRating;
+        spot.dataValues.avgRating = Number(avgRating).toFixed(2);
+        const previewImage = await Image.findOne({
+          where: {
+            [Op.and]: {
+              spotId: spot.id,
+              previewImage: true,
+            },
+          },
+        });
+        if (previewImage) {
+          spot.dataValues.previewImage = previewImage.dataValues.url;
+        }
+      }
+    res.json({
+        page: page,
+        size: size,
+        Spots,
+    })
 })
+
 
 // Create a spot:
 router.post('/', requireAuth, validateSpot, async (req, res) => {
@@ -174,15 +308,14 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
 
 // Get all Reviews by a Spot id:
-router.get('/:spotId/reviews', async (req, res) => {
+router.get('/:spotId/reviews', async (req, res, next) => {
     const id = req.params.spotId
     let isReviewed = await Spot.findByPk(id)
 
     if (!isReviewed) {
-        res.status(404).json({
-            message: "Spot does not exist.",
-            statusCode: 404,
-        })
+        let err = new Error("This spot could not be found")
+        err.status = 404
+        return next(err);
     }
     const spotReview = await Review.findAll({
         where: {

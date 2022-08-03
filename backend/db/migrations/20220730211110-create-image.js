@@ -9,14 +9,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       url: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       previewImage: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
       },
       spotId: {
         type: Sequelize.INTEGER,
-        //allowNull: true
+        allowNull: false
       },
       reviewId: {
         type: Sequelize.INTEGER,

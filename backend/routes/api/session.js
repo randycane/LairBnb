@@ -1,7 +1,7 @@
 const express = require('express')
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
+const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 const router = express.Router();
@@ -15,7 +15,21 @@ const validateLogin = [
       .exists({ checkFalsy: true })
       .withMessage('Password is required.'),
     handleValidationErrors
-  ];
+];
+
+// Restore session user
+router.get(
+  '/',
+  restoreUser,
+  (req, res) => {
+    const { user } = req;
+    if (user) {
+      return res.json({
+        user: user.toSafeObject()
+      });
+    } else return res.json({});
+  }
+);
 
 // Log in route:
 router.post('/', validateLogin, async (req, res, next) => {
@@ -53,18 +67,5 @@ router.delete('/',
 );
 
 
-// Restore session user
-router.get(
-  '/',
-  restoreUser,
-  (req, res) => {
-    const { user } = req;
-    if (user) {
-      return res.json({
-        user: user.toSafeObject()
-      });
-    } else return res.json({});
-  }
-);
 
 module.exports = router;

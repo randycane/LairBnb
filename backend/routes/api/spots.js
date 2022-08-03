@@ -82,15 +82,18 @@ router.get('/:spotId', async (req, res) => {
                     [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]],
             },
             {
-                model: User , attributes: ["id", "firstName", "lastName"],
+                model: User,
+                as: "Owner",
+                attributes: ["id", "firstName", "lastName"],
             },
         ],
     });
+    // This does not work right now:
     if (!spotDeets) {
-        res.status(404);
-        return res.json({
-            message: "Spot could not be found.", statusCode: 404,
-        })
+        const err = new Error("Spot could not be found")
+        err.status = 404
+        err.errors = ["Spot with that id does not exist!"]
+        return next(err);
     }
 
     res.json(spotDeets);

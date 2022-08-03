@@ -21,17 +21,45 @@ const validateReview = [
         }),
     handleValidationErrors
 ];
+//Get all Reviews of the current user:
+router.get('/current', requireAuth, async (req, res) => {
+    const obj = {};
+    let currUser = req.user.id;
+    const allReviews = await Review.findAll({
+        include: [{ model: User, attributes: ["id", "firstName", "lastName"] },
+            { model: Spot, attributes: ["id","address", "city", "state", "country", "lat", "lng","name","price"] },
+        {
+        model: Image, attributes: ["id", ["reviewId", "imageableId"],"url"]
+        }],
+      where: {userId: currUser}
+    })
+    obj.Reviews = allReviews
+    res.json(obj)
+})
 
 //Get all Reviews of Current User:
-router.get('/current', requireAuth, async (req, res) => {
-    const id = req.user.id
-    const myReview = await Review.findAll({
-        where: {
-            userId: req.user.id
-        }
-    })
-    res.json(myReview)
-})
+// router.get('/current', requireAuth, async (req, res) => {
+//     const id = req.user.id
+//     const myReviews = await Review.findAll({
+//         where: {
+//             userId: id
+//         }
+//     })
+//     for (let review of myReviews) {
+//     const writer = await review.getUser({
+//       attributes: ["id", "firstName", "lastName"],
+//     });
+//     const spot = await review.getSpot();
+//     const images = await review.getImages({
+//       attributes: ["id", ["reviewId", "imageableId"], "url"],
+//         });
+//     review.dataValues.User = writer.toJSON();
+//     review.dataValues.Spot = spot.toJSON();
+//     review.dataValues.Images = images;
+//     }
+//     res.json(myReviews)
+// })
+
 
 //Edit a review:
 router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => {

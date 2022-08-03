@@ -28,8 +28,8 @@ const validateSpot = [
       .withMessage("Longitude is not valid"),
     check('name')
       .exists({checkFalsy:true})
-      .isLength({max:50})
-      .withMessage("Name must be less than 50 characters"),
+      .isLength({max:60})
+      .withMessage("Name must be less than 60 characters"),
     check('description')
       .exists({checkFalsy:true})
       .withMessage("Description is required"),
@@ -304,6 +304,24 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
     })
     res.json(newImg)
+})
+
+// Delete a spot:
+router.delete('/:spotId', requireAuth, async (req, res, next) => {
+    let spotDel = await Spot.findByPk(req.params.spotId);
+    if (!spotDel) {
+        res.status(404).json({
+            message: "This spot could not be found.",
+            statusCode: 404,
+        })
+    }
+
+    await spotDel.destroy();
+
+    res.json({
+        message: "Spot successfully deleted",
+        statusCode: 200,
+    })
 })
 
 module.exports = router;

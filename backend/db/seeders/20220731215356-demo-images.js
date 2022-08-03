@@ -4,7 +4,7 @@ const validImages = [
   {
   spotId: 1,
     reviewId: 1,
-    previewImage: 1,
+    previewImage: true,
     url: "raven",
     userId: 2
   },

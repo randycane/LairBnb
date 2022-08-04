@@ -41,9 +41,9 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         }
     });
     if (!abook) {
-        const error = new Error("Booking could not be found!")
-        error.status = 404
-        return next(error);
+        const err = new Error("Booking could not be found!")
+        err.status = 404
+        return next(err);
     }
     const bookConflict = await Booking.findAll({
         where: {

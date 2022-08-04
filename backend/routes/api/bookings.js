@@ -10,14 +10,25 @@ const router = express.Router();
 //Get all the current user bookings:
 router.get('/current', requireAuth, async (req, res, next) => {
     const myOwnBook = await Booking.findAll({
+        where: { userId: req.user.id },
         include: [
             {
                 model: Spot,
+                attributes: ["id", "ownerId", "address", "city", "state", "country", "lat", "lng", "name", "price"],
+                include: [{ model: Image, where: {"previewImage": true} } ]
             },
         ],
-        where: { userId: req.user.id },
     });
-    res.json(myOwnBook);
+    // manipulate response array to include with previewImage
+    const array = [];
+    myOwnBook.forEach(async book => {
+        let bookWithImg = book.toJSON()
+        bookWithImg.Spot["previewImage"] = bookWithImg.Spot.Images[0].url
+        delete bookWithImg.Spot.Images
+        array.push(bookWithImg)
+    })
+    //console.log(array)
+    res.json({ "Bookings": array })
 })
 
 // Edit a Booking:

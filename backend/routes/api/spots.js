@@ -396,7 +396,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
     const errorObj = {
         message: "Validation Error",
         statusCode: 400,
-        error: {},
+        errors: {},
     }
     if (!toReview) {
         let err = new Error("This spot could not be found")
@@ -412,14 +412,14 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
         },
     })
     // if the review or star logic is violated:
-    if (!review) errorObj.error.review = "Review text is necessary."
-    if (stars < 1 || stars > 5) {
-        errorObj.error.stars = "Stars must be number between 1 and 5."
+  if (!review) errorObj.errors = { "review": "Review text is required." }
+    if (stars < 1 || stars > 5 || !stars) {
+      errorObj.errors = { "stars": "Stars must be number between 1 and 5." }
     }
 
-    if (!review || !stars) {
-        return res.status(400).json(errorObj)
-    }
+    // if (!review || !stars) {
+    //     return res.status(400).json(errorObj)
+    // }
 
     if (reviewed.length >= 1) {
         let err = new Error("This spot already has a review.")

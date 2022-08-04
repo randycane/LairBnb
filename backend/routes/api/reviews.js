@@ -63,16 +63,15 @@ router.get('/current', requireAuth, async (req, res) => {
 
 //Edit a review:
 router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => {
-    const stars = req.body;
+    const { review, stars } = req.body;
     let reviewId = req.params.reviewId;
-    let reviewBody = req.body;
     let id = req.user.id;
 
-    if (stars > 5 || stars < 1) {
-        return res.status(400).json({
-            message: "Stars must be a number from 1 to 5.",
-            statusCode: 400,
-        })
+    if (stars > 5 || stars < 1 || review === undefined) {
+        let err = new Error("Validation Error")
+        err.status = 400
+        err.errors = {"review": "Review text is required", "stars": "Stars must be a number between 1 and 5"}
+        return next(err);
     }
 
     let thisReview = await Review.findByPk(reviewId);
@@ -86,12 +85,11 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => 
         err.status = 403
         return next(err)
     }
-    thisReview = await Review.update(reviewBody, {
-        where: {
-            id: reviewId
-        }
-    });
-    thisReview = await Review.findByPk(reviewId);
+    thisReview.review = review
+    thisReview.stars = stars
+
+    await thisReview.save();
+
     return res.json(thisReview);
 })
 

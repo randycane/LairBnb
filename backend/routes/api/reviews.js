@@ -21,7 +21,7 @@ const validateReview = [
         }),
     handleValidationErrors
 ];
-//Get all Reviews of the current user:
+//Get all Reviews of the current user eager loading:
 router.get('/current', requireAuth, async (req, res) => {
     const obj = {};
     let currUser = req.user.id;
@@ -37,7 +37,7 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json(obj)
 })
 
-//Get all Reviews of Current User:
+//Get all Reviews of Current User lazy loading:
 // router.get('/current', requireAuth, async (req, res) => {
 //     const id = req.user.id
 //     const myReviews = await Review.findAll({

@@ -288,8 +288,8 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
 // Get all Reviews by a Spot id:
 router.get('/:spotId/reviews', async (req, res, next) => {
-    const id = req.params.spotId
-    let isReviewed = await Spot.findByPk(id)
+    let spotId = req.params.spotId
+    let isReviewed = await Spot.findByPk(spotId)
 
     if (!isReviewed) {
         let err = new Error("This spot could not be found")
@@ -298,10 +298,12 @@ router.get('/:spotId/reviews', async (req, res, next) => {
     }
     const spotReview = await Review.findAll({
         where: {
-            spotId: id
-        }
+            spotId : spotId
+        },
+        include: [{ model: User, attributes: ["id", "firstName", "lastName"] },
+            { model: Image, attributes: ["id", ["reviewId", "imageableId"], "url"] }],
     })
-    res.json(spotReview)
+    res.json({ "Reviews": spotReview })
 });
 
 // Create a booking based on Spot Id:

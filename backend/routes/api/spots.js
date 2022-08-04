@@ -247,11 +247,10 @@ router.get('/:spotId', async (req, res, next) => {
                     ],
                     raw:true,
     })
-
-    let detailout = spotDeets.toJSON()
-    detailout.numReviews = numDeets.numReviews
-    detailout.avgStarRating = numDeets.avgStarRating.toFixed(2)
-    res.json(detailout);
+      let detailout = spotDeets.toJSON()
+      detailout.numReviews = numDeets.numReviews
+      detailout.avgStarRating = numDeets.avgStarRating
+      res.json(detailout);
 })
 
 //Get all bookings for a spot by id:

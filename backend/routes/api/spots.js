@@ -313,17 +313,16 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
     const tryBook = await Spot.findByPk(spotId);
     if (!tryBook) {
-        const error = new Error("Spot could not be found")
-        error.status = 404
-        error.errors = ["Spot with this id does not exist"]
-        return next(error);
+        const err = new Error("Spot could not be found")
+        err.status = 404
+        return next(err);
     }
     // Body validation error, ex: end date coming before start:
     if (endDate <= startDate) {
-        return res.status(400).json({
-            message: "Your end date cannot be booked before the start date",
-            statusCode: 400,
-        })
+        let err = new Error("Validation Error")
+        err.status = 400
+        err.errors = {"endDate": "endDate cannot be on or before startDate"}
+        return next(err)
     }
     // Booking conflicts:
     let bookConflict = await Booking.findAll({
@@ -341,11 +340,13 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
         });
     // if this conflict array ever exists, throw the error:
     if (bookConflict.length) {
-            const error = new Error("Sorry, this spot is booked for these specified dates")
-            error.status = 403
-            error.errors = ["Start date conflicts with an existing booking",
-                "End date conflicts with an exisiting booking"]
-            return next(error)
+            const err = new Error("Sorry, this spot is booked for these specified dates")
+            err.status = 403
+            err.errors = {
+            "startDate": "Start date conflicts with an existing booking",
+            "endDate": "End date conflicts with an exisiting booking"
+        }
+            return next(err)
     }
 
     let newBook = await Booking.create({

@@ -255,34 +255,35 @@ router.get('/:spotId', async (req, res, next) => {
 
 //Get all bookings for a spot by id:
 router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
-    // two cases: one for if you are owner:
-    // one for if you are not the owner:
-    const isOwnerBooks = await Booking.findAll({
-        where: {
-            spotId: req.params.spotId
-        },
-        include: {
-            model: User,
-            attributes: ['id', 'firstName', 'lastName']
-        }
-    });
-    const notAnOwnerBooks = await Booking.findAll({
-        where: { spotId: req.params.spotId },
-        attributes: ['spotId', 'startDate', 'endDate']
-    });
-
-    const aspot = await Spot.findByPk(req.params.spotId);
-    if (!aspot) {
-        let err = new Error("This spot could not be found")
-        err.status = 404
-        return next(err);
-    }
-    else if (aspot.ownerId === req.user.id) {
-        return res.json({ 'Bookings': isOwnerBooks})
-    } else {
-        return res.json({'Bookings': notAnOwnerBooks})
-    }
-})
+  //find spot first:
+  const aspot = await Spot.findByPk(req.params.spotId);
+  if (!aspot) {
+    let err = new Error("This spot could not be found")
+    err.status = 404
+    next(err);
+  }
+  // two cases:
+  //one for if you are owner:
+  if (aspot.ownerId === req.user.id) {
+    let isOwnerBooks = await Booking.findAll({
+      where: {
+        spotId: req.params.spotId
+      },
+      include: {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName']
+      }
+    })
+    res.json({ "Bookings": isOwnerBooks })
+  }
+  // one for if you are not the owner:
+  if (aspot.ownerId !== req.user.id) { }
+    let notAnOwnerBooks = await Booking.findAll({
+      where: { spotId: req.params.spotId },
+      attributes: ['spotId', 'startDate', 'endDate']
+    })
+    res.json({ "Bookings": notAnOwnerBooks })
+});
 
 
 // Get all Reviews by a Spot id:

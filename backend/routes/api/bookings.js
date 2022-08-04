@@ -55,17 +55,17 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         }
     })
     if (bookConflict.length) {
-        const error = new Error("This spot is already booked for these dates")
-        error.status = 403
-        error.errors = ["Start date conflicts with an existing booking",
+        const err = new Error("This spot is already booked for these dates")
+        err.status = 403
+        err.errors = ["Start date conflicts with an existing booking",
             "End date conflicts with an existing booking"]
-        return next(error)
+        return next(err)
     }
 
     if (endDate < Date.now()) {
-        const error = new Error("You cannot edit a past booking")
-        error.status = 403
-        return next(error)
+        const err = new Error("You cannot edit a past booking")
+        err.status = 403
+        return next(err)
     }
 
     abook = await Booking.update(req.body, {
@@ -82,16 +82,16 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
     let bookDel = await Booking.findByPk(req.params.bookingId)
 
     if (!bookDel) {
-        const error = new Error("Booking could not be found")
-        error.status = 404
-        return next(error);
+        const err = new Error("Booking could not be found")
+        err.status = 404
+        return next(err);
     }
 
     const { startDate } = bookDel.toJSON();
     if (new Date(startDate) < new Date()) {
-        const error = new Error("Booking that has been started cannot be deleted")
-        error.status = 403
-        return next(error);
+        const err = new Error("Booking that has been started cannot be deleted")
+        err.status = 403
+        return next(err);
     }
 
     await bookDel.destroy()

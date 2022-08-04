@@ -74,7 +74,7 @@ router.get('/', async (req, res, next) => {
     if (page < 0) err.errors = "Page must be greater than or equal to 0";
     if (size < 0) err.errors = "Size must be greater than or equal to 0";
     if (Number(maxLat) > 90) {
-      error.errors.maxLat = "Maximum latitude is invalid";
+      err.errors = "Maximum latitude is invalid";
       maxLat = false;
     }
     if (Number(minLat) < -90) {

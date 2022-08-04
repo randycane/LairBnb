@@ -94,14 +94,14 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => 
 })
 
 // Add an image to a review based on review Id:
-router.post('/:reviewId/images', requireAuth, async (req, res) => {
+router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     let id = req.params.reviewId;
-    const rvw = await Review.findByPk(req.params.reviewId)
+    const rvw = await Review.findByPk(id)
 
     if (!rvw) {
-        return res.status(404).json({
-            message: "Review could not be found!", statusCode: 404,
-        })
+        let err = new Error("Review could not be found")
+        err.status = 404
+        return next(err)
     }
     // Logic for max number of images
     const maxImg = await Image.findAll({

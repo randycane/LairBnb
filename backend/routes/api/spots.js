@@ -250,7 +250,7 @@ router.get('/:spotId', async (req, res, next) => {
 
     let detailout = spotDeets.toJSON()
     detailout.numReviews = numDeets.numReviews
-    detailout.avgStarRating = numDeets.avgStarRating
+    detailout.avgStarRating = numDeets.avgStarRating.toFixed(2)
     res.json(detailout);
 })
 

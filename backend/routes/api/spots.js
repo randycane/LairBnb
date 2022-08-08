@@ -210,6 +210,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
         ownerId: id
       }
     });
+  // try number 1 for lazy loading:
 
   // let myImg = await Image.findOne({
   //   where: {
@@ -238,7 +239,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
   //   res.json({ "Spots": arrayOut });
 
-  // lazy loading second part attributes:
+  // lazy loading 2nd try attributes working:
   for (let eachSpot of mySpots) {
     let spotsReviews = await eachSpot.getReviews({
       attributes: [

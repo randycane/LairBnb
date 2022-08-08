@@ -203,13 +203,39 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
 
 //Get Spots owned by Current User:
 router.get('/current', requireAuth, async (req, res, next) => {
-    const mySpot = await Spot.findAll(
-      {
-        where: {
-          ownerId: req.user.id
-        }
-      })
-    res.json({ "Spots": mySpot });
+  const mySpot = await Spot.findAll(
+    {
+      where: {
+        ownerId: req.user.id
+      }
+    });
+
+  let myImg = await Image.findOne({
+    where: {
+      userId: req.user.id
+    },
+  });
+  let arrayOut = []
+  for (let spot of mySpot) {
+    let reviewOut = await Review.findOne({
+      where: {
+        [Op.and]: [
+          { userId: req.user.id },
+          { spotId: spot.toJSON().id }
+        ]
+      },
+      attributes: [
+        [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]
+      ],
+      raw: true,
+    })
+    let currSpot = spot.toJSON()
+    currSpot.avgRating = Number(reviewOut.avgStarRating).toFixed(2)
+  }
+    currSpot.myImg = myImg.dataValues.url
+  arrayOut.push(currSpot)
+
+    res.json({ "Spots": arrayOut });
 })
 
 

@@ -203,40 +203,66 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
 
 //Get Spots owned by Current User--
 router.get('/current', requireAuth, async (req, res, next) => {
-  const mySpot = await Spot.findAll(
+  let id = req.user.id;
+  let mySpots = await Spot.findAll(
     {
       where: {
-        ownerId: req.user.id
+        ownerId: id
       }
     });
 
-  let myImg = await Image.findOne({
-    where: {
-      userId: req.user.id
-    },
-  });
-  let arrayOut = []
-  for (let spot of mySpot) {
-    let reviewOut = await Review.findOne({
-      where: {
-        [Op.and]: [
-          { userId: req.user.id },
-          { spotId: spot.toJSON().id }
-        ]
-      },
+  // let myImg = await Image.findOne({
+  //   where: {
+  //     userId: req.user.id
+  //   },
+  // });
+  // let arrayOut = []
+  // for (let spot of mySpot) {
+  //   let reviewOut = await Review.findOne({
+  //     where: {
+  //       [Op.and]: [
+  //         { userId: req.user.id },
+  //         { spotId: spot.toJSON().id }
+  //       ]
+  //     },
+  //     attributes: [
+  //       [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]
+  //     ],
+  //     raw: true,
+  //   })
+  //   let jsonspot = spot.toJSON()
+  //   jsonspot.avgRating = Number(reviewOut.avgStarRating).toFixed(2)
+  // }
+  //   jsonspot.myImg = myImg.dataValues.url
+  //   arrayOut.push(jsonspot)
+
+  //   res.json({ "Spots": arrayOut });
+
+  // lazy loading second part attributes:
+  for (let eachSpot of mySpots) {
+    let spotsReviews = await eachSpot.getReviews({
       attributes: [
         [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]
-      ],
-      raw: true,
+      ]
     })
-    let jsonspot = spot.toJSON()
-    jsonspot.avgRating = Number(reviewOut.avgStarRating).toFixed(2)
-  }
-    jsonspot.myImg = myImg.dataValues.url
-    arrayOut.push(jsonspot)
-
-    res.json({ "Spots": arrayOut });
-})
+    const avgRating = spotsReviews[0].dataValues.avgStarRating;
+    eachSpot.dataValues.avgRating = Number(avgRating).toFixed(2);
+    const previewImg = await Image.findOne({
+      where: {
+        [Op.and]: [
+          { spotId: eachSpot.id },
+          { previewImage: true }
+        ]
+      }
+    });
+    if (previewImg) {
+      eachSpot.dataValues.previewImage = previewImg.dataValues.url
+    }
+  };
+  res.json({
+    "Spots": mySpots
+  })
+});
 
 
 // Get details of spot Id:

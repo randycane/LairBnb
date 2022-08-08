@@ -201,7 +201,7 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
     return res.json(spot);
 })
 
-//Get Spots owned by Current User:
+//Get Spots owned by Current User--
 router.get('/current', requireAuth, async (req, res, next) => {
   const mySpot = await Spot.findAll(
     {
@@ -229,11 +229,11 @@ router.get('/current', requireAuth, async (req, res, next) => {
       ],
       raw: true,
     })
-    let currSpot = spot.toJSON()
-    currSpot.avgRating = Number(reviewOut.avgStarRating).toFixed(2)
+    let jsonspot = spot.toJSON()
+    jsonspot.avgRating = Number(reviewOut.avgStarRating).toFixed(2)
   }
-    currSpot.myImg = myImg.dataValues.url
-  arrayOut.push(currSpot)
+    jsonspot.myImg = myImg.dataValues.url
+    arrayOut.push(jsonspot)
 
     res.json({ "Spots": arrayOut });
 })

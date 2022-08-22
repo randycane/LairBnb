@@ -30,7 +30,7 @@ export const signup = (user) => async (dispatch) => {
     });
   const data = await response.json();
   //console.log("this is a book", data)
-    dispatch(setUser(data));
+    dispatch(setUser(data.user));
     return response;
   };
 
@@ -46,7 +46,7 @@ export const login = (user) => async (dispatch) => {
   });
   const data = await response.json();
   //console.log("this is my please", data)
-  dispatch(setUser(data));
+  dispatch(setUser(data.user));
   return response;
 };
 

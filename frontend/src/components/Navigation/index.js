@@ -5,7 +5,7 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 
-function NavigationBar(){
+function NavigationBar({isLoaded}){
   const sessionUser = useSelector(state => state.session.user);
 
 
@@ -16,7 +16,10 @@ function NavigationBar(){
       )
     } else {
       sessionLinks = (
-        <ProfileButton />
+        <>
+        <NavLink to="/login">Log In</NavLink>
+        <NavLink to="/signup">Sign Up</NavLink>
+      </>
        )
     }
 
@@ -29,13 +32,12 @@ function NavigationBar(){
           <NavLink className='SiteLogo-NavLeft' exact to="/">
           <img className="Logo" src='https://styles.redditmedia.com/t5_icx0v/styles/image_widget_8hcjsurlnrx01.jpg?format=pjpg&s=cf0261f0c5e2810adb1d7dde7277792c7c130094' alt='LairBnb Logo' />
           <div className='LairBnbText'>LairBnb</div>
-          </NavLink>
+            </NavLink>
+            {isLoaded && sessionLinks}
 
         </div>
 
-
-                        {sessionLinks}
-
+             {/* {sessionLinks} */}
 
       </div>
       </nav>

@@ -38,28 +38,47 @@ useEffect(() => {
 
 
 
+// old css stuff:
+//   return (
 
-  return (
+//     <div className="NavBarRight-MenuHost">
+//       { user && <NavLink className='HostButton' to='/'>Become a Host</NavLink> }
+//         <button className="DropDownMenuIcon" onClick={openMenu}>
+//           <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
+//           </button>
 
-    <div className="NavBarRight-MenuHost">
-      { user && <NavLink className='HostButton' to='/spots/create'>Become a Host</NavLink> }
-        <button className="DropDownMenuIcon" onClick={openMenu}>
-          <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
-          </button>
+//       {showMenu && (
+//         <div className="DropDown">
+//         <div className="NaviBarShowing">
+//           { user && (
+//             <div className="UserBarNavi" >
+//             <NavLink  className="OrderNaviLinks" to='/' onClick={logout}>Log out</NavLink>
+//             </div>
+//           )}
+//         </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
 
-      {showMenu && (
-        <div className="DropDown">
-        <div className="NaviBarShowing">
-          { user && (
-            <div className="UserBarNavi" >
-            <NavLink  className="OrderNaviLinks" to='/' onClick={logout}>Log out</NavLink>
-            </div>
-          )}
-        </div>
-        </div>
-      )}
-    </div>
-  );
+return (
+  <>
+    <button onClick={openMenu}>
+      <i className="fas fa-user-circle" />
+    </button>
+    {showMenu && (
+      <ul className="profile-dropdown">
+        <li>{user.username}</li>
+        <li>{user.email}</li>
+        <li>
+          <button onClick={logout}>Log Out</button>
+        </li>
+      </ul>
+    )}
+  </>
+);
 }
+
 
 export default ProfileButton;

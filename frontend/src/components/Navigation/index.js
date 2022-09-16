@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import SignupModal from '../SignupFormModal/SignupModal';
+import LoginFormModal from '../LoginFormModal/index';
 import './Navigation.css';
 
 
@@ -17,15 +19,15 @@ function NavigationBar({isLoaded}){
     } else {
       sessionLinks = (
         <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+          <SignupModal />
+        <LoginFormModal/>
       </>
        )
     }
 
   return (
     <>
-    <nav>
+      <nav>
       <div className='NavigationBar'>
 
         <div className='LeftNavi'>

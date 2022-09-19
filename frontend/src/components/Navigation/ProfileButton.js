@@ -48,8 +48,8 @@ useEffect(() => {
 
       {showMenu && (
         <div className="profile-dropdown">
-          <li>{user.user.username}</li>
-          <li>{user.user.email}</li>
+          <li>{user.username}</li>
+          <li>{user.email}</li>
         <div className="NaviBarShowing">
           { user && (
             <div className="UserBarNavi" >

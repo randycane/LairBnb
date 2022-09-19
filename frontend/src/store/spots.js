@@ -3,10 +3,13 @@ import { csrfFetch } from './csrf';
 
 const LOAD = '/spots/LOAD';
 
-const load = list => ({
-    type: LOAD,
-    list
-})
+const load = list => {
+    return {
+        type: LOAD,
+        list
+    }
+
+}
 
 
 // thunk:

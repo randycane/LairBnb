@@ -9,6 +9,7 @@ import { NavLink, Route, useParams } from 'react-router-dom';
 function SpotsBrowser() {
     const dispatch = useDispatch();
 
+    // use Selector is not reading right, optional chaining?
     const selectedSpots = useSelector(state => state?.spots);
     console.log('the spots im looking for in component', selectedSpots)
     const normalizedSpots = Object.values(selectedSpots)

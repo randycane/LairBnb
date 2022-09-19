@@ -21,6 +21,7 @@ function SpotsBrowser() {
         dispatch(getSpotsThunk())
     }, [dispatch])
 
+    if (!normalizedSpots) return null;
     return (<div>
         <div>
         {normalizedSpots.map(spot => (

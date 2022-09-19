@@ -32,7 +32,7 @@ const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD: {
             //normalize my spots data
-            const spotsObjState = {...state};
+            const spotsObjState = {};
             console.log('the action for spot reducer', action.list);
             action.list.forEach(spot => {
                 spotsObjState[spot.id] = spot;

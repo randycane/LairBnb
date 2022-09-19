@@ -2,12 +2,16 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import SignupModal from '../SignupFormModal/SignupModal';
-import LoginFormModal from '../LoginFormModal/index';
+// import SignupFormPage from '../SignupFormPage';
+// import LoginFormPage from '../LoginFormModal';
+
 import './Navigation.css';
+import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormPage';
 
 
-function NavigationBar({isLoaded}){
+
+function Navigation({isLoaded}){
   const sessionUser = useSelector(state => state.session.user);
 
 
@@ -19,8 +23,11 @@ function NavigationBar({isLoaded}){
     } else {
       sessionLinks = (
         <>
-          <SignupModal />
-        <LoginFormModal/>
+          {/* <button><SignupFormPage />
+          </button> */}
+
+          <LoginFormModal />
+          <SignupFormModal/>
       </>
        )
     }
@@ -47,4 +54,4 @@ function NavigationBar({isLoaded}){
   );
 }
 
-export default NavigationBar;
+export default Navigation;

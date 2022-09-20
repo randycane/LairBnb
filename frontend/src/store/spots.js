@@ -21,8 +21,11 @@ const create = list => {
     }
 }
 
-const remove = list => {
-
+const remove =  id => {
+    return {
+        DELETE,
+        id
+    }
 }
 
 
@@ -52,6 +55,18 @@ export const createSpotsThunk = (list) => async dispatch => {
       }
 }
 
+export const removeSpotsThunk = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${id}`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        const delSpot = await response.json()
+        dispatch(remove(delSpot, id))
+        return response;
+    }
+}
+
 const initialState = {
 
 };
@@ -74,6 +89,11 @@ const spotsReducer = (state = initialState, action) => {
                 newState[spot.id] = spot;
             })
             return newState;
+        };
+        case DELETE: {
+            const delState = {...state};
+            delete delState[action.id]
+            return delState;
             }
         default: return state
     }

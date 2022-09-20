@@ -4,6 +4,7 @@ import { csrfFetch } from './csrf';
 //action creators:
 const LOAD = '/spots/LOAD';
 const CREATE = '/spots/CREATE';
+const UPDATE = '/spots/UPDATE';
 const DELETE = '/spots/DELETE';
 
 const load = list => {
@@ -21,10 +22,17 @@ const create = list => {
     }
 }
 
-const remove =  id => {
+const update = spotId => {
     return {
-        DELETE,
-        id
+        type: UPDATE,
+        spotId
+    }
+}
+
+const remove =  spotId => {
+    return {
+        type: DELETE,
+        spotId
     }
 }
 
@@ -53,23 +61,35 @@ export const createSpotsThunk = (list) => async dispatch => {
         dispatch(create(newSpot))
         return newSpot;
       }
+    return response;
 }
 
-export const removeSpotsThunk = (id) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${id}`, {
+export const editSpotsThunk = (payload, spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+    });
+    if (response.ok) {
+        const edittedSpot = await response.json()
+        dispatch(update(edittedSpot));
+
+    }
+    return response;
+}
+
+export const removeSpotsThunk = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: "DELETE"
     });
 
     if (response.ok) {
-        const delSpot = await response.json()
-        dispatch(remove(delSpot, id))
-        return response;
+        dispatch(remove(spotId))
+
     }
 }
 
-const initialState = {
-
-};
+const initialState = {};
 
 const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -90,9 +110,12 @@ const spotsReducer = (state = initialState, action) => {
             })
             return newState;
         };
+        case UPDATE: {
+            return {...state}
+            }
         case DELETE: {
             const delState = {...state};
-            delete delState[action.id]
+            delete delState[action.spotId]
             return delState;
             }
         default: return state

@@ -1,0 +1,11 @@
+.each-spots-details {
+    display: block;
+}
+
+.inside-card {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 1px;
+    border: black, 2px
+}

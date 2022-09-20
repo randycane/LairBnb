@@ -1,39 +1,41 @@
-import spotsReducer, { getSpotsThunk } from "../../store/spots";
-
+import { getSpotsThunk} from "../../store/spots";
+import SpotsCards from "../SpotsCards";
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
 import { NavLink, Route, useParams } from 'react-router-dom';
 
+import "./Spots.css"
+
 
 function SpotsBrowser() {
     const dispatch = useDispatch();
 
-    // const [theSpot, setTheSpot] = useState();
-
     // use Selector to predict the state change
     const selectedSpots = useSelector(state => state.spots);
-    console.log('the spots im looking for in component', selectedSpots)
+
+    //console.log('the spots im looking for in component', selectedSpots)
     const normalizedSpots = Object.values(selectedSpots)
-    console.log('my normal spots', normalizedSpots)
-    // console.log('yooooooooooo', spot);
+
+    //console.log('my normal spots', normalizedSpots)
+
 
 
     useEffect(() => {
         dispatch(getSpotsThunk())
     }, [dispatch])
 
-    if (!normalizedSpots) return null;
-    return (<div>
-        <div>
-        {normalizedSpots.map(spot => (
-            <div>
-                {spot.name}, {spot.city}, {spot.state}, {spot.price}
-            </div>
-        ))}
-        </div>
-    </div>)
+    //if (!normalizedSpots) return null;
+    return (
+        <div className="each-spots-details">
+            {normalizedSpots.map(spot => (
+                <div className="inside-card">
+                    <SpotsCards spot={spot} />
+                </div>
+            ))}
 
+                </div>
+        )
 }
 
 export default SpotsBrowser;

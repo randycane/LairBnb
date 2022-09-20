@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormModal"
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/Spots";
+import CreateNewSpotComponent from "./components/CreateSpots";
 
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
           <Route exact path = '/'>
             <SpotsBrowser/>
             </Route>
+            <Route exact path = '/spots/new'>
+              <CreateNewSpotComponent/>
+              </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>

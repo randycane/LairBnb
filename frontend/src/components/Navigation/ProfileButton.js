@@ -37,11 +37,11 @@ useEffect(() => {
 
 
 
-// old css stuff:
+//css stuff:
   return (
     // <nav className="NavigationBar">
     <div className="NavBarRight-MenuHost">
-      { user && <NavLink className='HostButton' to='/'>Become a Host</NavLink> }
+      { user && <NavLink className='HostButton' to='/spots/new'>Become a Host</NavLink> }
         <button className="DropDownMenuIcon" onClick={openMenu}>
           <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
           </button>

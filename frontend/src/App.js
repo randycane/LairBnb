@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/Spots";
 import CreateNewSpotComponent from "./components/CreateSpots";
+import EditSpotComponent from "./components/UpdateSpots";
 
 
 function App() {
@@ -26,7 +27,10 @@ function App() {
             </Route>
             <Route exact path = '/spots/new'>
               <CreateNewSpotComponent/>
-              </Route>
+          </Route>
+          <Route exact path = '/spots/update'>
+            <EditSpotComponent/>
+            </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>

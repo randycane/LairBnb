@@ -51,7 +51,7 @@ export const getSpotsThunk = () => async dispatch => {
 
 export const createSpotsThunk = (list) => async dispatch => {
     console.log('this is my new spot info', list)
-    const response = await fetch('/api/spots', {
+    const response = await fetch('/api/spots/new', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(list)

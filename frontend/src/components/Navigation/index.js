@@ -41,9 +41,9 @@ function Navigation({isLoaded}){
 
         <div className='LeftNavi'>
           <NavLink className='SiteLogo-NavLeft' exact to="/">
-          <img className="Logo" src='https://styles.redditmedia.com/t5_icx0v/styles/image_widget_8hcjsurlnrx01.jpg?format=pjpg&s=cf0261f0c5e2810adb1d7dde7277792c7c130094' alt='LairBnb Logo' />
+              <img className="Logo" src='https://i.pinimg.com/originals/20/93/85/209385b181979d46679d5584a31d0b25.jpg' alt='LairBnb Logo' />
+              </NavLink>
           <div className='LairBnbText'>LairBnb</div>
-            </NavLink>
             {isLoaded}
 
         </div>

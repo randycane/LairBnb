@@ -9,7 +9,9 @@ export default function SpotsCards({spot}) {
     return (
         <div className="spots-container">
             <NavLink to={`/spots/${spot?.id}`}>
-
+                <div className="image-show">
+                    <img src={spot?.previewImage} alt='House'></img>
+                    </div>
                 <div className="container-spot-name">
                     {spot?.name}
                 </div>

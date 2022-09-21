@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 
 
 import { createSpotsThunk } from "../../store/spots";
@@ -48,7 +48,7 @@ function CreateNewSpotComponent() {
             return;
 
         }
-        let spotCreated= await dispatch(createSpotsThunk({
+        let newSpot = await dispatch(createSpotsThunk({
             address,
             name,
             city,
@@ -60,25 +60,29 @@ function CreateNewSpotComponent() {
             price,
         }))
 
-        if (spotCreated) {
-            //redirects user to this route:
-            history.push(`/spots/${spotCreated.listid}`)
-        }
+        // if (spotCreated)
+        //redirects user to this route:
+        console.log('made a spot', newSpot);
+        history.push(`/spots/new`)
 
+        return newSpot;
 
     }
 
 
     const ErrorMsgs = errors.map((error) => {
-        <ul className="error-msgs" key={error}>
-        </ul>
+
+        < ul className = "error-msgs" key = { error } >
+            { error }
+        </ul >
+
     })
 
     return (
         <div className="create-main-container">
             <form className="spot-new" onSubmit={handleSubmit}>
                 <ul>
-                    {ErrorMsgs}
+                    {spotCreated && ErrorMsgs}
                 </ul>
                 <h1 className="create-spot-class">List your property here!</h1>
                 <label className="create-name">

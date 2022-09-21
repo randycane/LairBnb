@@ -72,7 +72,7 @@ export const getSpotsByTheirId = (spotId) => async dispatch => {
 
 export const createSpotsThunk = (list) => async dispatch => {
     console.log('this is my new spot info', list)
-    const response = await fetch('/api/spots/new', {
+    const response = await fetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(list)
@@ -100,6 +100,20 @@ export const editSpotsThunk = (payload, spotId) => async dispatch => {
     return response;
 }
 
+export const addImgThunk = (imgUrl, spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots${spotId}/images`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "/application/json"
+        },
+        body: JSON.stringify(imgUrl)
+    })
+    if (response.ok) {
+        dispatch(loadBySpotId(spotId));
+    }
+    return response;
+}
+
 export const removeSpotsThunk = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: "DELETE"
@@ -118,11 +132,11 @@ const spotsReducer = (state = initialState, action) => {
         case LOAD: {
             //cases for all my spots data
             const spotsObjState = {};
-            console.log('the action for spot reducer', action.list);
+            //console.log('the action for spot reducer', action.list);
             action.list.forEach(spot => {
                 spotsObjState[spot.id] = spot;
             })
-            console.log('the state to return', spotsObjState)
+            //console.log('the state to return', spotsObjState)
             return spotsObjState;
         };
         case LOAD_BY_SPOTID: {
@@ -132,11 +146,10 @@ const spotsReducer = (state = initialState, action) => {
             return newState;
             }
         case CREATE: {
-            const newState = {};
-            action.list.forEach(spot => {
-                newState[spot.id] = spot;
-            })
+            const newState = { ...state }
+
             return newState;
+
         };
         case UPDATE: {
             return {...state}

@@ -3,8 +3,8 @@
 const validBookings = [{
   userId: 1,
   spotId: 2,
-  startDate: "2022-10-11",
-  endDate: "2022-10-16"
+  startDate: "2024-10-11",
+  endDate: "2024-10-16"
 },
 {
   userId: 5,
@@ -15,20 +15,20 @@ const validBookings = [{
   {
     userId: 4,
     spotId: 3,
-    startDate: "2022-11-12",
-    endDate: "2022-11-19"
+    startDate: "2023-11-12",
+    endDate: "2023-11-19"
   },
   {
     userId: 3,
     spotId: 1,
-    startDate: "2022-09-10",
-    endDate: "2022-09-17"
+    startDate: "2023-09-10",
+    endDate: "2023-09-17"
   },
   {
     userId: 2,
     spotId: 5,
-    startDate: "2022-08-23",
-    endDate: "2022-08-25"
+    startDate: "2023-08-23",
+    endDate: "2023-08-25"
   }
 ]
 

@@ -1,4 +1,12 @@
 .spots-container{
+    border: orange 2px solid
+}
+
+.container-spot-name{
+    border: black 2px solid
+}
+
+.container-spot-where{
     border: black 2px solid
 }
 

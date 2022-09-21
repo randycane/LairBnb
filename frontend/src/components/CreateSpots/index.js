@@ -48,7 +48,7 @@ function CreateNewSpotComponent() {
             return;
 
         }
-        const newMadeSpot = await dispatch(createSpotsThunk({
+        let spotCreated= await dispatch(createSpotsThunk({
             address,
             name,
             city,
@@ -59,8 +59,11 @@ function CreateNewSpotComponent() {
             description,
             price,
         }))
-        //redirects user to this route:
-        history.push(`/spots/${newMadeSpot.id}`)
+
+        if (spotCreated) {
+            //redirects user to this route:
+            history.push(`/spots/${spotCreated.id}`)
+        }
 
 
     }

@@ -10,8 +10,11 @@ export default function SpotsCards({spot}) {
         <div className="spots-container">
             <NavLink to={`/spots/${spot?.id}`}>
 
-                <div className="container-spot-details">
-                    {spot?.name}, {spot?.city}, {spot?.state}
+                <div className="container-spot-name">
+                    {spot?.name}
+                </div>
+                <div className="container-spot-where">
+                    {spot?.city}, {spot?.state}
                 </div>
                 <div className="spot-description">
                     {spot?.description}

@@ -62,7 +62,7 @@ function CreateNewSpotComponent() {
 
         if (spotCreated) {
             //redirects user to this route:
-            history.push(`/spots/${spotCreated.id}`)
+            history.push(`/spots/${spotCreated.listid}`)
         }
 
 

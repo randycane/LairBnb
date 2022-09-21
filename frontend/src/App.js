@@ -7,7 +7,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/Spots";
 import CreateNewSpotComponent from "./components/CreateSpots";
-import EditSpotComponent from "./components/UpdateSpots";
+import EditSpotComponent from "./components/Spots/EditSpotComponent";
+import GetSpotById from "./components/Spots/GetSpotById";
 
 
 function App() {
@@ -28,9 +29,12 @@ function App() {
             <Route exact path = '/spots/new'>
               <CreateNewSpotComponent/>
           </Route>
-          <Route exact path = '/spots/update'>
-            <EditSpotComponent/>
+          <Route exact path = '/spots/:spotId'>
+            <GetSpotById/>
             </Route>
+          {/* <Route exact path = '/spots/update'>
+            <EditSpotComponent/>
+            </Route> */}
           <Route path="/login">
             <LoginFormPage />
           </Route>

@@ -39,7 +39,7 @@ function CreateNewSpotComponent() {
         setErrors(errorArray);
     }, [address, name, city, state, country, description, price]);
 
-    let handleSubmit = (e) => {
+    let handleSubmit = async (e) => {
         e.preventDefault();
 
 
@@ -48,7 +48,7 @@ function CreateNewSpotComponent() {
             return;
 
         }
-        const newMadeSpot = dispatch(createSpotsThunk({
+        const newMadeSpot = await dispatch(createSpotsThunk({
             address,
             name,
             city,

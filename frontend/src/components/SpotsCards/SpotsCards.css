@@ -1,15 +1,15 @@
 .spots-container{
-    border: black, 2px
+    border: black 2px solid
 }
 
 .container-spot-details{
-    border: black, 2px
+    border: black 2px solid
 }
 
 .spot-description{
-    border: black, 2px
+    border: black 2px solid
 }
 
 .price-by-night{
-    border: black, 2px
+    border: black 2px solid
 }

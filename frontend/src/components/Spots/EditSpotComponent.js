@@ -4,29 +4,32 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 import { editSpotsThunk } from "../../store/spots";
+import GetSpotById from "./GetSpotById";
+import { getSpotsByTheirId } from "../../store/spots";
 
-function EditSpotComponent() {
+function EditSpotComponentFunc({spotId}) {
 
-    let { spotId } = useParams();
-    spotId = Number(spotId);
+    // let { spotId } = useParams();
+    // spotId = Number(spotId);
 
     const dispatch = useDispatch();
 
     const history = useHistory();
 
-    const spot = useSelector(state => state.spotId)
+    const spot = useSelector(state => state.spots[spotId])
+    console.log('after my state change', spot)
 
    //const changedSpot = spots[spotId];
 
-    const [address, setAddress] = useState(spot.address);
-    const [city, setCity] = useState(spot.city);
-    const [state, setState] = useState(spot.state);
-    const [country, setCountry] = useState(spot.country);
-    const [lat, setLat] = useState(spot.lat);
-    const [lng, setLng] = useState(spot.lng);
-    const [name, setName] = useState(spot.name);
-    const [description, setDescription] = useState(spot.description);
-    const [price, setPrice] = useState(spot.price);
+    const [address, setAddress] = useState(spot?.address);
+    const [city, setCity] = useState(spot?.city);
+    const [state, setState] = useState(spot?.state);
+    const [country, setCountry] = useState(spot?.country);
+    const [lat, setLat] = useState(spot?.lat);
+    const [lng, setLng] = useState(spot?.lng);
+    const [name, setName] = useState(spot?.name);
+    const [description, setDescription] = useState(spot?.description);
+    const [price, setPrice] = useState(spot?.price);
 
     const [errors, setErrors] = useState([]);
 
@@ -46,7 +49,7 @@ function EditSpotComponent() {
         setErrors(errorArray);
     }, [address, name, city, state, country, description, price]);
 
-    let handleSubmit = (e) => {
+    let handleSubmit = async (e) => {
         e.preventDefault();
 
 
@@ -55,7 +58,7 @@ function EditSpotComponent() {
             return;
 
         }
-        const spotChanged = dispatch(editSpotsThunk({
+        dispatch(editSpotsThunk({
             address,
             name,
             city,
@@ -65,16 +68,18 @@ function EditSpotComponent() {
             lng,
             description,
             price,
-        }, spotId))
+            //.then re hydrates the state with the new information
+        }, spotId)).then(dispatch(getSpotsByTheirId(spotId)))
 
-        history.push(`/spots/${spotChanged.id}`)
-
-        // const ErrorMsgs = errors.map((error) => {
-        //     <ul className="error-msgs" key={error}>
-        //     </ul>
-        // })
+        history.push(`/spots/${spotId}`)
 
     }
+
+    const ErrorMsgs = errors.map((error) => {
+        <ul className="error-msgs" key={error}>
+        </ul>
+    });
+
     return (
         <div className="edit-spot-container">
         <form
@@ -82,7 +87,7 @@ function EditSpotComponent() {
 
           <h1 className="title">Edit Your Spot</h1>
             <ul className="changed">
-                {spotChanged}
+                {spotChanged && ErrorMsgs}
                 </ul>
 
           <label className="create-name">
@@ -177,4 +182,4 @@ function EditSpotComponent() {
 
 }
 
-export default EditSpotComponent;
+export default EditSpotComponentFunc;

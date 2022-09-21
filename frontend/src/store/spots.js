@@ -7,12 +7,21 @@ const CREATE = '/spots/CREATE';
 const UPDATE = '/spots/UPDATE';
 const DELETE = '/spots/DELETE';
 
+const LOAD_BY_SPOTID = '/spots/LOAD_BY_SPOTID';
+
 const load = list => {
     return {
         type: LOAD,
         list
     }
 
+}
+
+const loadBySpotId = spotId => {
+    return {
+        type: LOAD_BY_SPOTID,
+        spotId
+    }
 }
 
 const create = list => {
@@ -46,6 +55,18 @@ export const getSpotsThunk = () => async dispatch => {
         console.log('get spots thunk', list.Spots)
         dispatch(load(list.Spots));
         return list;
+    }
+}
+
+export const getSpotsByTheirId = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`)
+
+    if (response.ok) {
+        const payload = await response.json();
+
+        dispatch(loadBySpotId(payload));
+        console.log('spot to be returned as payload', payload)
+        return payload;
     }
 }
 
@@ -104,6 +125,12 @@ const spotsReducer = (state = initialState, action) => {
             console.log('the state to return', spotsObjState)
             return spotsObjState;
         };
+        case LOAD_BY_SPOTID: {
+            const newState = { ...state }
+            //console.log('the action to payload for spot id CASE', action)
+            newState[action.spotId.id] = action.spotId;
+            return newState;
+            }
         case CREATE: {
             const newState = {};
             action.list.forEach(spot => {

@@ -8,6 +8,7 @@ const UPDATE = '/spots/UPDATE';
 const DELETE = '/spots/DELETE';
 
 const LOAD_BY_SPOTID = '/spots/LOAD_BY_SPOTID';
+const LOAD_OWN_SPOTS = '/spots/LOAD_OWN_SPOTS';
 
 const load = list => {
     return {
@@ -24,6 +25,12 @@ const loadBySpotId = spotId => {
     }
 }
 
+const loadMyOwnSpots = list => {
+    return {
+        type: LOAD_OWN_SPOTS,
+        list
+    }
+}
 const create = list => {
     return {
         type: CREATE,
@@ -65,13 +72,26 @@ export const getSpotsByTheirId = (spotId) => async dispatch => {
         const payload = await response.json();
 
         dispatch(loadBySpotId(payload));
-        console.log('spot to be returned as payload', payload)
+        //console.log('spot to be returned as payload', payload)
         return payload;
     }
 }
 
+export const getCurrentUserSpotsThunk = () => async dispatch => {
+    const response = await csrfFetch(`/api/spots/current`,
+        {
+        method: "GET"
+        })
+
+    if (response.ok) {
+        const list = await response.json();
+        dispatch(loadMyOwnSpots(list))
+        return list;
+    }
+}
+
 export const createSpotsThunk = (list) => async dispatch => {
-    console.log('this is my new spot info', list)
+    //console.log('this is my new spot info', list)
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -147,7 +167,13 @@ const spotsReducer = (state = initialState, action) => {
             //console.log('the action to payload for spot id CASE', action)
             newState[action.spotId.id] = action.spotId;
             return newState;
-            }
+        };
+        case LOAD_OWN_SPOTS: {
+            let newState = {};
+            action.list.forEach((spot) => newState[spot.id] = spot);
+            let ownedSpots = { ...newState };
+            return ownedSpots;
+        };
         case CREATE: {
             const newState = { ...state };
                 newState[action.list.id] = action.list;

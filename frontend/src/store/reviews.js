@@ -8,8 +8,15 @@ const CREATE_REV = '/reviews/CREATE';
 const UPDATE_REV = '/reviews/UPDATE';
 const DELETE_REV = '/reviews/DELETE';
 
+const LOAD_MY_REVS = '/reviews/LOAD_BY_USER';
+
 const loadReviews = list => ({
     type: LOAD_REV,
+    list
+})
+
+const loadMyOwnReviews = list => ({
+    type: LOAD_MY_REVS,
     list
 })
 
@@ -19,7 +26,7 @@ const createRevs = list => {
         list
     }
 }
-// thunk not made yet:
+// to do:
 const updateRevs = payload => {
     return {
         type: UPDATE_REV,
@@ -35,20 +42,31 @@ const removeRevs =  payload => {
 }
 
 //thunks:
-export const getReviewsThunk = () => async dispatch => {
-    const response = await fetch(`/api/spots/${spotId}reviews`);
+export const getSpotsReviewsThunk = (spotId) => async dispatch => {
+    const response = await fetch(`/api/spots/${spotId}/reviews`);
 
     if (response.ok) {
         const list = await response.json();
         dispatch(loadReviews(list));
+        return list;
     }
 }
 
-export const createReviewsThunk = (list) => async dispatch => {
+export const getMyOwnReviewsThunk = () => async dispatch => {
+    const response = await fetch(`/api/reviews/current`)
+
+    if (response.ok) {
+        const list = await response.json();
+        dispatch(loadMyOwnReviews(list));
+        return list;
+    }
+}
+
+export const createReviewsThunk = (spotId, review, stars) => async dispatch => {
     const response = await fetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(list)
+        body: JSON.stringify({review, stars})
       });
 
       if (response.ok) {
@@ -89,7 +107,7 @@ const reviewsReducer = (state = initialState, action) => {
             })
             return newState;
         };
-        case DELETE: {
+        case DELETE_REV: {
             const delState = { ...state };
             delete delState[action.reviewId]
             return delState;

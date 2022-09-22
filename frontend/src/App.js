@@ -9,7 +9,7 @@ import SpotsBrowser from "./components/Spots";
 import CreateNewSpotComponent from "./components/CreateSpots";
 import EditSpotComponent from "./components/Spots/EditSpotComponent";
 import GetSpotById from "./components/Spots/GetSpotById";
-
+import OwnSpotsComponent from "./components/Spots/OwnSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +25,9 @@ function App() {
         <Switch>
           <Route exact path = '/'>
             <SpotsBrowser/>
+          </Route>
+          <Route exact path = '/spots/current'>
+            <OwnSpotsComponent/>
             </Route>
             <Route path='/spots/new'>
               <CreateNewSpotComponent/>

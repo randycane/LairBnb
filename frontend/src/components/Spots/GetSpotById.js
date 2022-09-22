@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { getSpotsByTheirId, removeSpotsThunk } from '../../store/spots';
-import EditSpotComponentFunc from './EditSpotComponent'
+//import EditSpotComponentFunc from './EditSpotComponent'
 
 
 import { Link } from "react-router-dom";

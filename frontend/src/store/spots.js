@@ -170,7 +170,7 @@ const spotsReducer = (state = initialState, action) => {
         };
         case LOAD_OWN_SPOTS: {
             let newState = {};
-            action.list.forEach((spot) => newState[spot.id] = spot);
+            action.list.Spots.forEach((spot) => newState[spot.id] = spot);
             let ownedSpots = { ...newState };
             return ownedSpots;
         };

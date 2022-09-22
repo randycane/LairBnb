@@ -5,6 +5,9 @@ import { useParams } from 'react-router-dom';
 import { getSpotsByTheirId, removeSpotsThunk } from '../../store/spots';
 import EditSpotComponentFunc from './EditSpotComponent'
 
+
+import { Link } from "react-router-dom";
+
 function GetSpotById() {
     let { spotId } = useParams();
 
@@ -59,8 +62,11 @@ function GetSpotById() {
             <div className="pricing">
                 ${spotById?.price}
             </div>
-            <div className="edit-spot">
+            {/* <div className="edit-spot">
                 <EditSpotComponentFunc spotId={spotId}/>
+            </div> */}
+            <div className="edit-redirected-button">
+                <Link to ={`/spots/${spotId}/update`} className= "edit-redirected-button" >Edit Spot</Link>
             </div>
             <div className="delete-spot"
                 onClick={(e) => removeButton(e)}>

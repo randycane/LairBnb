@@ -63,9 +63,13 @@ function CreateNewSpotComponent() {
         // if (spotCreated)
         //redirects user to this route:
         console.log('made a spot', newSpot);
-        history.push(`/spots/new`)
 
-        return newSpot;
+        history.push(`/spots/${newSpot.id}`)
+
+        //this just works for current new spot only
+        // history.push(`/spots/new`)
+
+        //return newSpot;
 
     }
 

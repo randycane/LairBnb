@@ -1,7 +1,10 @@
-.spots-container{
+/* .spots-container{
     border: orange 2px solid
-}
+} */
 
+.image-show{
+    object-fit:cover
+}
 .container-spot-name{
     border: black 2px solid
 }

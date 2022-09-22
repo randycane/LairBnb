@@ -31,10 +31,10 @@ const create = list => {
     }
 }
 
-const update = spotId => {
+const update = payload => {
     return {
         type: UPDATE,
-        spotId
+        payload
     }
 }
 
@@ -72,7 +72,7 @@ export const getSpotsByTheirId = (spotId) => async dispatch => {
 
 export const createSpotsThunk = (list) => async dispatch => {
     console.log('this is my new spot info', list)
-    const response = await fetch('/api/spots', {
+    const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(list)
@@ -95,6 +95,9 @@ export const editSpotsThunk = (payload, spotId) => async dispatch => {
     if (response.ok) {
         const edittedSpot = await response.json()
         dispatch(update(edittedSpot));
+
+        // need this logic to reload by its spotId
+        dispatch(getSpotsByTheirId(spotId));
 
     }
     return response;
@@ -146,13 +149,17 @@ const spotsReducer = (state = initialState, action) => {
             return newState;
             }
         case CREATE: {
-            const newState = { ...state }
-
+            const newState = { ...state };
+                newState[action.list.id] = action.list;
             return newState;
 
         };
         case UPDATE: {
-            return {...state}
+            const newState = { ...state }
+            console.log('to edit a spot reduced action', action.payload)
+            newState[action.payload.id] = action.payload;
+            return newState;
+
             }
         case DELETE: {
             const delState = {...state};

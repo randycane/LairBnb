@@ -32,9 +32,9 @@ function App() {
           <Route exact path = '/spots/:spotId'>
             <GetSpotById/>
             </Route>
-          {/* <Route exact path = '/spots/update'>
+          <Route exact path = '/spots/:spotId/update'>
             <EditSpotComponent/>
-            </Route> */}
+            </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>

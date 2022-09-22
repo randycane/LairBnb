@@ -1,11 +1,18 @@
-.each-spots-details {
-    display: block;
+.spots-container{
+    border: grey 2px solid;
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
 }
+
+
 
 .inside-card {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 1px;
-    border: black, 2px
+    border: black, 2px;
+    object-fit:cover
 }

@@ -27,7 +27,7 @@ function SpotsBrowser() {
 
     //if (!normalizedSpots) return null;
     return (
-        <div className="each-spots-details">
+        <div className="spots-container">
             {normalizedSpots.map(spot => (
                 <div className="inside-card">
                     <SpotsCards spot={spot} />

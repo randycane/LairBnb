@@ -42,8 +42,9 @@ function Navigation({isLoaded}){
         <div className='LeftNavi'>
           <NavLink className='SiteLogo-NavLeft' exact to="/">
               <img className="Logo" src='https://i.pinimg.com/originals/20/93/85/209385b181979d46679d5584a31d0b25.jpg' alt='LairBnb Logo' />
-              </NavLink>
-          <div className='LairBnbText'>LairBnb</div>
+              <div className='LairBnbText'>LairBnb</div>
+            </NavLink>
+
             {isLoaded}
 
         </div>

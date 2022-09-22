@@ -1,4 +1,4 @@
-/* nav {
+nav {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@
 .NavigationBar {
     position: sticky;
     display: flex;
-    margin: 100px;
+    margin: 85px;
     width: 100%;
     justify-content: space-between;
 }
@@ -125,4 +125,4 @@
     font-weight: bolder;
     letter-spacing: 0.5px;
     font-size: 25px;
-} */
+}

@@ -43,6 +43,8 @@ const removeRevs =  payload => {
 
 //thunks:
 export const getSpotsReviewsThunk = (spotId) => async dispatch => {
+    // check this!!! reviews by spot id
+    console.log('what is spot id right now in thunk', spotId)
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
     if (response.ok) {
@@ -62,11 +64,12 @@ export const getMyOwnReviewsThunk = () => async dispatch => {
     }
 }
 
-export const createReviewsThunk = (spotId, review, stars) => async dispatch => {
+export const createReviewsThunk = ({ spotId, review, stars }) => async dispatch => {
+    console.log('what is spot id right now in thunk', spotId)
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({review, stars})
+        body: JSON.stringify({spotId, review, stars})
       });
 
       if (response.ok) {

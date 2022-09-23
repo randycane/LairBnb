@@ -17,9 +17,17 @@ export default function CreateReviewComponent() {
 
     let { spotId } = useParams();
     spotId = Number(spotId);
+    //check spot id
+    console.log('i want this to be a number', spotId)
 
     const sessionUser = useSelector(state => state.session.user);
+    // check session state
+    console.log('i am the current user state', sessionUser)
+
     const normalizedReviews = useSelector(state => Object.values(state.reviews));
+    // check my array
+    console.log('i am the array of reviews', normalizedReviews)
+
     const listedReviews = normalizedReviews.map(review => review.userId === sessionUser.id)
     const [isCreated, setIsCreated] = useState(false);
 
@@ -55,11 +63,11 @@ export default function CreateReviewComponent() {
             spotId
         }))
 
-        await dispatch(getSpotsByTheirId(spotId));
+        //await dispatch(getSpotsByTheirId(spotId));
 
         //try a redirect way:
         if (isCreated) {
-            return <Redirect to ={`/spots/${spotId}`}/>
+            return <Redirect to ={`/spots/:spotId/reviews`}/>
         }
         //console.log('same spot i am reviewing', spotId)
         //history.push(`/spots/${spotId}/reviews`)

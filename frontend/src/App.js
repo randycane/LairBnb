@@ -10,7 +10,7 @@ import CreateNewSpotComponent from "./components/CreateSpots";
 import EditSpotComponent from "./components/Spots/EditSpotComponent";
 import GetSpotById from "./components/Spots/GetSpotById";
 import OwnSpotsComponent from "./components/Spots/OwnSpots";
-import ReadReviewsComponent from "./components/Reviews";
+import UserReviewsComponent from "./components/Reviews";
 import CreateReviewComponent from "./components/Reviews/CreateReview";
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
             <EditSpotComponent/>
           </Route>
           <Route exact path = '/reviews/current'>
-            <ReadReviewsComponent/>
+            <UserReviewsComponent/>
           </Route>
           <Route exact path = '/spots/:spotId/reviews'>
             <CreateReviewComponent/>

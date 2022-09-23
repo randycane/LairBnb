@@ -1,13 +1,13 @@
-
+import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { getMyOwnReviewsThunk} from "../../store/reviews";
-
-import { useDispatch, useSelector } from "react-redux";
+import { removeReviewsThunk } from "../../store/reviews";
 
 import ReviewsCard from "./ReviewsCards";
 
 // my own reviews:
-function ReadReviewsComponent() {
+//use this to both read and delete:
+function UserReviewsComponent() {
 
     const dispatch = useDispatch();
 
@@ -36,4 +36,4 @@ function ReadReviewsComponent() {
 
 }
 
-export default ReadReviewsComponent;
+export default UserReviewsComponent;

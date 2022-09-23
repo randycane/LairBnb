@@ -25,6 +25,7 @@ function EditSpotComponentFunc() {
     const [name, setName] = useState(spot?.name);
     const [description, setDescription] = useState(spot?.description);
     const [price, setPrice] = useState(spot?.price);
+
     const [errors, setErrors] = useState([]);
     const [spotChanged, setSpotChanged] = useState(false);
 
@@ -38,6 +39,7 @@ function EditSpotComponentFunc() {
         if (!country) errorArray.push("Country is required");
         if (!description) errorArray.push("Description is required");
         if (!price) errorArray.push("Price per day or night is required.");
+
         setErrors(errorArray);
     }, [address, name, city, state, country, description, price]);
 

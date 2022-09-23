@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch} from "react-redux";
 
 
-import { createSpotsThunk } from "../../store/spots";
+import { addImgThunk, createSpotsThunk } from "../../store/spots";
 
 function CreateNewSpotComponent() {
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function CreateNewSpotComponent() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-
+    const [image, setImage] = useState("");
     const [errors, setErrors] = useState([]);
 
     const [spotCreated, setSpotCreated] = useState(false);
@@ -28,16 +28,17 @@ function CreateNewSpotComponent() {
     useEffect(() => {
         // this error array is scoped within this use effect
         let errorArray = [];
-        if (address.length === 0) errorArray.push("Street Address is required");
-        if (name.length === 0) errorArray.push("Name field is required");
-        if (city.length === 0) errorArray.push("City is required");
-        if (state.length === 0) errorArray.push("State is required");
-        if (country.length === 0) errorArray.push("Country is required");
-        if (description.length === 0) errorArray.push("Description is required");
+        if (!address) errorArray.push("Street Address is required");
+        if (!name) errorArray.push("Name field is required");
+        if (!city) errorArray.push("City is required");
+        if (!state) errorArray.push("State is required");
+        if (!country) errorArray.push("Country is required");
+        if (!description) errorArray.push("Description is required");
         if (!price) errorArray.push("Price per day or night is required.");
+        if(!image) errorArray.push("Please provide valid image.")
 
         setErrors(errorArray);
-    }, [address, name, city, state, country, description, price]);
+    }, [address, name, city, state, country, description, price, image]);
 
     let handleSubmit = async (e) => {
         e.preventDefault();
@@ -59,10 +60,8 @@ function CreateNewSpotComponent() {
             description,
             price,
         }))
-
-        // if (spotCreated)
-        //redirects user to this route:
-        console.log('made a spot', newSpot);
+        dispatch(addImgThunk({previewImage: true, url: image}, newSpot.id))
+        //console.log('made a spot', newSpot);
 
         history.push(`/spots/${newSpot.id}`)
 
@@ -170,6 +169,15 @@ function CreateNewSpotComponent() {
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 </label>
+                <label className="form-image">
+                    <span>Photo:</span>
+                    <input
+                    type="url"
+                    name="image"
+                    placeholder="image url"
+                    value={image}
+                    onChange={(e)=> setImage(e.target.value)}/>
+                    </label>
                 <div className="submit-spot-button">
                     <button className="creation-button" type="submit">
                         Create New Listing

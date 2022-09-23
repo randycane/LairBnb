@@ -7,12 +7,13 @@ import { getSpotsByTheirId, removeSpotsThunk } from '../../store/spots';
 
 
 import { Link } from "react-router-dom";
+import { getSpotsReviewsThunk } from "../../store/reviews";
 
 function GetSpotById() {
     let { spotId } = useParams();
 
     const dispatch = useDispatch();
-
+    const [isLoaded, setIsLoaded] = useState(false);
     const history = useHistory();
 
     const spotById = useSelector(state => state.spots[spotId])
@@ -21,6 +22,23 @@ function GetSpotById() {
     // start the logic for delete, only if you are the owner:
     const session = useSelector((state) => state.session)
 
+
+    const review = useSelector((state) => state.reviews)
+    const reviewsArray = Object.values(review)
+
+    console.log('review array format', reviewsArray)
+    const reviewMap = reviewsArray.map((review) => (
+        <div className="reviews-container">
+            <div className="actual-review-text">
+                Review: {review.review}
+            </div>
+            <div className="actual-stars">
+                Stars: {review.stars}
+            </div>
+        </div>
+    ))
+
+    //console.log('this is the review state', review)
     // check who is logged in, and if the id is the current user
     let currentUser = session.user;
 
@@ -38,7 +56,11 @@ function GetSpotById() {
 
     useEffect(() => {
         dispatch(getSpotsByTheirId(spotId))
-    }, [dispatch]);
+        dispatch(getSpotsReviewsThunk(spotId))
+        setIsLoaded(true)
+    }, [dispatch, isLoaded, spotId]);
+
+
 
     //remove the spot button logic after getting which spot by id:
     const removeButton = async (e) => {
@@ -49,8 +71,14 @@ function GetSpotById() {
         history.push('/');
     }
 
-    return (
-            <div className="parent-div">
+    //let checkingImage = spotById?.Images[0]?.url || spotById?.previewImage
+
+    return isLoaded && (
+
+        <div className="parent-div">
+            {spotById?.Images && (<div className="image-container">
+                <img src={spotById?.Images[0]?.url || spotById?.previewImage} className="actual-pic" alt="stuff" />
+            </div>)}
             <div className="hey-spot">{spotById?.name}
             </div>
             <div className="spot-where">
@@ -60,11 +88,17 @@ function GetSpotById() {
                 {spotById?.description}
             </div>
             <div className="pricing">
-                ${spotById?.price}
+                ${spotById?.price} per night
             </div>
-            {/* <div className="edit-spot">
-                <EditSpotComponentFunc spotId={spotId}/>
-            </div> */}
+            <div className="how-many-reviews">
+                Number of Reviews: {spotById?.numReviews}
+            </div>
+            <div className="avg-rating">
+                Average Stars: {spotById?.avgStarRating}
+            </div>
+            <div className="let-there-be-review">
+                {reviewMap}
+            </div>
             <div className="edit-redirected-button">
                 <Link to ={`/spots/${spotId}/update`} className= "edit-redirected-button" >Edit Spot</Link>
             </div>

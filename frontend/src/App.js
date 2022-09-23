@@ -10,6 +10,7 @@ import CreateNewSpotComponent from "./components/CreateSpots";
 import EditSpotComponent from "./components/Spots/EditSpotComponent";
 import GetSpotById from "./components/Spots/GetSpotById";
 import OwnSpotsComponent from "./components/Spots/OwnSpots";
+import ReadReviewsComponent from "./components/Reviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
             </Route>
           <Route exact path = '/spots/:spotId/update'>
             <EditSpotComponent/>
+          </Route>
+          <Route exact path = '/reviews/current'>
+            <ReadReviewsComponent/>
             </Route>
           <Route path="/login">
             <LoginFormPage />

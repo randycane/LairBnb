@@ -43,7 +43,7 @@ const removeRevs =  payload => {
 
 //thunks:
 export const getSpotsReviewsThunk = (spotId) => async dispatch => {
-    const response = await fetch(`/api/spots/${spotId}/reviews`);
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
     if (response.ok) {
         const list = await response.json();
@@ -53,7 +53,7 @@ export const getSpotsReviewsThunk = (spotId) => async dispatch => {
 }
 
 export const getMyOwnReviewsThunk = () => async dispatch => {
-    const response = await fetch(`/api/reviews/current`)
+    const response = await csrfFetch(`/api/reviews/current`)
 
     if (response.ok) {
         const list = await response.json();
@@ -63,7 +63,7 @@ export const getMyOwnReviewsThunk = () => async dispatch => {
 }
 
 export const createReviewsThunk = (spotId, review, stars) => async dispatch => {
-    const response = await fetch(`/api/spots/${spotId}/reviews`, {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({review, stars})
@@ -89,16 +89,23 @@ export const removeReviewsThunk = (reviewId) => async dispatch => {
     return response;
 }
 
-const initialState = {};
+const initialState = { reviews: {}};
 
 const reviewsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_REV: {
             const reviewsObjState = {};
-            action.list.forEach(review => {
+            action.list.Reviews.forEach(review => {
                 reviewsObjState[review.id] = review;
             })
             return reviewsObjState
+        };
+        case LOAD_MY_REVS: {
+            const newState = {};
+            action.list.Reviews.forEach(review => {
+                newState[review.id] = review;
+            })
+            return newState;
         };
         case CREATE_REV: {
             const newState = {};

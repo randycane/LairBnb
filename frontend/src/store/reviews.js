@@ -89,7 +89,7 @@ export const removeReviewsThunk = (reviewId) => async dispatch => {
     return response;
 }
 
-const initialState = { reviews: {}};
+const initialState = {};
 
 const reviewsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -108,10 +108,8 @@ const reviewsReducer = (state = initialState, action) => {
             return newState;
         };
         case CREATE_REV: {
-            const newState = {};
-            action.list.forEach(review => {
-                newState[review.id] = review;
-            })
+            const newState = {...state};
+            newState[action.list.id] = action.list;
             return newState;
         };
         case DELETE_REV: {

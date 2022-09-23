@@ -17,7 +17,7 @@ function GetSpotById() {
     const history = useHistory();
 
     const spotById = useSelector(state => state.spots[spotId])
-    console.log('the spot i look for in my component func', spotById)
+    //('the spot i look for in my component func', spotById)
 
     // start the logic for delete, only if you are the owner:
     const session = useSelector((state) => state.session)
@@ -26,7 +26,7 @@ function GetSpotById() {
     const review = useSelector((state) => state.reviews)
     const reviewsArray = Object.values(review)
 
-    console.log('review array format', reviewsArray)
+    //console.log('review array format', reviewsArray)
     const reviewMap = reviewsArray.map((review) => (
         <div className="reviews-container">
             <div className="actual-review-text">
@@ -99,15 +99,15 @@ function GetSpotById() {
             <div className="let-there-be-review">
                 {reviewMap}
             </div>
-            <div className="edit-redirected-button">
-                <Link to ={`/spots/${spotId}/update`} className= "edit-redirected-button" >Edit Spot</Link>
-            </div>
-            <div className="delete-spot"
+            {owner && (<div className="edit-redirected-button">
+                <Link to={`/spots/${spotId}/update`} className="edit-redirected-button" >Edit Spot</Link>
+            </div>)}
+            {owner && (<div className="delete-spot"
                 onClick={(e) => removeButton(e)}>
                 <button className="creation-button" type="submit">
                         Delete Spot
                     </button>
-                </div>
+                </div>)}
             </div>
         )
 

@@ -59,7 +59,7 @@ export const getSpotsThunk = () => async dispatch => {
 
     if (response.ok) {
         const list = await response.json();
-        console.log('get spots thunk', list.Spots)
+        //console.log('get spots thunk', list.Spots)
         dispatch(load(list.Spots));
         return list;
     }
@@ -124,13 +124,17 @@ export const editSpotsThunk = (payload, spotId) => async dispatch => {
 }
 
 export const addImgThunk = (imgUrl, spotId) => async dispatch => {
-    const response = await csrfFetch(`/api/spots${spotId}/images`,{
+    console.log('what are my payloads of img thunk', imgUrl, spotId);
+
+    const response = await csrfFetch(`/api/spots/${spotId}/images`,{
         method: "POST",
         headers: {
-            "Content-Type": "/application/json"
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(imgUrl)
+        // parsing error?? took out stringify for now.
+        body: imgUrl
     })
+    console.log('fetch img thunk:',response)
     if (response.ok) {
         dispatch(loadBySpotId(spotId));
     }
@@ -182,7 +186,7 @@ const spotsReducer = (state = initialState, action) => {
         };
         case UPDATE: {
             const newState = { ...state }
-            console.log('to edit a spot reduced action', action.payload)
+            //console.log('to edit a spot reduced action', action.payload)
             newState[action.payload.id] = action.payload;
             return newState;
 

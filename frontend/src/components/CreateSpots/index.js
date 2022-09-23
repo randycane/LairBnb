@@ -60,7 +60,7 @@ function CreateNewSpotComponent() {
             description,
             price,
         }))
-        dispatch(addImgThunk({previewImage: true, url: image}, newSpot.id))
+         dispatch(addImgThunk(image, newSpot.id))
         //console.log('made a spot', newSpot);
 
         history.push(`/spots/${newSpot.id}`)
@@ -172,7 +172,7 @@ function CreateNewSpotComponent() {
                 <label className="form-image">
                     <span>Photo:</span>
                     <input
-                    type="url"
+                    type="text"
                     name="image"
                     placeholder="image url"
                     value={image}

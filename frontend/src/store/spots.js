@@ -122,17 +122,17 @@ export const editSpotsThunk = (payload, spotId) => async dispatch => {
     }
     return response;
 }
-
-export const addImgThunk = (imgUrl, spotId) => async dispatch => {
-    console.log('what are my payloads of img thunk', imgUrl, spotId);
+//need to fix parameters, imgUrl is a string, but needs to be obj
+export const addImgThunk = ( imgUrl, spotId ) => async dispatch => {
+    console.log('what are my parameters of img thunk', imgUrl, spotId);
 
     const response = await csrfFetch(`/api/spots/${spotId}/images`,{
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        // parsing error?? took out stringify for now.
-        body: imgUrl
+        // parsing error??
+        body: JSON.stringify(imgUrl)
     })
     console.log('fetch img thunk:',response)
     if (response.ok) {

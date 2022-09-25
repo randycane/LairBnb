@@ -9,7 +9,7 @@ import ReviewsCard from "../Reviews/ReviewsCards";
 
 import { removeReviewsThunk } from "../../store/reviews";
 
-
+import star from "../SpotsCards/starrr.png"
 import { Link } from "react-router-dom";
 import { getSpotsReviewsThunk } from "../../store/reviews";
 
@@ -57,11 +57,14 @@ function GetSpotById() {
     if (spotById?.ownerId && currentUser) {
         owner = spotById?.ownerId === thisUser;
     }
-    //console.log('review array format', reviewsArray)
+    console.log('review array format', reviewsArray)
     const reviewMap = reviewsArray.map((review) => (
         <div className="reviews-container">
+            <div className="writtenby">
+                Review by: {reviewsArray[0].User.firstName}
+            </div>
             <div className="actual-review-text">
-                Review: {review.review}
+                {review.review}
             </div>
             <div className="actual-stars">
                 Stars: {review.stars}
@@ -97,26 +100,35 @@ function GetSpotById() {
 
         <div className="parent-div">
 
+            <div className="encompass-spot">
+            <div className="hey-spot">{spotById?.name}
+                </div>
             {spotById?.Images && (<div className="image-container">
                 <img src={spotById?.Images[0]?.url || spotById?.previewImage} className="actual-pic" alt="stuff" />
             </div>)}
-            <div className="hey-spot">{spotById?.name}
-            </div>
+
+
+                <div className="spot-big-nest">
+                <div className="first-info">
             <div className="spot-where">
             {spotById?.city}, {spotById?.state}
             </div>
             <div className="describe-spot">
                 {spotById?.description}
-            </div>
+                </div>
+                </div>
+                <div className="spot-right-card">
             <div className="pricing">
                 ${spotById?.price} per night
             </div>
             <div className="how-many-reviews">
-                Number of Reviews: {spotById?.numReviews}
+                {spotById?.numReviews} Total Review(s)
             </div>
             <div className="avg-rating">
-                Average Stars: {spotById?.avgStarRating}
-            </div>
+                <img src = {star} alt= "rate" className="starry"/> {spotById?.avgStarRating}
+                </div>
+                </div>
+                </div>
             <div className="let-there-be-review">
                 {reviewMap}
             </div>
@@ -134,6 +146,7 @@ function GetSpotById() {
                         Delete Spot
                     </button>
                 </div>)}
+                </div>
             </div>
         )
 

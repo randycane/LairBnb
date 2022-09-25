@@ -1,26 +1,37 @@
 .spots-container{
-    border: orange 2px solid
+        height: 600px;
+
 }
 
 .image-show{
     object-fit:cover
 }
-.container-spot-name{
-    border: black 2px solid
-}
 
-.container-spot-where{
-    border: black 2px solid
-}
-
-.container-spot-details{
-    border: black 2px solid
-}
-
-.spot-description{
-    border: black 2px solid
-}
 
 .price-by-night{
-    border: black 2px solid
+    color: black;
+    font-weight: bold;
+    margin-top: 25px;
+
+}
+.topline{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.star-stuff{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.star{
+    width: 20px;
+}
+
+.star-average{
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
 }

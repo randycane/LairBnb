@@ -9,3 +9,8 @@
 .stars-given{
     border: orange 2px solid
 }
+
+body {
+    text-decoration: none;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}

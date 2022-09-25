@@ -1,3 +1,6 @@
+a {
+    text-decoration: none;
+}
 nav {
     display: flex;
     justify-content: center;
@@ -58,14 +61,6 @@ nav {
     font-size: 15px;
 }
 
-.OrderNaviLinks:hover {
-    font-weight: bold;
-}
-.OrderNaviLinks,
-.OrderNaviLinks:active,
-.OrderNaviLinks:visited {
-    color: #494949;
-}
 .top {
     display: flex;
     font-size: 16pt;
@@ -136,10 +131,6 @@ nav {
     object-fit: cover;
     max-height: 60px;
     max-width: 60px;
-}
-
-.LeftNavi > a, a:hover, a:visited, a:active {
-    text-decoration: none;
 }
 
 .LairBnbText {

@@ -7,7 +7,6 @@
 }
 
 .spots-container{
-    border: grey 2px solid;
     display: flex;
     flex-wrap: wrap;
     height: 500px;
@@ -25,15 +24,6 @@
     border-radius: 15px;
 }
 
-/* .inside-card {
-    display: flex;
-    justify-content: space-between;
-    height: 550px;
-    width: 500px;
-    flex-wrap: wrap;
-    margin: 1px;
-    border: black solid 2px;
-} */
 
 .spot-info{
     text-decoration: none;
@@ -45,6 +35,66 @@
 
 .actual-pic,
 .image-container {
-    height: 300px;
+    height: 33%;
+    width: 100%;
+}
+form{
     width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+input{
+    height: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.hey-spot{
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.encompass-spot{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.spot-right-card{
+    display: flex;
+    flex-direction: row;
+    height: 260px;
+    width: 500px;
+    border: red 2px solid;
+    justify-content: space-between;
+    align-items: center;
+}
+.spot-big-nest{
+    display: flex;
+    justify-content: space-between;
+    height: 300px;
+}
+.avg-rating{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.starry{
+    margin-right: 5px;
+    width: 20px;
 }

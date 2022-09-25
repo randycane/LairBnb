@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import React, { useEffect, useState} from "react";
-import { Redirect } from "react-router";
+
 import { createReviewsThunk } from "../../store/reviews";
-import { getSpotsByTheirId } from "../../store/spots";
+// import { getSpotsByTheirId } from "../../store/spots";
 
 export default function CreateReviewComponent() {
 
@@ -18,15 +18,15 @@ export default function CreateReviewComponent() {
     let { spotId } = useParams();
     spotId = Number(spotId);
     //check spot id
-    console.log('i want this to be a number', spotId)
+    //console.log('i want this to be a number', spotId)
 
     const sessionUser = useSelector(state => state.session.user);
     // check session state
-    console.log('i am the current user state', sessionUser)
+    //console.log('i am the current user state', sessionUser)
 
     const normalizedReviews = useSelector(state => Object.values(sessionUser));
     // this is an empty array right now:
-    console.log('i am the array of reviews', normalizedReviews)
+    //console.log('i am the array of reviews', normalizedReviews)
 
     const listedReviews = normalizedReviews.map(review => review.userId === sessionUser.id)
     const [isCreated, setIsCreated] = useState(false);

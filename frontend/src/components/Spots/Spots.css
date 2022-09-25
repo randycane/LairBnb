@@ -24,7 +24,17 @@
     border-radius: 15px;
 }
 
+.spot-where{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
+.describe-spot{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .spot-info{
     text-decoration: none;
     color: black;

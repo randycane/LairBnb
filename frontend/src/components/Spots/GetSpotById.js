@@ -105,6 +105,9 @@ function GetSpotById() {
             <div className="encompass-spot">
             <div className="hey-spot">{spotById?.name}
                 </div>
+            <div className="spot-where">
+            {spotById?.city}, {spotById?.state}
+            </div>
             {spotById?.Images && (<div className="image-container">
                 <img src={spotById?.Images[0]?.url || spotById?.previewImage} className="actual-pic" alt="stuff" />
             </div>)}
@@ -112,9 +115,6 @@ function GetSpotById() {
 
                 <div className="spot-big-nest">
                 <div className="first-info">
-            <div className="spot-where">
-            {spotById?.city}, {spotById?.state}
-            </div>
             <div className="describe-spot">
                 {spotById?.description}
                 </div>

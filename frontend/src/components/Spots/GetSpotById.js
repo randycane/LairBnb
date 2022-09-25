@@ -21,7 +21,7 @@ function GetSpotById() {
     const history = useHistory();
 
     const spotById = useSelector(state => state.spots[spotId])
-    console.log('the spot i look for in my component func', spotById)
+    //console.log('the spot i look for in my component func', spotById)
 
     // the logic for delete spot, only if you are the owner:
     const session = useSelector((state) => state.session)

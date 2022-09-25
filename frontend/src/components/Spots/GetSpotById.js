@@ -21,30 +21,37 @@ function GetSpotById() {
     const history = useHistory();
 
     const spotById = useSelector(state => state.spots[spotId])
-    //('the spot i look for in my component func', spotById)
+    console.log('the spot i look for in my component func', spotById)
 
-    // start the logic for delete, only if you are the owner:
+    // the logic for delete spot, only if you are the owner:
     const session = useSelector((state) => state.session)
-
+    //logic for delete review
+    const sessionAuthor = useSelector((state) => state.session.user)
 
     const review = useSelector((state) => state.reviews)
-    console.log('review state now', review)
+    //console.log('review state now', review)
     const reviewsArray = Object.values(review)
 
     const removeReview = async (reviewId) => {
-        await dispatch(removeReviewsThunk(reviewId));
-        await dispatch(getSpotsByTheirId(spotId));
+        await dispatch(removeReviewsThunk(reviewId)).then(() => {
+            dispatch(getSpotsByTheirId(spotId)).then(() => {
+                dispatch(getSpotsReviewsThunk(spotId));
+             })
+        })
 
     }
     let currentUser = session.user;
-    console.log('i am loggin in as this', currentUser)
+    //console.log('i am loggin in as this', currentUser)
 
     let thisUser;
 
     if (currentUser) {
         thisUser = currentUser.id
     }
-    // initialize owner to false
+
+    //console.log('session user state', thisUser)
+    //console.log('state of review rn', review)
+
     // only if spot's owner and session id matches we can delete spot:
     let owner = false;
     if (spotById?.ownerId && currentUser) {
@@ -59,7 +66,7 @@ function GetSpotById() {
             <div className="actual-stars">
                 Stars: {review.stars}
             </div>
-            {(
+            {(sessionAuthor?.id === review.userId &&
                 <button className="delete-button" onClick={() => removeReview(review.id)}>Delete</button>
         )
             }

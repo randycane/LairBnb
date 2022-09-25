@@ -16,25 +16,10 @@ export default function ReviewsCard({ review }) {
     const selectedSpots = useSelector((state) => state.spots);
     const rightNowSpot = selectedSpots[spotId];
 
-
-    //logic for if you are owner for delete and edit perms later
-    // const session = useSelector((state) => state.session);
-    // let currentUser = session.user;
-
-    // let user;
-    // if (currentUser) {
-    //     user = currentUser.id;
-    // }
-
-    // let sessionOwner = false;
-
-    // if (rightNowSpot?.ownerId && currentUser) {
-    //     sessionOwner = rightNowSpot?.ownerId === user;
-    // }
-
     const removeReview = async (reviewId) => {
-        await dispatch(removeReviewsThunk(reviewId));
-        await dispatch(getSpotsByTheirId(spotId));
+        await dispatch(removeReviewsThunk(reviewId)).then(() => {
+             dispatch(getSpotsByTheirId(spotId));
+        })
 
     }
 

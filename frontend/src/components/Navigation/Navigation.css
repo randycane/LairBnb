@@ -18,7 +18,7 @@ nav {
 
 .NavBarRight-MenuHost {
     display: flex;
-    align-items: center ;
+    align-items: center;
 }
 
 .DropDownMenuIcon {
@@ -30,6 +30,17 @@ nav {
     width: 82px;
     border-radius: 35px;
     border: 0.5px solid #e0e0e0;
+}
+
+.profile-dropdown{
+    position: absolute;
+    right: 1px;
+    top: 100px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    align-items: center;
+    height: 150px;
+    width: 300px;
 }
 
 .fa-user-circle {
@@ -55,7 +66,20 @@ nav {
 .OrderNaviLinks:visited {
     color: #494949;
 }
-
+.top {
+    display: flex;
+    font-size: 20pt;
+    font-weight: 500;
+    justify-content: center;
+}
+.Logout{
+    display: flex;
+    font-size: 20pt;
+    font-weight: 500;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+}
 .HostButton {
     display: flex;
     align-items: center;
@@ -66,16 +90,14 @@ nav {
     font-weight: 549;
     color: #494949;
     margin-right: 55px;
+    border: black solid 2px;
 }
 
-.DropDownMenu {
+.DropDownMenu{
     display: flex;
-    position: absolute;
     flex-direction: column;
-    margin-top: 180px;
     border-radius: 12px;
     right: 0;
-    top: -108px;
     padding: 28px;
     box-shadow: 2px 5px 15px rgba(93, 93, 93, 0.298);
     border: 0;

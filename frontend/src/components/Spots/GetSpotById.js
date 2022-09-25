@@ -76,6 +76,7 @@ function GetSpotById() {
     return isLoaded && (
 
         <div className="parent-div">
+
             {spotById?.Images && (<div className="image-container">
                 <img src={spotById?.Images[0]?.url || spotById?.previewImage} className="actual-pic" alt="stuff" />
             </div>)}

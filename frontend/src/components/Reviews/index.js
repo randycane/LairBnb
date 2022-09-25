@@ -19,6 +19,7 @@ function UserReviewsComponent() {
 
     useEffect(() => {
         dispatch(getMyOwnReviewsThunk());
+        dispatch(removeReviewsThunk());
     }, [dispatch]);
 
     return (

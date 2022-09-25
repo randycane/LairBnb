@@ -1,22 +1,44 @@
-.spots-container{
-    border: grey 2px solid;
-    display: inline-flex;
+.all-spots-container{
+    display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-between;
+    border: red 10px solid;
+    margin: 1%;
+    text-decoration: none;
 }
 
+.spots-container{
+    border: grey 2px solid;
+    display: flex;
+    flex-wrap: wrap;
+    height: 500px;
+    width: 450px;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
 
+.image-show{
+    height: 420px;
+    width: 450px;
+    border-radius: 15px;
+}
 
-.inside-card {
+/* .inside-card {
     display: flex;
     justify-content: space-between;
+    height: 550px;
+    width: 500px;
     flex-wrap: wrap;
     margin: 1px;
     border: black solid 2px;
-    object-fit:cover
-}
+} */
 
+.spot-info{
+    text-decoration: none;
+    color: black;
+}
 .reviews-container {
     border: black solid 2px;
 }

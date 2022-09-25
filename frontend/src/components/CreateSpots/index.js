@@ -65,10 +65,6 @@ function CreateNewSpotComponent() {
 
         history.push(`/spots/${newSpot.id}`)
 
-        //this just works for current new spot only
-        // history.push(`/spots/new`)
-
-        //return newSpot;
 
     }
 

@@ -24,8 +24,8 @@ export default function CreateReviewComponent() {
     // check session state
     console.log('i am the current user state', sessionUser)
 
-    const normalizedReviews = useSelector(state => Object.values(state.reviews));
-    // check my array
+    const normalizedReviews = useSelector(state => Object.values(sessionUser));
+    // this is an empty array right now:
     console.log('i am the array of reviews', normalizedReviews)
 
     const listedReviews = normalizedReviews.map(review => review.userId === sessionUser.id)
@@ -39,6 +39,8 @@ export default function CreateReviewComponent() {
         else if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
         setErrors(errors)
+
+
     }, [review, stars])
 
 
@@ -67,10 +69,9 @@ export default function CreateReviewComponent() {
 
         //try a redirect way:
         if (isCreated) {
-            return <Redirect to ={`/spots/:spotId/reviews`}/>
+            //history.push(`/spots/${spotId}`)
+            return <Redirect to={`/spots/:spotId/reviews`} />
         }
-        //console.log('same spot i am reviewing', spotId)
-        //history.push(`/spots/${spotId}/reviews`)
     };
 
     const ErrorMsgs = errors.map(error => (
@@ -110,7 +111,8 @@ export default function CreateReviewComponent() {
             <div className="submit-review">
               <button
                 type="submit">
-                Create Review
+                        Create Review
+
               </button>
             </div>
         </form>

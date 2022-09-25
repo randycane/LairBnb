@@ -1,7 +1,7 @@
 import React from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import LoginFormModal from ".";
+// import LoginFormModal from ".";
 
 function DemoUserComponent({ showModal }) {
     const dispatch = useDispatch();

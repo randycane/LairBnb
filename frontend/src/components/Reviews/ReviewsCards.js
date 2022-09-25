@@ -2,6 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./ReviewsCards.css"
 
+import { removeReviewsThunk } from "../../store/reviews";
+import { getSpotsByTheirId } from "../../store/spots";
+
+
 export default function ReviewsCard({ review }) {
 
     const dispatch = useDispatch();
@@ -14,19 +18,26 @@ export default function ReviewsCard({ review }) {
 
 
     //logic for if you are owner for delete and edit perms later
-    const session = useSelector((state) => state.session);
-    let currentUser = session.user;
+    // const session = useSelector((state) => state.session);
+    // let currentUser = session.user;
 
-    let user;
-    if (currentUser) {
-        user = currentUser.id;
+    // let user;
+    // if (currentUser) {
+    //     user = currentUser.id;
+    // }
+
+    // let sessionOwner = false;
+
+    // if (rightNowSpot?.ownerId && currentUser) {
+    //     sessionOwner = rightNowSpot?.ownerId === user;
+    // }
+
+    const removeReview = async (reviewId) => {
+        await dispatch(removeReviewsThunk(reviewId));
+        await dispatch(getSpotsByTheirId(spotId));
+
     }
 
-    let sessionOwner = false;
-
-    if (rightNowSpot?.ownerId && currentUser) {
-        sessionOwner = rightNowSpot?.ownerId === user;
-    }
 
     return (
         <div className="review-box">
@@ -36,6 +47,8 @@ export default function ReviewsCard({ review }) {
             <div className="stars-given">
                 Stars: {review.stars}
             </div>
+            <button className="delete-button" onClick={()=>removeReview(review.id)}>Delete</button>
         </div>
+
     )
 };

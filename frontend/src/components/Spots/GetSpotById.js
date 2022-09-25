@@ -5,6 +5,10 @@ import { useParams } from 'react-router-dom';
 import { getSpotsByTheirId, removeSpotsThunk } from '../../store/spots';
 //import EditSpotComponentFunc from './EditSpotComponent'
 
+import ReviewsCard from "../Reviews/ReviewsCards";
+
+import { removeReviewsThunk } from "../../store/reviews";
+
 
 import { Link } from "react-router-dom";
 import { getSpotsReviewsThunk } from "../../store/reviews";
@@ -24,8 +28,28 @@ function GetSpotById() {
 
 
     const review = useSelector((state) => state.reviews)
+    console.log('review state now', review)
     const reviewsArray = Object.values(review)
 
+    const removeReview = async (reviewId) => {
+        await dispatch(removeReviewsThunk(reviewId));
+        await dispatch(getSpotsByTheirId(spotId));
+
+    }
+    let currentUser = session.user;
+    console.log('i am loggin in as this', currentUser)
+
+    let thisUser;
+
+    if (currentUser) {
+        thisUser = currentUser.id
+    }
+    // initialize owner to false
+    // only if spot's owner and session id matches we can delete spot:
+    let owner = false;
+    if (spotById?.ownerId && currentUser) {
+        owner = spotById?.ownerId === thisUser;
+    }
     //console.log('review array format', reviewsArray)
     const reviewMap = reviewsArray.map((review) => (
         <div className="reviews-container">
@@ -35,24 +59,13 @@ function GetSpotById() {
             <div className="actual-stars">
                 Stars: {review.stars}
             </div>
+            {(
+                <button className="delete-button" onClick={() => removeReview(review.id)}>Delete</button>
+        )
+            }
         </div>
     ))
 
-    //console.log('this is the review state', review)
-    // check who is logged in, and if the id is the current user
-    let currentUser = session.user;
-
-    let thisUser;
-
-    if (currentUser) {
-        thisUser = currentUser.id
-    }
-    // initialize owner to false
-    // only if spot's owner and session id matches we can delete:
-    let owner = false;
-    if (spotById?.ownerId && currentUser) {
-        owner = spotById?.ownerId === thisUser;
-    }
 
     useEffect(() => {
         dispatch(getSpotsByTheirId(spotId))
@@ -102,7 +115,7 @@ function GetSpotById() {
             </div>
             {!owner && (
                 < div className="write-review">
-                    <Link to={`/spots/${spotId}/new`} className="form-button" >Create Review</Link>
+                    <Link to={`/spots/${spotId}/reviews`} className="form-button" >Create Review</Link>
                     </div>
             )}
             {owner && (<div className="edit-redirected-button">

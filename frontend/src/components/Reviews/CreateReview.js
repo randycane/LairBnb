@@ -66,12 +66,9 @@ export default function CreateReviewComponent() {
         }))
 
         //await dispatch(getSpotsByTheirId(spotId));
+            history.push(`/spots/${spotId}`)
+            //return <Redirect to={`/spots/:spotId/reviews`} />
 
-        //try a redirect way:
-        if (isCreated) {
-            //history.push(`/spots/${spotId}`)
-            return <Redirect to={`/spots/:spotId/reviews`} />
-        }
     };
 
     const ErrorMsgs = errors.map(error => (

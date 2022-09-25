@@ -100,7 +100,7 @@ export default function CreateReviewComponent() {
                     onChange={(e) => setStars(e.target.value)}
                     />
                 </label>
-            <div className="submit-review">
+            <div className="form-button">
               <button
                 type="submit">
                         Create Review

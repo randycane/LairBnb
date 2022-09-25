@@ -67,7 +67,9 @@ function GetSpotById() {
                 {review.review}
             </div>
             <div className="actual-stars">
-                Stars: {review.stars}
+                <img src={star} alt="rate" className="starry" />
+                <div className="star-int">{review.stars}
+                </div>
             </div>
             {(sessionAuthor?.id === review.userId &&
                 <button className="delete-button" onClick={() => removeReview(review.id)}>Delete</button>

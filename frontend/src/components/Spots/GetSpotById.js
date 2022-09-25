@@ -99,8 +99,13 @@ function GetSpotById() {
             <div className="let-there-be-review">
                 {reviewMap}
             </div>
+            {!owner && (
+                < div className="write-review">
+                    <Link to={`/spots/${spotId}/new`} className="form-button" >Create Review</Link>
+                    </div>
+            )}
             {owner && (<div className="edit-redirected-button">
-                <Link to={`/spots/${spotId}/update`} className="edit-redirected-button" >Edit Spot</Link>
+                <Link to={`/spots/${spotId}/update`} className="form-button" >Edit Spot</Link>
             </div>)}
             {owner && (<div className="delete-spot"
                 onClick={(e) => removeButton(e)}>

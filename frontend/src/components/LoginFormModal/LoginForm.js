@@ -3,6 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import DemoUserComponent from "./DemoUser";
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -49,6 +50,9 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
+      <button className="demo-user" onClick={DemoUserComponent}>
+            Demo User
+        </button>
     </form>
   );
 }

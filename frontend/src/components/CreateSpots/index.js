@@ -70,13 +70,13 @@ function CreateNewSpotComponent() {
     }
 
 
-    const ErrorMsgs = errors.map((error) => {
+    const ErrorMsgs = errors.map((error) => (
 
         < ul className = "error-msgs" key = { error } >
             { error }
         </ul >
 
-    })
+    ))
 
     return (
         <div className="create-main-container">

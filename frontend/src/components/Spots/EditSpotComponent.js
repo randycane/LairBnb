@@ -38,7 +38,7 @@ function EditSpotComponentFunc() {
         if (!state) errorArray.push("State is required");
         if (!country) errorArray.push("Country is required");
         if (!description) errorArray.push("Description is required");
-        if (!price) errorArray.push("Price per day or night is required.");
+        if (!price) errorArray.push("Price per night is required.");
 
         setErrors(errorArray);
     }, [address, name, city, state, country, description, price]);
@@ -65,10 +65,10 @@ function EditSpotComponentFunc() {
         history.push(`/spots/${spotId}`)
     }
 
-    const ErrorMsgs = errors.map((error) => {
+    const ErrorMsgs = errors.map((error) => (
         <ul className="error-msgs" key={error}>
         </ul>
-    });
+    ));
 
     return (
         <div className="edit-spot-container">

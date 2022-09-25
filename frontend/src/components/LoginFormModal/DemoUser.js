@@ -9,7 +9,7 @@ function DemoUserComponent({ showModal }) {
     const demoLogin = (e) => {
         e.preventDefault();
 
-        const email = "demo@user.io";
+        const email = "shinichiro@user.io";
         const password = "password";
 
         return dispatch(sessionActions.login({ email, password })).then(() => {

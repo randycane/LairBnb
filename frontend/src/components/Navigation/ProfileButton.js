@@ -45,8 +45,8 @@ function ProfileButton({ user }) {
 
         {showMenu && (
           <div className="profile-dropdown">
-            <div className="top">{user.username}</div>
-            <div className="top">{user.email}</div>
+            <div className="top">Welcome, {user.username}!</div>
+            <div className="top">Profile: {user.email}</div>
           <div className="NaviBarShowing">
             { user && (
               <div className="UserBarNavi" >

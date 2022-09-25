@@ -36,10 +36,7 @@ function ProfileButton({ user }) {
   };
 
 
-
-  //css stuff:
     return (
-      // <nav className="NavigationBar">
       <div className="NavBarRight-MenuHost">
         { user && <NavLink className='HostButton' to='/spots/new'>Become a Host</NavLink> }
           <button className="DropDownMenuIcon" onClick={openMenu}>
@@ -60,28 +57,7 @@ function ProfileButton({ user }) {
           </div>
         )}
       </div>
-      // </nav>
     );
   }
-
-  // return (
-  //   <>
-  //     <button onClick={openMenu}>
-  //       <i className="fas fa-user-circle" />
-  //     </button>
-  //     {showMenu && (
-  //       <div className="profile-dropdown">
-  //         <li>{user.username}</li>
-  //         <li>{user.email}</li>
-  //         <li>
-  //           <button onClick={logout}>Log Out</button>
-  //         </li>
-  //       </div>
-  //     )}
-  //   </>
-  // );
-
-
-
 
 export default ProfileButton;

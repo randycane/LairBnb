@@ -14,8 +14,7 @@ import './Navigation.css';
 function Navigation({isLoaded}){
   const sessionUser = useSelector(state => state.session.user);
 
-  const [loginForm, setLoginForm] = useState(false);
-
+  // const [loginForm, setLoginForm] = useState(false);
 
     let sessionLinks;
     if(sessionUser){
@@ -25,9 +24,6 @@ function Navigation({isLoaded}){
     } else {
       sessionLinks = (
         <>
-          {/* <button><SignupFormPage />
-          </button> */}
-
           <LoginFormModal />
           <SignupFormModal/>
       </>

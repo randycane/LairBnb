@@ -51,12 +51,7 @@ export default function CreateReviewComponent() {
         if (errors.length > 0) {
             return;
         }
-        // try before
 
-        // let newReview = await dispatch(createReviewsThunk({
-        //     review,
-        //     stars,
-        // }))
 
         //try two
         await dispatch(createReviewsThunk({

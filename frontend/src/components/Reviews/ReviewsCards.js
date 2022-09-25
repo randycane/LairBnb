@@ -14,7 +14,7 @@ export default function ReviewsCard({ review }) {
     const { spotId } = useParams();
 
     const selectedSpots = useSelector((state) => state.spots);
-    const rightNowSpot = selectedSpots[spotId];
+    //const rightNowSpot = selectedSpots[spotId];
 
     const removeReview = async (reviewId) => {
         await dispatch(removeReviewsThunk(reviewId)).then(() => {

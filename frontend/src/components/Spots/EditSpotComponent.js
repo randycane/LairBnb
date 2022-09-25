@@ -12,7 +12,7 @@ function EditSpotComponentFunc() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const spot = useSelector(state => state)
+    const spot = useSelector(state => state?.spots[spotId])
     console.log('the state right now', spot)
     //console.log('after my state change', spot)
 

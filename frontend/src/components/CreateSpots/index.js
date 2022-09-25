@@ -59,8 +59,9 @@ function CreateNewSpotComponent() {
             lng,
             description,
             price,
+
         }))
-         dispatch(addImgThunk(image, newSpot.id))
+        dispatch(addImgThunk({ imageableId: true, url: image }, newSpot.id))
         //console.log('made a spot', newSpot);
 
         history.push(`/spots/${newSpot.id}`)

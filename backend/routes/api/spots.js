@@ -63,13 +63,13 @@ router.get('/', async (req, res, next) => {
     size = parseInt(size);
 
     if (Number.isNaN(page)) page = 1;
-    if (Number.isNaN(size)) size = 20;
+    if (Number.isNaN(size)) size = 20000;
 
     pagination.limit = size;
     pagination.offset = size * (page -1);
 
     if (page > 10) page = 10;
-    if (size > 20) size = 20;
+    if (size > 20000) size = 20000;
 
     if (page < 0) err.errors = "Page must be greater than or equal to 0";
     if (size < 0) err.errors = "Size must be greater than or equal to 0";

@@ -122,7 +122,7 @@ export const editSpotsThunk = (payload, spotId) => async dispatch => {
     }
     return response;
 }
-//need to fix parameters, imgUrl is a string, but needs to be obj
+
 export const addImgThunk = ( imgUrl, spotId ) => async dispatch => {
     console.log('what are my parameters of img thunk', imgUrl, spotId);
 
@@ -131,10 +131,10 @@ export const addImgThunk = ( imgUrl, spotId ) => async dispatch => {
         headers: {
             "Content-Type": "application/json"
         },
-        // parsing error??
+
         body: JSON.stringify(imgUrl)
     })
-    console.log('fetch img thunk:',response)
+    //console.log('fetch img thunk:',response)
     if (response.ok) {
         dispatch(loadBySpotId(spotId));
     }

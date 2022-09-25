@@ -1,26 +1,29 @@
-import React from "react";
-import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
-// import LoginFormModal from ".";
+//over thinking it: this demo file does not even matter
 
-function DemoUserComponent({ showModal }) {
-    const dispatch = useDispatch();
 
-    const demoLogin = (e) => {
-        e.preventDefault();
+// import React from "react";
+// import * as sessionActions from "../../store/session";
+// import { useDispatch } from "react-redux";
+// // import LoginFormModal from ".";
 
-        const email = "shinichiro@user.io";
-        const password = "password";
+// function DemoUserComponent({ showModal }) {
+//     const dispatch = useDispatch();
 
-        return dispatch(sessionActions.login({ email, password })).then(() => {
-            showModal(false);
-        })
-    }
-    return (
-        <button className="demo-user" onClick={demoLogin}>
-            Demo User
-        </button>
-    )
-}
+//     const demoLogin = (e) => {
+//         e.preventDefault();
 
-export default DemoUserComponent;
+//         const email = "shinichiro@user.io";
+//         const password = "password";
+
+//         return dispatch(sessionActions.login({ email, password })).then(() => {
+//             showModal(false);
+//         })
+//     }
+//     return (
+//         <button className="demo-user" onClick={demoLogin}>
+//             Demo User
+//         </button>
+//     )
+// }
+
+// export default DemoUserComponent;

@@ -60,16 +60,19 @@ function GetSpotById() {
     console.log('review array format', reviewsArray)
     const reviewMap = reviewsArray.map((review) => (
         <div className="reviews-container">
+            <div className="nest-review">
             <div className="writtenby">
                 Review by: {review.User.firstName}
-            </div>
-            <div className="actual-review-text">
-                {review.review}
+
             </div>
             <div className="actual-stars">
                 <img src={star} alt="rate" className="starry" />
                 <div className="star-int">{review.stars}
-                </div>
+                    </div>
+                    </div>
+            <div className="actual-review-text">
+                {review.review}
+            </div>
             </div>
             {(sessionAuthor?.id === review.userId &&
                 <button className="delete-button" onClick={() => removeReview(review.id)}>Delete</button>
@@ -105,9 +108,17 @@ function GetSpotById() {
             <div className="encompass-spot">
             <div className="hey-spot">{spotById?.name}
                 </div>
+                <div className="ratings-and-where">
+                <div className="avg-rating">
+                <img src = {star} alt= "rate" className="starry"/> {spotById?.avgStarRating}
+                    </div>
+                    <div className="how-many-reviews">
+                {spotById?.numReviews} Total Review(s)
+            </div>
             <div className="spot-where">
             {spotById?.city}, {spotById?.state}
-            </div>
+                </div>
+                    </div>
             {spotById?.Images && (<div className="image-container">
                 <img src={spotById?.Images[0]?.url || spotById?.previewImage} className="actual-pic" alt="stuff" />
             </div>)}
@@ -116,7 +127,7 @@ function GetSpotById() {
                 <div className="spot-big-nest">
                 <div className="first-info">
             <div className="describe-spot">
-                {spotById?.description}
+                Description: {spotById?.description}
                 </div>
                 </div>
                 <div className="spot-right-card">
@@ -134,7 +145,7 @@ function GetSpotById() {
             <div className="let-there-be-review">
                 {reviewMap}
             </div>
-            {!owner && (
+            {currentUser && !owner && (
                 < div className="write-review">
                     <Link to={`/spots/${spotId}/reviews`} className="form-button" >Create Review</Link>
                     </div>

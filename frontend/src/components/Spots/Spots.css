@@ -23,11 +23,16 @@
     width: 450px;
     border-radius: 15px;
 }
+.ratings-and-where{
+    display: flex;
+    align-items: center;
 
+}
 .spot-where{
     display: flex;
     margin-top: 10px;
     margin-bottom: 10px;
+    margin-left: 20px;
 }
 
 .describe-spot{
@@ -39,14 +44,20 @@
     text-decoration: none;
     color: black;
 }
-.reviews-container {
-    border: black solid 2px;
+.reviews-container{
+    display: flex;
+    width: 70%;
+    border-radius: 8px;
+}
+.reviews-container:hover {
+    background-color: gainsboro;
 }
 
 .actual-pic,
 .image-container {
     height: 33%;
     width: 100%;
+    border-radius: 25px;
 }
 form{
     width: 400px;
@@ -88,11 +99,16 @@ label{
 .spot-right-card{
     display: flex;
     flex-direction: row;
-    height: 260px;
-    width: 500px;
+    height: 140px;
+    width: 400px;
     border: red 2px solid;
     justify-content: space-between;
     align-items: center;
+    border-radius: 20px;
+}
+.let-there-be-review{
+    display: flex;
+    justify-content: space-between;
 }
 .spot-big-nest{
     display: flex;
@@ -103,27 +119,48 @@ label{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-right: 20px;
 }
 
 .starry{
     margin-right: 5px;
     width: 20px;
+    height: 20px;
 }
 .writtenby{
     display: flex;
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 8px;
     font-weight: 450;
 }
 
 .actual-review-text{
     display: flex;
-    margin-top: 10px;
+    align-items: center;
     color: black;
+}
+.nest-review{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+}
+
+.nest-review:hover{
+    background-color: gainsboro;
+}
+
+.describe-spot{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
 }
 
 .actual-stars{
     display: flex;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20px;
+    margin-left: 20px;
 }

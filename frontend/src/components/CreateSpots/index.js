@@ -34,7 +34,7 @@ function CreateNewSpotComponent() {
         if (!state) errorArray.push("State is required");
         if (!country) errorArray.push("Country is required");
         if (!description) errorArray.push("Description is required");
-        if (!price) errorArray.push("Price per day or night is required.");
+        if (!price || price < 1 ) errorArray.push("Price must be a positive number");
         if(!image) errorArray.push("Please provide valid image.")
 
         setErrors(errorArray);

@@ -11,3 +11,22 @@
     background-color: wheat;
     cursor: pointer;
 }
+
+.user{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 30px;
+    border-radius: 25px;
+    width: 80%;
+    margin-left: 40px;
+    background-color: red;
+    color: white;
+    font-weight: 500;
+    font-size: 14pt;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}

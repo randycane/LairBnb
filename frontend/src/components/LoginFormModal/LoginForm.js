@@ -3,7 +3,8 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-// import DemoUserComponent from "./DemoUser";
+
+import "./LoginForm.css";
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -52,9 +53,13 @@ function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-      </label>
-      <button type="submit">Log In</button>
-      <button onClick={demoLogin} className="demo-user">Demo User</button>
+        </label>
+        <div className="get-on">
+      <button className="user" type="submit">Log In</button>
+        </div>
+        <div className="get-on">
+      <button onClick={demoLogin} className="user">Demo User</button>
+      </div>
     </form>
     </div>
   );

@@ -103,7 +103,24 @@ label{
     justify-content: center;
     text-align: center;
 }
-
+.creation-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 30px;
+    border-radius: 25px;
+    width: 80%;
+    margin-left: 40px;
+    background-color: red;
+    color: white;
+    font-weight: 500;
+    font-size: 14pt;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
 .hey-spot{
     font-weight: 700;
     margin-top: 10px;
@@ -191,4 +208,21 @@ label{
     align-items: center;
     margin-right: 20px;
     margin-left: 20px;
+}
+
+.spot-new{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.error-msgs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: red;
+    font-weight: 400;
+    margin-top: 7px;
 }

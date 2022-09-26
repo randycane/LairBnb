@@ -5,6 +5,8 @@ import { useDispatch} from "react-redux";
 
 import { addImgThunk, createSpotsThunk } from "../../store/spots";
 
+import "../Spots/Spots.css"
+
 function CreateNewSpotComponent() {
     const dispatch = useDispatch();
 
@@ -72,9 +74,9 @@ function CreateNewSpotComponent() {
 
     const ErrorMsgs = errors.map((error) => (
 
-        < ul className = "error-msgs" key = { error } >
+        < div className = "error-msgs" key = { error } >
             { error }
-        </ul >
+        </div >
 
     ))
 
@@ -82,9 +84,9 @@ function CreateNewSpotComponent() {
         <div className="create-main-container">
             <div className="encompass-form">
             <form className="spot-new" onSubmit={handleSubmit}>
-                <ul>
+                <div>
                     {spotCreated && ErrorMsgs}
-                </ul>
+                </div>
                 <h1 className="create-spot-class">List your property here!</h1>
                 <label className="create-name">
                     <span> Name: </span>

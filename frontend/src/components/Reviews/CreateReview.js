@@ -86,7 +86,8 @@ export default function CreateReviewComponent() {
                         type="text"
                         placeholder="Review Text"
                         value={review}
-                        onChange={(e) => setReview(e.target.value)}
+                            onChange={(e) => setReview(e.target.value)}
+                            required
                     />
               </label>
 
@@ -98,7 +99,8 @@ export default function CreateReviewComponent() {
                     max={5}
                     placeholder="0"
                     value={stars}
-                    onChange={(e) => setStars(e.target.value)}
+                            onChange={(e) => setStars(e.target.value)}
+                            required
                     />
                 </label>
             <div className="create-wrap">

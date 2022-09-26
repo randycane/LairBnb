@@ -72,12 +72,13 @@ export default function CreateReviewComponent() {
 
     return (
         <div className="create-review-container">
+            <div className="encompass-form">
         <form
               className="review-form" onSubmit={handleSubmit}>
               <h1 className="review-title">Create a Review</h1>
-              <ul className="errors">
+              <div className="errors">
                 {isCreated && ErrorMsgs}
-              </ul>
+              </div>
 
               <label className="create-review">
                  <span> Review: </span>
@@ -90,7 +91,7 @@ export default function CreateReviewComponent() {
               </label>
 
               <label>
-                <span> Stars: </span>
+                <span> Stars (out of 5): </span>
                 <input
                     type="Number"
                     min={1}
@@ -100,14 +101,14 @@ export default function CreateReviewComponent() {
                     onChange={(e) => setStars(e.target.value)}
                     />
                 </label>
-            <div className="form-button">
-              <button
+            <div className="create-wrap">
+              <button className="created"
                 type="submit">
                         Create Review
-
               </button>
             </div>
-        </form>
+            </form>
+            </div>
     </div>
     )
 

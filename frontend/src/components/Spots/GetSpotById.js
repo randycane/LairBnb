@@ -76,7 +76,9 @@ function GetSpotById() {
             </div>
             </div>
             {(sessionAuthor?.id === review.userId &&
+                <div className="remove-button">
                 <button className="delete-button" onClick={() => removeReview(review.id)}>Delete</button>
+                </div>
         )
             }
         </div>
@@ -148,7 +150,7 @@ function GetSpotById() {
                 </div>
             {currentUser && !owner && (
                 < div className="write-review">
-                    <Link to={`/spots/${spotId}/reviews`} className="form-button" >Create Review</Link>
+                    <Link to={`/spots/${spotId}/reviews`} className="new-review" >Create Review</Link>
                     </div>
             )}
             {owner && (<div className="edit-redirected-button">

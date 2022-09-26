@@ -1,24 +1,59 @@
-.review-box{
-    border: orange 2px solid
-}
-
-.review-written{
-    border: orange 2px solid
-}
-
-.stars-given{
-    border: orange 2px solid
-}
 
 .write-review{
     margin-top: 10px;
-    height: 40px;
+    height: 60px;
     width: 200px;
 }
 
+.create-wrap{
+    display: flex;
+    flex-direction: column;
+    margin-top: 7px;
+    justify-content: center;
+    align-items: center;
+}
+.created{
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+}
+.new-review{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    padding: 1%;
+    align-items: center;
+    height: 20px;
+}
+.remove-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+    height: 30px;
+    width: 55px;
+
+}
+.delete-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+    height: 30px;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
 .form-button{
     text-decoration: none;
-    height: 60px;
+    height: 40px;
     border: 0.5px black solid;
     color: black;
     background-color: ivory;
@@ -34,4 +69,5 @@ body {
     text-decoration: none;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     color: black;
+    font-size: 12pt;
 }

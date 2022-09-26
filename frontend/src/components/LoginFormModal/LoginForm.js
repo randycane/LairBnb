@@ -20,7 +20,10 @@ function LoginForm() {
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(errors);
+        if (!data.errors && data.message) {
+          return setErrors([data.message]);
+        }
+        if (data && data.errors) setErrors(data.errors);
       }
     );
   };
@@ -34,7 +37,7 @@ function LoginForm() {
     <div className="encompass-form">
     <form onSubmit={handleSubmit}>
       <div>
-        {errors.map((error, idx) => (
+        {Object.values(errors).map((error, idx) => (
           <div className="errors" key={idx}>{error}</div>
         ))}
       </div>

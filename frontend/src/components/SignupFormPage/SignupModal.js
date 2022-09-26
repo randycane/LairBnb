@@ -35,6 +35,7 @@ function SignupForm() {
   };
 
   return (
+    <div className="encompass-form">
     <form onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <div key={idx}>{error}</div>)}
@@ -90,6 +91,7 @@ function SignupForm() {
       </label>
       <button type="submit">Sign Up</button>
     </form>
+    </div>
   );
 }
 

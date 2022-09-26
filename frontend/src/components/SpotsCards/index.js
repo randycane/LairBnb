@@ -17,7 +17,7 @@ export default function SpotsCards({spot}) {
                     <div className="whole-spot-stuff">
 
             <div className="topline">
-                <div className="spot-info">
+                <div className="spot-info-addy">
                     {spot?.city}, {spot?.state}
                 </div>
                 <div className="star-stuff">

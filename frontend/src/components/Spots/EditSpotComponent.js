@@ -73,6 +73,7 @@ function EditSpotComponentFunc() {
 
     return (
         <div className="edit-spot-container">
+            <div className="encompass-form">
         <form
           className="edit-spot" onSubmit={handleSubmit}>
 
@@ -168,7 +169,8 @@ function EditSpotComponentFunc() {
                         Edit Listing
                     </button>
             </div>
-        </form>
+            </form>
+            </div>
         </div>
       );
 

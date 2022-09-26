@@ -30,6 +30,7 @@ function LoginForm() {
   }
 
   return (
+    <div className="encompass-form">
     <form onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
@@ -55,6 +56,7 @@ function LoginForm() {
       <button type="submit">Log In</button>
       <button onClick={demoLogin} className="demo-user">Demo User</button>
     </form>
+    </div>
   );
 }
 

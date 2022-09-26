@@ -9,13 +9,18 @@
 .spots-container{
     display: flex;
     flex-wrap: wrap;
-    height: 500px;
+    height: 530px;
     width: 450px;
     justify-content: center;
     flex-direction: column;
     margin: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     text-decoration: none;
+    padding: 0.4%;
+}
+
+.spots-container:hover{
+    background-color: whitesmoke;
 }
 
 .image-show{
@@ -40,9 +45,16 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.spot-info{
+.spot-info-addy{
     text-decoration: none;
     color: black;
+    font-weight: 700;
+}
+
+.spot-info{
+    text-decoration: none;
+    color: gray;
+    font-weight: 400;
 }
 .reviews-container{
     display: flex;
@@ -58,6 +70,13 @@
     height: 33%;
     width: 100%;
     border-radius: 25px;
+}
+.encompass-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 form{
     width: 400px;

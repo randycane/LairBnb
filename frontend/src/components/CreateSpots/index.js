@@ -80,6 +80,7 @@ function CreateNewSpotComponent() {
 
     return (
         <div className="create-main-container">
+            <div className="encompass-form">
             <form className="spot-new" onSubmit={handleSubmit}>
                 <ul>
                     {spotCreated && ErrorMsgs}
@@ -181,6 +182,7 @@ function CreateNewSpotComponent() {
                     </button>
                 </div>
             </form>
+            </div>
         </div>
     )
 }

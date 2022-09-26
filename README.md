@@ -66,4 +66,5 @@ Run these commands in the Backend folder to seed data locally.
    npx dotenv sequelize db:migrate
    npx dotenv sequelize db:seed:all
   ```
-
+## Contact Me
+- If you have any questions at all, please email me at <code>randychang886@gmail.com</code>

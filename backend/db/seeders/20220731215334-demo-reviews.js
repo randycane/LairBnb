@@ -30,6 +30,36 @@ const validReviews = [
     spotId: 3,
     review: 'This was the dirtiest place I ever witnessed',
     stars: 1
+  },
+  {
+    userId: 3,
+    spotId: 6,
+    review: 'I love all the rocks!',
+    stars: 5
+  },
+  {
+    userId: 4,
+    spotId: 7,
+    review: 'I was not brave enough to stay here.',
+    stars: 1
+  },
+  {
+    userId: 1,
+    spotId: 8,
+    review: 'The infinity pool was insane.',
+    stars: 5
+  },
+  {
+    userId: 5,
+    spotId: 9,
+    review: 'The vibes were so good.',
+    stars: 4
+  },
+  {
+    userId: 2,
+    spotId: 10,
+    review: 'This place was pretty boring.',
+    stars: 1
   }
 ]
 

@@ -50,7 +50,7 @@ const validSpots = [
     ownerId: 1
   },
   {
-    address: '6 Romeo Drive',
+    address: '5 Romeo Drive',
     city: 'Buffalo',
     state: 'New York',
     country: 'USA',
@@ -60,6 +60,66 @@ const validSpots = [
     description: 'Bring all your friends here',
     price: 247,
     ownerId: 4
+  },
+  {
+    address: '6 Stone Way',
+    city: 'San Pedro',
+    state: 'California',
+    country: 'USA',
+    lat: 44.99,
+    lng: 40.3,
+    name: 'Stony Brook',
+    description: 'Boulders galore, enjoy them.',
+    price: 3000,
+    ownerId: 5
+  },
+  {
+    address: '7 Julie Drive',
+    city: 'Edison',
+    state: 'California',
+    country: 'USA',
+    lat: 89.99,
+    lng: 19.3,
+    name: 'Lion Heart',
+    description: 'For the brave and noble people.',
+    price: 900,
+    ownerId: 4
+  },
+  {
+    address: '8 Commercial Street',
+    city: 'San Dimas',
+    state: 'California',
+    country: 'USA',
+    lat: 99.99,
+    lng: 27.3,
+    name: 'Penthouse Suite',
+    description: 'For the luxury lovers.',
+    price: 900,
+    ownerId: 3
+  },
+  {
+    address: '9 Kentucky Way',
+    city: 'Mary',
+    state: 'Lentucky',
+    country: 'USA',
+    lat: 30.99,
+    lng: 39.3,
+    name: 'Kentucky Fried Chicken',
+    description: 'Headquarters of the best place',
+    price: 1100,
+    ownerId: 1
+  },
+  {
+    address: '10 Capitol Drive',
+    city: 'Milpitas',
+    state: 'Ohio',
+    country: 'USA',
+    lat: 11.99,
+    lng: 11.3,
+    name: 'The Wall',
+    description: 'Climb around here!',
+    price: 233,
+    ownerId: 2
   }
 ]
 

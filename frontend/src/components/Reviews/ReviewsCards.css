@@ -18,15 +18,16 @@
 
 .form-button{
     text-decoration: none;
-    height: 40px;
-    border: 2px;
-    color: white;
-    background-color: red;
+    height: 60px;
+    border: 0.5px black solid;
+    color: black;
+    background-color: ivory;
+    border-radius: 5px;
 }
 
 .form-button:hover{
     box-shadow: 2px 5px 15px rgba(93, 93, 93, 0.298);
-    background-color: rgba(128, 0, 0, 0.783);
+    background-color: whitesmoke
 }
 
 body {

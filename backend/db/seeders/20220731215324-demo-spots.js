@@ -94,13 +94,13 @@ const validSpots = [
     lng: 27.3,
     name: 'Penthouse Suite',
     description: 'For the luxury lovers.',
-    price: 900,
+    price: 1000,
     ownerId: 3
   },
   {
     address: '9 Kentucky Way',
-    city: 'Mary',
-    state: 'Lentucky',
+    city: 'Watsonville',
+    state: 'Kentucky',
     country: 'USA',
     lat: 30.99,
     lng: 39.3,

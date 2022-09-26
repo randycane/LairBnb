@@ -1,0 +1,13 @@
+.getting-on{
+    border-radius: 15px;
+    height: 40px;
+    border: none;
+    font-size: 15pt;
+    width: 90px;
+}
+
+.getting-on:hover{
+    font-weight: 700;
+    background-color: wheat;
+    cursor: pointer;
+}

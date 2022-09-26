@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { editSpotsThunk } from "../../store/spots";
+import { addImgThunk, editSpotsThunk } from "../../store/spots";
 
 import { getSpotsByTheirId } from "../../store/spots";
 
@@ -38,7 +38,7 @@ function EditSpotComponentFunc() {
         if (!state) errorArray.push("State is required");
         if (!country) errorArray.push("Country is required");
         if (!description) errorArray.push("Description is required");
-        if (!price) errorArray.push("Price per night is required.");
+        if (!price && price < 0) errorArray.push("Price must be a positive number");
 
         setErrors(errorArray);
     }, [address, name, city, state, country, description, price]);
@@ -49,7 +49,7 @@ function EditSpotComponentFunc() {
         if (errors.length > 0) {
             return;
         }
-        const changedTheSpot = await dispatch(editSpotsThunk({
+        let newSpot = await dispatch(editSpotsThunk({
             address,
             name,
             city,
@@ -61,13 +61,14 @@ function EditSpotComponentFunc() {
             price,
             //.then re hydrates the state with the new information
         }, spotId))
+
             //.then(dispatch(getSpotsByTheirId(spotId)))
         history.push(`/spots/${spotId}`)
     }
 
     const ErrorMsgs = errors.map((error) => (
-        <ul className="error-msgs" key={error}>
-        </ul>
+        <div className="error-msgs" key={error}>
+        </div>
     ));
 
     return (
@@ -76,9 +77,9 @@ function EditSpotComponentFunc() {
           className="edit-spot" onSubmit={handleSubmit}>
 
           <h1 className="title">Edit Your Spot</h1>
-            <ul className="changed">
+            <div className="changed">
                 {spotChanged && ErrorMsgs}
-                </ul>
+                </div>
 
           <label className="create-name">
                     <span> Name: </span>
@@ -161,6 +162,7 @@ function EditSpotComponentFunc() {
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 </label>
+
                 <div className="submit-spot-button">
                     <button className="creation-button" type="submit">
                         Edit Listing

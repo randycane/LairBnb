@@ -37,9 +37,9 @@ function SignupForm() {
   return (
     <div className="encompass-form">
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <div key={idx}>{error}</div>)}
-      </ul>
+      <div>
+        {errors.map((error, idx) => <div className='errors' key={idx}>{error}</div>)}
+      </div>
       <label>
         First Name
         <input
@@ -89,7 +89,7 @@ function SignupForm() {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button className="register" type="submit">Sign Up</button>
     </form>
     </div>
   );

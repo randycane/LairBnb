@@ -32,11 +32,11 @@ function LoginForm() {
   return (
     <div className="encompass-form">
     <form onSubmit={handleSubmit}>
-      <ul>
+      <div>
         {errors.map((error, idx) => (
-          <div key={idx}>{error}</div>
+          <div className="errors" key={idx}>{error}</div>
         ))}
-      </ul>
+      </div>
       <label>
         Username or Email
         <input

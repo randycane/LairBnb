@@ -67,7 +67,7 @@ function EditSpotComponentFunc() {
     }
 
     const ErrorMsgs = errors.map((error) => (
-        <div className="error-msgs" key={error}>
+        <div className="errors" key={error}>
         </div>
     ));
 

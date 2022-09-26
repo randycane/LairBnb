@@ -1,0 +1,37 @@
+label{
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    font-weight: 600;
+    padding: 1%;
+}
+
+input{
+    display: flex;
+    border-radius: 25px;
+    padding: 1%;
+}
+
+.errors{
+    color: red;
+    font-weight: 400;
+    margin-top: 7px;
+}
+
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 30px;
+    border-radius: 25px;
+    width: 80%;
+    margin-left: 40px;
+    background-color: red;
+    color: white;
+    font-weight: 600;
+    font-size: 14pt;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}

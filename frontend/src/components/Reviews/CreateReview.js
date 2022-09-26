@@ -67,7 +67,7 @@ export default function CreateReviewComponent() {
     };
 
     const ErrorMsgs = errors.map(error => (
-        <div className="error-messages" key={error}>{error}</div>
+        <div className="errors" key={error}>{error}</div>
     ));
 
     return (

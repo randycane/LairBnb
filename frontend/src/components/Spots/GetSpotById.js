@@ -61,8 +61,9 @@ function GetSpotById() {
     const reviewMap = reviewsArray.map((review) => (
         <div className="reviews-container">
             <div className="nest-review">
-            <div className="writtenby">
-                Review by: {review.User.firstName}
+                <div className="writtenby">
+
+                Review by: {review?.User?.firstName}
 
             </div>
             <div className="actual-stars">

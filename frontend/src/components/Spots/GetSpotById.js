@@ -20,7 +20,7 @@ function GetSpotById() {
     const [isLoaded, setIsLoaded] = useState(false);
     const history = useHistory();
 
-    const spotById = useSelector(state => state.spots[spotId])
+    const spotById = useSelector(state => state?.spots[spotId])
     //console.log('the spot i look for in my component func', spotById)
 
     // the logic for delete spot, only if you are the owner:
@@ -28,7 +28,7 @@ function GetSpotById() {
     //logic for delete review
     const sessionAuthor = useSelector((state) => state.session.user)
 
-    const review = useSelector((state) => state.reviews)
+    const review = useSelector((state) => state?.reviews)
     //console.log('review state now', review)
     const reviewsArray = Object.values(review)
 
@@ -68,11 +68,11 @@ function GetSpotById() {
             </div>
             <div className="actual-stars">
                 <img src={star} alt="rate" className="starry" />
-                <div className="star-int">{review.stars}
+                <div className="star-int">{review?.stars}
                     </div>
                     </div>
             <div className="actual-review-text">
-                {review.review}
+                {review?.review}
             </div>
             </div>
             {(sessionAuthor?.id === review.userId &&

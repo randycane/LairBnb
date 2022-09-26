@@ -111,7 +111,7 @@ function GetSpotById() {
                 </div>
                 <div className="ratings-and-where">
                 <div className="avg-rating">
-                <img src = {star} alt= "rate" className="starry"/> {spotById?.avgStarRating}
+                <img src = {star} alt= "rate" className="starry"/> {Number(spotById?.avgStarRating).toFixed(2)}
                     </div>
                     <div className="how-many-reviews">
                 {spotById?.numReviews} Total Review(s)
@@ -139,7 +139,7 @@ function GetSpotById() {
                 {spotById?.numReviews} Total Review(s)
             </div>
             <div className="avg-rating">
-                <img src = {star} alt= "rate" className="starry"/> {spotById?.avgStarRating}
+                            <img src={star} alt="rate" className="starry" /> {Number(spotById?.avgStarRating).toFixed(2)}
                 </div>
                 </div>
                 </div>

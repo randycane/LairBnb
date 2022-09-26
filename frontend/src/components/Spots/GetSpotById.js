@@ -61,11 +61,11 @@ function GetSpotById() {
     const reviewMap = reviewsArray.map((review) => (
         <div className="reviews-container">
             <div className="nest-review">
-                {/* <div className="writtenby">
+                <div className="writtenby">
 
                 Review by: {review?.User?.firstName}
 
-            </div> */}
+            </div>
             <div className="actual-stars">
                 <img src={star} alt="rate" className="starry" />
                 <div className="star-int">{review?.stars}

@@ -5,6 +5,8 @@ import { addImgThunk, editSpotsThunk } from "../../store/spots";
 
 import { getSpotsByTheirId } from "../../store/spots";
 
+import "./Spots.css"
+
 function EditSpotComponentFunc() {
 
     const { spotId } = useParams();
@@ -38,7 +40,7 @@ function EditSpotComponentFunc() {
         if (!state) errorArray.push("State is required");
         if (!country) errorArray.push("Country is required");
         if (!description) errorArray.push("Description is required");
-        if (!price && price < 0) errorArray.push("Price must be a positive number");
+        if (!price || price < 0) errorArray.push("Price must be a positive number");
 
         setErrors(errorArray);
     }, [address, name, city, state, country, description, price]);
@@ -68,6 +70,7 @@ function EditSpotComponentFunc() {
 
     const ErrorMsgs = errors.map((error) => (
         <div className="errors" key={error}>
+            {error}
         </div>
     ));
 

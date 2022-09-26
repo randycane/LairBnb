@@ -65,23 +65,22 @@
     background-color: whitesmoke
 }
 
-.edit-spot{
+/* .edit-spot{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
     border-radius: 15px;
-    height: 20px;
+    height: 32px;
     background-color: red;
     border-radius: 10px;
     color: white;
-    font-weight: 450;
+    font-weight: 500;
     cursor: pointer;
-    padding: 1%;
     width: 88px;
     margin-bottom: 5px;
-}
+} */
 
 .deletion-button{
     display: flex;
@@ -90,14 +89,15 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 15px;
-    height: 30px;
+    height: 32px;
     background-color: red;
     border-radius: 10px;
     color: white;
+    font-size: 10pt;
     font-weight: 600;
     cursor: pointer;
-    padding: 1%;
-    width: 100px;
+    width: 88px;
+    margin-bottom: 5px;
 }
 
 body {

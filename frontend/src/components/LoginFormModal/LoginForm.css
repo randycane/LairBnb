@@ -4,6 +4,8 @@
     border: none;
     font-size: 15pt;
     width: 90px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .getting-on:hover{

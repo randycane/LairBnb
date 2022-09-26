@@ -44,9 +44,9 @@ function Navigation({isLoaded}){
             {isLoaded}
 
         </div>
-
+          <div className="getting-on-siblings">
              {sessionLinks}
-
+          </div>
       </div>
       </nav>
     </>

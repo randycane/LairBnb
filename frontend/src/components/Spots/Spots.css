@@ -226,3 +226,27 @@ label{
     font-weight: 400;
     margin-top: 7px;
 }
+
+.errors{
+    color: red;
+    font-weight: 400;
+    margin-top: 7px;
+}
+
+.make-edits-to-my-spot{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 32px;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    font-size: 11pt;
+    font-weight: 600;
+    cursor: pointer;
+    width: 88px;
+    margin-bottom: 5px;
+}

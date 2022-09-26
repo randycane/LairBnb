@@ -14,7 +14,7 @@ const validReviews = [
     stars: 1
   },
   {
-    userId: 1,
+    userId: 3,
     spotId: 4,
     review: 'The tennis court in the backyard was so excellent',
     stars: 5

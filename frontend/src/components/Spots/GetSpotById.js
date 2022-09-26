@@ -154,11 +154,11 @@ function GetSpotById() {
                     </div>
             )}
             {owner && (<div className="edit-redirected-button">
-                <Link to={`/spots/${spotId}/update`} className="form-button" >Edit Spot</Link>
+                <Link to={`/spots/${spotId}/update`} className="edit-spot" >Edit Spot</Link>
             </div>)}
             {owner && (<div className="delete-spot"
                 onClick={(e) => removeButton(e)}>
-                <button className="creation-button" type="submit">
+                <button className="deletion-button" type="submit">
                         Delete Spot
                     </button>
                 </div>)}

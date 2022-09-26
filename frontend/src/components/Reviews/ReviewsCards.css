@@ -65,6 +65,41 @@
     background-color: whitesmoke
 }
 
+.edit-spot{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 20px;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    font-weight: 450;
+    cursor: pointer;
+    padding: 1%;
+    width: 88px;
+    margin-bottom: 5px;
+}
+
+.deletion-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 30px;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 1%;
+    width: 100px;
+}
+
 body {
     text-decoration: none;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;

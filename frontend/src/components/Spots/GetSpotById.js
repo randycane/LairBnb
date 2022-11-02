@@ -41,7 +41,7 @@ function GetSpotById() {
 
     }
     let currentUser = session.user;
-    //console.log('i am loggin in as this', currentUser)
+
 
     let thisUser;
 
@@ -49,8 +49,6 @@ function GetSpotById() {
         thisUser = currentUser.id
     }
 
-    //console.log('session user state', thisUser)
-    //console.log('state of review rn', review)
 
     // only if spot's owner and session id matches we can delete spot:
     let owner = false;

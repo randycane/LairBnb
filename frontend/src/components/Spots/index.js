@@ -15,10 +15,8 @@ function SpotsBrowser() {
     // use Selector to predict the state change
     const selectedSpots = useSelector(state => state.spots);
 
-    //console.log('the spots im looking for in component', selectedSpots)
     const normalizedSpots = Object.values(selectedSpots)
 
-    //console.log('my normal spots', normalizedSpots)
 
 
 

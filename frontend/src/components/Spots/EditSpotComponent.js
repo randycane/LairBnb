@@ -62,10 +62,8 @@ function EditSpotComponentFunc() {
             lng,
             description,
             price,
-            //.then re hydrates the state with the new information
         }, spotId))
 
-            //.then(dispatch(getSpotsByTheirId(spotId)))
         history.push(`/spots/${spotId}`)
     }
 

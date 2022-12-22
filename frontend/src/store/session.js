@@ -29,14 +29,12 @@ export const signup = (user) => async (dispatch) => {
       }),
     });
   const data = await response.json();
-  //console.log("this is a new user", data)
     dispatch(setUser(data));
     return response;
   };
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
-  //console.log("inside login", user);
   const response = await csrfFetch('/api/session', {
     method: 'POST',
     body: JSON.stringify({
@@ -45,7 +43,6 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  //console.log("this is my logged in", data)
   dispatch(setUser(data));
   return response;
 };
@@ -53,10 +50,9 @@ export const login = (user) => async (dispatch) => {
 export const restoreUser = () => async dispatch => {
   const response = await csrfFetch('/api/session');
   const data = await response.json();
-  //console.log('user data', data);
   if (data) {
     dispatch(setUser(data));
-    //console.log('user response', response)
+
   return response;
   }
 };

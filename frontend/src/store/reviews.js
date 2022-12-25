@@ -43,7 +43,6 @@ const removeRevs =  payload => {
 
 //thunks:
 export const getSpotsReviewsThunk = (spotId) => async dispatch => {
-    // check this!!! reviews by spot id
     //console.log('what is spot id right now in thunk', spotId)
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
 

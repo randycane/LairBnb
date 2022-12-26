@@ -8,6 +8,8 @@ const DELETE_BOOK = '/bookings/DELETE';
 
 const LOAD_MY_BOOKS = '/bookings/LOAD_BY_USER';
 
+
+//actual actions
 const loadBooks = list => ({
     type: LOAD_BOOK,
     list
@@ -18,7 +20,7 @@ const loadMyOwnBooks = list => ({
     list
 })
 
-const createBOOKS = list => {
+const createBooking = list => {
     return {
         type: CREATE_BOOK,
         list
@@ -42,6 +44,8 @@ const removeBooks =  payload => {
 
 
 //thunks:
+
+//get bookings by the spot:
 export const getSpotsBooksThunk = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}/bookings`);
 
@@ -52,6 +56,7 @@ export const getSpotsBooksThunk = (spotId) => async dispatch => {
     }
 }
 
+// get current user bookings:
 export const getMyOwnBooksThunk = () => async dispatch => {
     const response = await csrfFetch(`/api/bookings/current`)
 
@@ -65,23 +70,32 @@ export const getMyOwnBooksThunk = () => async dispatch => {
 //create booking by spot id thunk:
 export const createBookingThunk = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
-        method: "POST"
+        method: "POST",
+
     });
 
     if (response.ok) {
-        dispatch(updateBooks(bookingId))
+        const aNewBooking = await response.json();
+        dispatch(createBooking(aNewBooking))
+        return aNewBooking;
     }
+    return response;
 }
 
 //editing a booking:
-export const editingBookingThunk = (bookingId) => async dispatch => {
-    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
-        method: "PUT"
+export const editingBookingThunk = (booking) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/${booking.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(booking)
     });
 
     if (response.ok) {
-        dispatch(createBOOKS(spotId))
+        const changeBooking = await response.json();
+        dispatch(updateBooks(changeBooking))
+        return changeBooking;
     }
+    return response;
 }
 
 export const removeBookingThunk = (bookingId) => async dispatch => {

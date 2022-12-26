@@ -62,6 +62,28 @@ export const getMyOwnBooksThunk = () => async dispatch => {
     }
 }
 
+//create booking by spot id thunk:
+export const createBookingThunk = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
+        method: "POST"
+    });
+
+    if (response.ok) {
+        dispatch(updateBooks(bookingId))
+    }
+}
+
+//editing a booking:
+export const editingBookingThunk = (bookingId) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: "PUT"
+    });
+
+    if (response.ok) {
+        dispatch(createBOOKS(spotId))
+    }
+}
+
 export const removeBookingThunk = (bookingId) => async dispatch => {
     const response = await csrfFetch(`/api/bookings/${bookingId}`, {
         method: "DELETE"
@@ -73,3 +95,40 @@ export const removeBookingThunk = (bookingId) => async dispatch => {
     }
     return response;
 }
+
+//reducer:
+
+const initialState = {};
+
+const bookingsReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case LOAD_BOOK: {
+            const booksObjState = {};
+            action.list.Bookings.forEach(book => {
+                booksObjState[book.id] = book;
+            })
+            return reviewsObjState
+        };
+        case LOAD_MY_BOOKS: {
+            const newState = {};
+            action.list.Bookings.forEach(book => {
+                newState[book.id] = book;
+            })
+            return newState;
+        };
+        case CREATE_BOOK: {
+            const newState = {...state};
+            newState[action.list.id] = action.list;
+            return newState;
+        };
+        case DELETE_REV: {
+            const delState = { ...state };
+            delete delState[action.bookingId]
+            return delState;
+        };
+        default: return state
+    }
+
+}
+
+export default bookingsReducer;

@@ -51,3 +51,25 @@ export const getSpotsBooksThunk = (spotId) => async dispatch => {
         return list;
     }
 }
+
+export const getMyOwnBooksThunk = () => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/current`)
+
+    if (response.ok) {
+        const list = await response.json();
+        dispatch(loadMyOwnBooks(list));
+        return list;
+    }
+}
+
+export const removeBookingThunk = (bookingId) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        dispatch(removeBooks(bookingId))
+
+    }
+    return response;
+}

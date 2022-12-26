@@ -121,7 +121,7 @@ const bookingsReducer = (state = initialState, action) => {
             action.list.Bookings.forEach(book => {
                 booksObjState[book.id] = book;
             })
-            return reviewsObjState
+            return booksObjState;
         };
         case LOAD_MY_BOOKS: {
             const newState = {};

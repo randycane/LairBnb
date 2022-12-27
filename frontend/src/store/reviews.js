@@ -26,7 +26,7 @@ const createRevs = list => {
         list
     }
 }
-// to do:
+// unused:
 const updateRevs = payload => {
     return {
         type: UPDATE_REV,

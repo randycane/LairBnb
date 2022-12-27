@@ -27,15 +27,15 @@ const createBooking = list => {
     }
 }
 
-// to do:
-const updateBooks = payload => {
+// edit booking action
+const updateBooks = booking => {
     return {
         type: UPDATE_BOOK,
-        payload
+        booking
     }
 }
 
-const removeBooks =  payload => {
+const removeBooks = payload => {
     return {
         type: DELETE_BOOK,
         payload
@@ -135,6 +135,12 @@ const bookingsReducer = (state = initialState, action) => {
             newState[action.list.id] = action.list;
             return newState;
         };
+        case UPDATE_BOOK: {
+            return {
+                ...state,
+                [action.booking.id]: action.booking,
+            };
+        }
         case DELETE_REV: {
             const delState = { ...state };
             delete delState[action.bookingId]

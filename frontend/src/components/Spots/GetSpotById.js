@@ -86,9 +86,10 @@ function GetSpotById() {
     console.log("booknormal", normalizedBooking)
 
     const bookMap = normalizedBooking.map((book) => (
-        <div className="book-stuff">
-            {book.booking}
-        </div>
+        <div className="book-first">
+            {book?.startDate},  to
+             {book?.endDate}
+    </div>
     ))
 
     useEffect(() => {
@@ -99,13 +100,10 @@ function GetSpotById() {
     }, [dispatch, isLoaded, spotId]);
 
 
-
     //remove the spot button logic after getting which spot by id:
     const removeButton = async (e) => {
         e.preventDefault();
-
         await dispatch(removeSpotsThunk(spotId));
-
         history.push('/');
     }
 
@@ -154,7 +152,9 @@ function GetSpotById() {
                 </div>
 
                 <div className="let-there-be-bookings">
-                {CreateBookComponent}
+                    Bookings!
+                    {/* {CreateBookComponent} */}
+                    {bookMap}
                 </div>
 
 

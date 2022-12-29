@@ -24,7 +24,6 @@ function GetSpotById() {
     const history = useHistory();
 
     const spotById = useSelector(state => state?.spots[spotId])
-    //console.log('the spot i look for in my component func', spotById)
 
     // the logic for delete spot, only if you are the owner:
     const session = useSelector((state) => state.session)
@@ -39,19 +38,15 @@ function GetSpotById() {
         await dispatch(removeReviewsThunk(reviewId)).then(() => {
             dispatch(getSpotsByTheirId(spotId)).then(() => {
                 dispatch(getSpotsReviewsThunk(spotId));
-             })
+            })
         })
 
     }
     let currentUser = session.user;
-
-
     let thisUser;
-
     if (currentUser) {
         thisUser = currentUser.id
     }
-
 
     // only if spot's owner and session id matches we can delete spot:
     let owner = false;
@@ -81,14 +76,25 @@ function GetSpotById() {
                 <button className="delete-button" onClick={() => removeReview(review.id)}>Delete</button>
                 </div>
         )
-            }
+    }
         </div>
     ))
 
+    const booking = useSelector((state) => state?.bookings)
+    const normalizedBooking = Object.values(booking)
+    console.log("booked", booking)
+    console.log("booknormal", normalizedBooking)
+
+    const bookMap = normalizedBooking.map((book) => (
+        <div className="book-stuff">
+            {book.booking}
+        </div>
+    ))
 
     useEffect(() => {
         dispatch(getSpotsByTheirId(spotId))
         dispatch(getSpotsReviewsThunk(spotId))
+        dispatch(getSpotsBooksThunk(spotId))
         setIsLoaded(true)
     }, [dispatch, isLoaded, spotId]);
 
@@ -146,6 +152,12 @@ function GetSpotById() {
                 </div>
                 </div>
                 </div>
+
+                <div className="let-there-be-bookings">
+                {CreateBookComponent}
+                </div>
+
+
             <div className="let-there-be-review">
                 {reviewMap}
                 </div>

@@ -13,6 +13,9 @@ import star from "../SpotsCards/starrr.png"
 import { Link } from "react-router-dom";
 import { getSpotsReviewsThunk } from "../../store/reviews";
 
+import { getSpotsBooksThunk, createBookingThunk } from "../../store/bookings"
+import CreateBookComponent from "../Bookings/CreateBooking";
+
 function GetSpotById() {
     let { spotId } = useParams();
 

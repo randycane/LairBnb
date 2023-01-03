@@ -153,7 +153,6 @@ function GetSpotById() {
 
                 <div className="let-there-be-bookings">
                     Bookings!
-                    {/* {CreateBookComponent} */}
                     {bookMap}
                 </div>
 

@@ -22,6 +22,12 @@ const CreateBookComponent = ({ spot }) => {
 
     const [startDate, setStartDate] = useState(mingtian);
     const [endDate, setEndDate] = useState(houtian);
+    const [nights, setNights] = useState(4)
+    console.log("this is my night spot", spot)
+    const [price, setPrice] = useState(spot.price * nights)
+    const [clean, setClean] = useState(100)
+    const [service, setService] = useState(40)
+    const [finalPrice, setFinalPrice] = useState(price + clean + service)
 
 
     const [errors, setErrors] = useState([]);
@@ -72,6 +78,7 @@ const CreateBookComponent = ({ spot }) => {
                         onChange={(e)=> setEndDate(e.target.value)}
                     >
                     </input>
+
                 </div>
                 <div className="book-button">
                     <button onClick={handleSubmit}>Book this spot!</button>

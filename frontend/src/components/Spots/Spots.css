@@ -163,7 +163,7 @@ label{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100px;
+    height: 500px;
     width: 700px;
 }
 .spot-big-nest{

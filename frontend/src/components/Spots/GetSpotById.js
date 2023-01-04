@@ -84,8 +84,8 @@ function GetSpotById() {
 
     const booking = useSelector((state) => state?.bookings)
     const normalizedBooking = Object.values(booking)
-    console.log("booked", booking)
-    console.log("booknormal", normalizedBooking)
+    console.log("booking", booking)
+    console.log("normalizedBooking", normalizedBooking)
 
     const bookMap = normalizedBooking.map((book) => (
         <div className="book-first">

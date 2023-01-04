@@ -22,15 +22,29 @@ const CreateBookComponent = ({ spot }) => {
 
     const [startDate, setStartDate] = useState(mingtian);
     const [endDate, setEndDate] = useState(houtian);
-    const [nights, setNights] = useState(4)
+    const [nights, setNights] = useState(2)
     console.log("this is my night spot", spot)
-    const [price, setPrice] = useState(spot.price * nights)
-    const [clean, setClean] = useState(100)
-    const [service, setService] = useState(40)
-    const [finalPrice, setFinalPrice] = useState(price + clean + service)
+    const [price, setPrice] = useState(spot?.price * nights)
+    const [clean, setClean] = useState(Math.ceil(spot?.price / 4))
+    const [service, setService] = useState(Math.ceil(spot?.price / 10))
+    const [finalPrice, setFinalPrice] = useState(price - clean + service)
 
 
     const [errors, setErrors] = useState([]);
+
+    // useEffect(() => {
+    //     let newStart = new Date(startDate)
+    //     let newEnd = new Date(endDate)
+    // },[startDate, endDate])
+
+    useEffect(() => {
+        // setNights = (newEnd - newStart)
+        //setPrice = (spot?.price * nights)
+        // setService = (price / 10)
+        // setFinalPrice = (price - clean + service)
+
+    // }, [startDate, endDate, nights, price,
+    },[service, finalPrice]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -102,7 +102,7 @@ function GetSpotById() {
     }, [dispatch, isLoaded, spotId]);
 
 
-    //remove the spot button logic after getting which spot by id:
+    //remove spot button logic after getting which spot by id:
     const removeButton = async (e) => {
         e.preventDefault();
         await dispatch(removeSpotsThunk(spotId));

@@ -16,6 +16,8 @@ import { getSpotsReviewsThunk } from "../../store/reviews";
 import { getSpotsBooksThunk, createBookingThunk } from "../../store/bookings"
 import CreateBookComponent from "../Bookings/CreateBooking";
 
+import "./Spots.css";
+
 function GetSpotById() {
     let { spotId } = useParams();
 

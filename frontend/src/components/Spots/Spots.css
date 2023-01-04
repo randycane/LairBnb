@@ -155,6 +155,17 @@ label{
     height: 100px;
     width: 700px;
 }
+
+.let-there-be-bookings{
+    border: 1px solid black;
+    border-radius: 7px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+    width: 700px;
+}
 .spot-big-nest{
     display: flex;
     justify-content: space-between;

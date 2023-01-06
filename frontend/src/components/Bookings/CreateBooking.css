@@ -1,0 +1,27 @@
+.book-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 32px;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    font-size: 10pt;
+    font-weight: 600;
+    cursor: pointer;
+    width: 88px;
+    margin-bottom: 5px;
+}
+
+.underbelly{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 10px;
+    justify-content: space-between;
+    padding: 6px;
+    margin: 6px;
+}

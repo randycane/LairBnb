@@ -94,26 +94,26 @@ const CreateBookComponent = ({ spot }) => {
             <div className="moneybelly">
               <span>
                 <u>
-                  ${spot.price} x {nights} Nights
+                  ${spot.price} x {nights} Nights:
                 </u>
               </span>
               <span>${spot.price * nights}</span>
             </div>
             <div>
               <span>
-                <u>Cleaning Fee</u>
+                <u>Cleaning Fee: </u>
               </span>
               <span>${clean.toFixed(2)}</span>
             </div>
             <div>
               <span>
-                <u>Service Fee</u>
+                <u>Service Fee: </u>
               </span>
               <span>${service.toFixed(2)}</span>
             </div>
             <div className="costTotal">
               <span>
-                <b>Total before taxes</b>
+                <b>Total before taxes: </b>
               </span>
               <span>${finalPrice.toFixed(2)}</span>
             </div>

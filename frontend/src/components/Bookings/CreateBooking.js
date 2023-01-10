@@ -23,30 +23,25 @@ const CreateBookComponent = ({ spot }) => {
 
   let houtian = moment().add(2, "day").format(dateString);
 
-  let [startDate, setStartDate] = useState(mingtian);
-  let [endDate, setEndDate] = useState(houtian);
-  let [nights, setNights] = useState(2);
+  const [startDate, setStartDate] = useState(mingtian);
+  const [endDate, setEndDate] = useState(houtian);
+  const [nights, setNights] = useState(2);
   console.log("this is my night spot", spot);
-  let [price, setPrice] = useState(spot?.price * nights);
-  let [clean, setClean] = useState(Math.ceil(spot?.price / 4));
-  let [service, setService] = useState(Math.ceil(spot?.price / 10));
-  let [finalPrice, setFinalPrice] = useState(price - clean + service);
+  const [price, setPrice] = useState(spot?.price * nights);
+  const [clean, setClean] = useState(Math.ceil(spot?.price / 4));
+  const [service, setService] = useState(Math.ceil(spot?.price / 10));
+  const [finalPrice, setFinalPrice] = useState(price - clean + service);
 
-  let [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState([]);
+
 
   // useEffect(() => {
-  //     let newStart = new Date(startDate)
-  //     let newEnd = new Date(endDate)
-  // },[startDate, endDate])
+  //   setNights = moment(endDate).diff(moment(startDate), "days");
+  //   setPrice = spot?.price * nights;
+  //   setService = price / 10;
+  //   setFinalPrice = price - clean + service;
 
-  useEffect(() => {
-    setNights = moment(endDate).diff(moment(startDate), "days");
-    setPrice = spot?.price * nights;
-    setService = price / 10;
-    setFinalPrice = price - clean + service;
-
-    // }, [startDate, endDate, nights, price,
-  }, [startDate, endDate, nights, service, finalPrice]);
+  // }, [startDate, endDate, nights, service, finalPrice]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

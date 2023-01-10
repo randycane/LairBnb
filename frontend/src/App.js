@@ -13,6 +13,7 @@ import OwnSpotsComponent from "./components/Spots/OwnSpots";
 import UserReviewsComponent from "./components/Reviews";
 import CreateReviewComponent from "./components/Reviews/CreateReview";
 import MyBookingComponent from "./components/Bookings/MyBooks";
+import SearchedComponent from "./components/Searched/SearchComponent";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +41,10 @@ function App() {
           </Route>
           <Route exact path = '/spots/:spotId'>
             <GetSpotById/>
-            </Route>
+          </Route>
+          <Route path="/searched">
+            <SearchedComponent />
+          </Route>
           <Route exact path = '/spots/:spotId/update'>
             <EditSpotComponent/>
           </Route>

@@ -10,6 +10,7 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormPage';
 
 import './Navigation.css';
+import SearchBarComponent from '../SearchComponent';
 
 function Navigation({isLoaded}){
   const sessionUser = useSelector(state => state.session.user);
@@ -40,6 +41,9 @@ function Navigation({isLoaded}){
               <img className="Logo" src='https://i.pinimg.com/originals/20/93/85/209385b181979d46679d5584a31d0b25.jpg' alt='LairBnb Logo' />
               <div className='LairBnbText'>LairBnb</div>
             </NavLink>
+            <div className="searching-for">
+              <SearchBarComponent/>
+              </div>
 
             {isLoaded}
 

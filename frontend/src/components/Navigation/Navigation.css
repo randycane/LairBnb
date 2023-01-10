@@ -164,3 +164,8 @@ nav {
     letter-spacing: 0.5px;
     font-size: 25px;
 }
+
+.LeftNavi{
+    display: flex;
+    flex-direction: row;
+}

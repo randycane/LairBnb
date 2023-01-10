@@ -9,7 +9,6 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormPage";
 
 import "./Navigation.css";
-// import SearchBarComponent from "../SearchComponent";
 import { getSpotsThunk } from "../../store/spots";
 
 function Navigation({ isLoaded }) {
@@ -22,7 +21,6 @@ function Navigation({ isLoaded }) {
   const handleSearch = async () => {
     history.push(`/spots/search?input=${searchInput}`);
   };
-  // console.log("AAAAAAAAAA\n\n\n\n\n\n\nGet all spots running in navbar");
 
   useEffect(() => {
     dispatch(getSpotsThunk());
@@ -72,31 +70,10 @@ function Navigation({ isLoaded }) {
                   }}
                 />
               </div>
-              <button onClick={() => handleSearch()}>
+              <button className="magnify" onClick={() => handleSearch()}>
                 <i></i>
               </button>
             </div>
-            {/* <form onSubmit={handleSearch}>
-              <div className="nav-item">
-                <input
-                  className="search-input"
-                  type="text"
-                  name="search"
-                  placeholder="Search by name, category, address..."
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-                <button
-                  className="search-button"
-                  type="submit"
-                  disabled={isSubmitted}
-                >
-                  <img className="search-image" src={searchIcon}></img>
-                </button>
-              </div>
-            </form> */}
-            {/* <div className="searching-for">
-              <SearchBarComponent />
-            </div> */}
 
             {isLoaded}
           </div>

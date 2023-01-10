@@ -48,17 +48,17 @@ function ProfileButton({ user }) {
           <div className="NaviBarShowing">
             {user && (
               <div className="UserBarNavi">
-                <div className="top"><Link to="/currentUser/spots" id="my-spots">
-                  My Properties
+                <div className="top"><Link to="/spots/current" id="my-spots">
+                  My Listings
                 </Link>
                 </div>
                 <div className="top">
-                <Link to="/currentUser/bookings" id="my-bookings">
+                <Link to="/bookings/current" id="my-bookings">
                   My Bookings
                   </Link>
                 </div>
                 <div className="top">
-                <Link to="/spots/currentUser/reviews" id="my-reviews">
+                <Link to="/reviews/current" id="my-reviews">
                   My Reviews
                   </Link>
                   </div>

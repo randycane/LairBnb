@@ -89,10 +89,10 @@ const CreateBookComponent = ({ spot }) => {
             <div className="moneybelly">
               <span>
                 <u>
-                  ${spot.price} x {nights} Nights:
+                  ${spot?.price} x {nights} Nights:
                 </u>
               </span>
-              <span>${spot.price * nights}</span>
+              <span>${spot?.price * nights}</span>
             </div>
             <div>
               <span>

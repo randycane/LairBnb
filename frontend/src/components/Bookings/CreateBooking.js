@@ -34,7 +34,6 @@ const CreateBookComponent = ({ spot }) => {
 
   const [errors, setErrors] = useState([]);
 
-
   // useEffect(() => {
   //   setNights = moment(endDate).diff(moment(startDate), "days");
   //   setPrice = spot?.price * nights;
@@ -115,7 +114,9 @@ const CreateBookComponent = ({ spot }) => {
           </div>
         </div>
         <div className="reserve-div">
-          <button className="book-button" onClick={handleSubmit}>Reserve!</button>
+          <button className="book-button" onClick={handleSubmit}>
+            Reserve
+          </button>
         </div>
       </div>
     </div>

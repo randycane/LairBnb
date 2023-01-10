@@ -52,7 +52,7 @@ router.get('/', async (req, res, next) => {
     let pagination = {
       filter: [],
     };
-    let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } =
+    let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice} =
       req.query;
     const err= {
       message: "Validation Error",

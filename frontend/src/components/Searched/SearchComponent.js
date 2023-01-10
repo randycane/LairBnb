@@ -21,7 +21,7 @@ function SearchedComponent() {
             setSpotsShowing(!spotsShowing);
           })();
 
-    },[dispatch])
+    },[dispatch, spotsShowing])
 
 
 

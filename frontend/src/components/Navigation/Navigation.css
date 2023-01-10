@@ -50,9 +50,12 @@ nav {
     background-color: whitesmoke;
     border-radius: 20px;
     align-items: center;
-    height: 100px;
+    justify-content: space-between;
+    height: 160px;
     width: 300px;
 }
+
+
 
 .fa-user-circle {
     display: flex;

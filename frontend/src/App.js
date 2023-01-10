@@ -12,6 +12,7 @@ import GetSpotById from "./components/Spots/GetSpotById";
 import OwnSpotsComponent from "./components/Spots/OwnSpots";
 import UserReviewsComponent from "./components/Reviews";
 import CreateReviewComponent from "./components/Reviews/CreateReview";
+import MyBookingComponent from "./components/Bookings/MyBooks";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,7 +31,10 @@ function App() {
           </Route>
           <Route exact path = '/spots/current'>
             <OwnSpotsComponent/>
-            </Route>
+          </Route>
+          <Route exact path ="/bookings/current">
+            <MyBookingComponent />
+          </Route>
             <Route path='/spots/new'>
               <CreateNewSpotComponent/>
           </Route>

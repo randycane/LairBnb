@@ -4,6 +4,7 @@ import { useHistory, useParams, NavLink } from "react-router-dom";
 import moment from "moment";
 
 import { getMyOwnBooksThunk, removeBookingThunk } from "../../store/bookings";
+import DeleteBookComponent from "./DelBooking";
 
 function MyBookingComponent() {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ function MyBookingComponent() {
               </NavLink>
             </div>
             <div className="deletion-button">
-              <DeleteBookingModal booking={booking} />
+              <DeleteBookComponent booking={booking} />
             </div>
           </div>
         );

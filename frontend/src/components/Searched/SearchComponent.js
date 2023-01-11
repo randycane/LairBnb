@@ -8,7 +8,7 @@ function SearchedComponent() {
     const [spotsShowing, setSpotsShowing] = useState(false)
 
     const searchspots = useSelector((state) => state.spots.allSpots)
-    console.log("serching", searchspots)
+    //console.log("serching", searchspots)
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -31,9 +31,9 @@ function SearchedComponent() {
             <div className="property-of">
                 {searchspots.map((spot) => {
                     return <div className="spotsss">
-                        <Link to={`/${spot}`}>
-                            <SpotsCards spot={spot} />
-                        </Link>
+                        <NavLink to={`/spots/${spot}`}>
+                            <SpotsCards/>
+                        </NavLink>
                     </div>
                 })}
                 </div>

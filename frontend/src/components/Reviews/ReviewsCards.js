@@ -13,7 +13,7 @@ export default function ReviewsCard({ review }) {
 
     const { spotId } = useParams();
 
-    const selectedSpots = useSelector((state) => state.spots);
+    //const selectedSpots = useSelector((state) => state.spots);
 
 
     const removeReview = async (reviewId) => {

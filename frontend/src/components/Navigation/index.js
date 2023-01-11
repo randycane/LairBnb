@@ -18,6 +18,7 @@ function Navigation({ isLoaded }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  //need to fix handle search history
   const handleSearch = async () => {
     history.push(`/spots/search?input=${searchInput}`);
   };

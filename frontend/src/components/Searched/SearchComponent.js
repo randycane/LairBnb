@@ -7,8 +7,7 @@ import SpotsCards from "../SpotsCards";
 function SearchedComponent() {
     const [spotsShowing, setSpotsShowing] = useState(false)
 
-    const searchspots = useSelector((state) => state.spots.allSpots)
-    //console.log("serching", searchspots)
+    const searchspots = useSelector((state) => state?.spots?.allSpots)
     const dispatch = useDispatch();
     const history = useHistory();
 

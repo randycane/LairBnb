@@ -16,16 +16,10 @@ export default function CreateReviewComponent() {
 
   let { spotId } = useParams();
   spotId = Number(spotId);
-  //check spot id
-  //console.log('i want this to be a number', spotId)
 
-  const sessionUser = useSelector((state) => state.session.user);
-  // check session state
-  //console.log('i am the current user state', sessionUser)
+  const sessionUser = useSelector((state) => state?.session.user);
 
   const normalizedReviews = useSelector((state) => Object.values(sessionUser));
-  // this is an empty array right now:
-  //console.log('i am the array of reviews', normalizedReviews)
 
   const listedReviews = normalizedReviews.map(
     (review) => review.userId === sessionUser.id
@@ -51,7 +45,6 @@ export default function CreateReviewComponent() {
       return;
     }
 
-    //try two
     await dispatch(
       createReviewsThunk({
         review,

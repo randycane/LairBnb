@@ -16,6 +16,7 @@ const CreateBookComponent = ({ spot }) => {
   let { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const sessionUser = useSelector((state) => state?.session?.user);
 
   let dateString = "YYYY-MM-DD";
   let dateWithSeconds = "YYYY-MM-DD HH:mm:ss";
@@ -35,7 +36,6 @@ const CreateBookComponent = ({ spot }) => {
 
   const [errors, setErrors] = useState([]);
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     let when = {
@@ -44,14 +44,14 @@ const CreateBookComponent = ({ spot }) => {
       endDate: moment(endDate).format(dateWithSeconds),
     };
     dispatch(createBookingThunk(when))
-    .then(() => {
-      let path = `/my-bookings`;
-      history.push(path);
-    })
-    .catch(async (response) => {
-      response = await response.json();
-      setErrors(Object.values(response.errors));
-    })
+      .then(() => {
+        let path = `/my-bookings`;
+        history.push(path);
+      })
+      .catch(async (response) => {
+        response = await response.json();
+        setErrors(Object.values(response.errors));
+      });
   };
 
   // useEffect(() => {
@@ -74,7 +74,6 @@ const CreateBookComponent = ({ spot }) => {
           ))}
         </ul>
       </div>
-
       <div className="booking-container">
         <div className="checking-in">
           <div className="check-in">Check-in</div>

@@ -9,6 +9,7 @@ import {
   editingBookingThunk,
 } from "../../store/bookings";
 import moment from "moment-timezone";
+import { format } from "date-fns";
 import "./CreateBooking.css";
 
 const CreateBookComponent = ({ spot }) => {

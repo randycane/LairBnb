@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "date-fns": "^2.29.3",
     "moment-timezone": "^0.5.40",
     "pg": "^8.7.3"
   },

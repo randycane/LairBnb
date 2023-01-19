@@ -381,7 +381,7 @@ router.get("/:spotId/reviews", async (req, res, next) => {
   res.json({ Reviews: spotReview });
 });
 
-// Create a booking based on Spot Id:
+// Create a booking based on Spot Id moved to bookings file:
 router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
   const spotId = req.params.spotId;
   let { startDate, endDate } = req.body;

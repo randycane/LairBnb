@@ -71,14 +71,14 @@ export const getMyOwnBooksThunk = () => async (dispatch) => {
 export const createBookingThunk = (payload) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${payload.spotId}`, {
       method: "POST",
-      headers: {"Content-Type": "application.json"},
+      headers: {"Content-Type": "application/json"},
     body: JSON.stringify(payload),
   });
 
   if (response.ok) {
     const aNewBooking = await response.json();
     dispatch(createBooking(aNewBooking));
-    // return aNewBooking;
+    return aNewBooking;
   }
   return response;
 };

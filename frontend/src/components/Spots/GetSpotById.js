@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { getSpotsReviewsThunk } from "../../store/reviews";
 
 import { getSpotsBooksThunk, createBookingThunk } from "../../store/bookings"
-import CreateBookComponent from "../Bookings/CreateBooking";
+import CreateBookingComponent from "../Bookings/BookBooking";
 
 import "./Spots.css";
 
@@ -156,7 +156,7 @@ function GetSpotById() {
                 <div className="let-there-be-bookings">
                     {/* Bookings!
                     {bookMap} */}
-                    <CreateBookComponent spot={spotById}/>
+                    <CreateBookingComponent spot={spotById}/>
                 </div>
 
 

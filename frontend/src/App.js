@@ -13,6 +13,7 @@ import OwnSpotsComponent from "./components/Spots/OwnSpots";
 import UserReviewsComponent from "./components/Reviews";
 import CreateReviewComponent from "./components/Reviews/CreateReview";
 import MyBookingComponent from "./components/Bookings/MyBooks";
+import BookingConfirmedComponent from "./components/Bookings/ConfirmBooking";
 import SearchedComponent from "./components/Searched/SearchComponent";
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path = '/spots/current'>
             <OwnSpotsComponent/>
+          </Route>
+          <Route exact path="/bookings/:bookingId">
+            <BookingConfirmedComponent />
           </Route>
           <Route exact path ="/bookings/current">
             <MyBookingComponent />

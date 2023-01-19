@@ -123,10 +123,8 @@ const bookingsReducer = (state = initialState, action) => {
     //     return bookings;
     //   }
     case LOAD_MY_BOOKS: {
-      const newState = {};
-      action.booking.forEach((book) => {
-        newState[book.id] = book;
-      });
+      let newState = {};
+      newState = action.booking
       return newState;
     }
     case CREATE_BOOK: {

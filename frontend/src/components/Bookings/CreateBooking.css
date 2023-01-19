@@ -6,26 +6,60 @@
     border: 1px solid black;
     border-radius: 15px;
     height: 32px;
+    width: 94px;
     background-color: red;
     border-radius: 10px;
     color: white;
     font-size: 12pt;
     font-weight: 500;
     cursor: pointer;
-    width: 88px;
     margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.login-condition{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 34px;
+    width: 94px;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    font-size: 12pt;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.not-yet{
+    font-weight: 600;
+}
+
+.money-container{
+    font-weight: 500;
+}
+
+.undermoney{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .booking-container{
     display: flex;
     flex-direction: row;
-    height: 220px;
+    height: 320px;
     width: 350px;
     border: whitesmoke 1px solid;
     box-shadow: 0px 0px 3px 3px gray;
     justify-content: space-between;
     align-items: center;
-    border-radius: 20px;
+    border-radius: 15px;
     margin-top: 10px;
     padding: 1%;
 }
@@ -42,4 +76,67 @@
 
 .error-messages{
     color: red;
+}
+
+.success-container {
+    display: flex;
+    justify-content:flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.confirmed {
+    margin-top: 12px;
+    font-size: 30px;
+}
+
+.booked-city {
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+.booking-spot {
+    margin-top: 30px;
+    font-size: 30px;
+}
+
+.dates {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.end {
+    display: flex;
+    margin-left: 400px;
+}
+
+.checkout-div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.checkout-time {
+    display: flex;
+    margin-left: 380px;
+}
+
+.view {
+    display: flex;
+    background: #e13454;
+    color: white;
+    font-size: 16px;
+    height: 45px;
+    margin-top: 30px;
+    border-radius: 33px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.link {
+    width: 260px;
 }

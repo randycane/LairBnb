@@ -39,3 +39,7 @@
     padding: 6px;
     margin: 6px;
 }
+
+.error-messages{
+    color: red;
+}

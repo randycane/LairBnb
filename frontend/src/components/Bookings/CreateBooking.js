@@ -34,13 +34,6 @@ const CreateBookComponent = ({ spot }) => {
 
   const [errors, setErrors] = useState([]);
 
-  // useEffect(() => {
-  //   setNights = moment(endDate).diff(moment(startDate), "days");
-  //   setPrice = spot?.price * nights;
-  //   setService = price / 10;
-  //   setFinalPrice = price - clean + service;
-
-  // }, [startDate, endDate, nights, service, finalPrice]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,8 +42,25 @@ const CreateBookComponent = ({ spot }) => {
       startDate: moment(startDate).format(dateWithSeconds),
       endDate: moment(endDate).format(dateWithSeconds),
     };
-    dispatch(createBookingThunk(when));
+    dispatch(createBookingThunk(when))
+    .then(() => {
+      let path = `/my-bookings`;
+      history.push(path);
+    })
+    .catch(async (response) => {
+      response = await response.json();
+      setErrors(Object.values(response.errors));
+    })
   };
+
+  // useEffect(() => {
+  //   setNights = moment(endDate).diff(moment(startDate), "days");
+  //   setPrice = spot?.price * nights;
+  //   setClean = price/ 10
+  //   setService = price / 10;
+  //   setFinalPrice = price - clean + service;
+
+  // }, [startDate, endDate, nights, service, finalPrice]);
 
   return (
     <div>

@@ -69,7 +69,7 @@ export const getMyOwnBooksThunk = () => async (dispatch) => {
 
 //create booking thunk:
 export const createBookingThunk = (payload) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${payload.spotId}`, {
+  const response = await csrfFetch(`/api/spots/${payload.spotId}/bookings`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
     body: JSON.stringify(payload),

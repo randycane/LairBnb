@@ -45,7 +45,7 @@ const CreateBookComponent = ({ spot }) => {
     };
     dispatch(createBookingThunk(when))
       .then(() => {
-        let path = `/my-bookings`;
+        let path = `/bookings/current`;
         history.push(path);
       })
       .catch(async (response) => {

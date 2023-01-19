@@ -1,7 +1,7 @@
 # LairBnb
 # Welcome to LairBnb!
 
-LairBnb is a clone of the popular AirBnb renting service. With us, you can host a property, rent at other properties, and provide reviews and stars based on your experiences. 
+LairBnb is a clone of the popular AirBnb renting service. With us, you can host a property, rent at other properties, and provide reviews and stars based on your experiences. You will have a profile section that details your account and trips. Search functionality is included for easier access to desired locations!
 
 Live Link: https://airbnb-clone-lair.herokuapp.com/
 

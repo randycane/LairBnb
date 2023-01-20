@@ -114,8 +114,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
   res.json(myOwnBook);
 });
 
-//get all bookings route:
-
+//get all bookings route removing images for now:
 router.get("/", requireAuth, async (req, res) => {
   const bookings = await Booking.findAll({
     include: [

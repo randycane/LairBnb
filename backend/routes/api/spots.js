@@ -225,7 +225,7 @@ router.post("/", requireAuth, validateSpot, async (req, res, next) => {
   return res.json(spot);
 });
 
-//Get Spots owned by Current User--
+//Get Spots owned by Current User
 router.get("/current", requireAuth, async (req, res, next) => {
   let id = req.user.id;
   let mySpots = await Spot.findAll({
@@ -262,7 +262,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
 
   //   res.json({ "Spots": arrayOut });
 
-  // lazy loading 2nd try attributes working:
+  // lazy loading attributes working:
   for (let eachSpot of mySpots) {
     let spotsReviews = await eachSpot.getReviews({
       attributes: [
@@ -349,7 +349,6 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     });
     res.json({ Bookings: isOwnerBooks });
   }
-  // one for if you are not the owner:
   else {
     let notAnOwnerBooks = await Booking.findAll({
       where: { spotId },
@@ -382,61 +381,59 @@ router.get("/:spotId/reviews", async (req, res, next) => {
 });
 
 // Create a booking based on Spot Id moved to bookings file:
-router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
-  const spotId = req.params.spotId;
-  let { startDate, endDate } = req.body;
 
-  const tryBook = await Spot.findByPk(spotId);
-  if (!tryBook) {
-    const err = new Error("Spot could not be found");
-    err.status = 404;
-    return next(err);
-  }
-  // Body validation error, ex: end date coming before start:
-  if (endDate <= startDate) {
-    let err = new Error("Validation Error");
-    err.status = 400;
-    err.errors = { endDate: "endDate cannot be on or before startDate" };
-    return next(err);
-  }
-  // Booking conflicts:
-  let bookConflict = await Booking.findAll({
-    where: {
-      [Op.and]: [
-        {
-          startDate: {
-            [Op.lte]: endDate,
-          },
-        },
-        {
-          endDate: {
-            [Op.gte]: startDate,
-          },
-        },
-      ],
-    },
-  });
-  // if this conflict array ever exists, throw the error:
-  if (bookConflict.length) {
-    const err = new Error(
-      "Sorry, this spot is booked for these specified dates"
-    );
-    err.status = 403;
-    err.errors = {
-      startDate: "Start date conflicts with an existing booking",
-      endDate: "End date conflicts with an exisiting booking",
-    };
-    return next(err);
-  }
+// router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
+//   const spotId = req.params.spotId;
+//   let { startDate, endDate } = req.body;
 
-  let newBook = await Booking.create({
-    spotId,
-    startDate,
-    endDate,
-    userId: req.user.id,
-  });
-  return res.json(newBook);
-});
+//   const tryBook = await Spot.findByPk(spotId);
+//   if (!tryBook) {
+//     const err = new Error("Spot could not be found");
+//     err.status = 404;
+//     return next(err);
+//   }
+//   if (endDate <= startDate) {
+//     let err = new Error("Validation Error");
+//     err.status = 400;
+//     err.errors = { endDate: "endDate cannot be on or before startDate" };
+//     return next(err);
+//   }
+//   let bookConflict = await Booking.findAll({
+//     where: {
+//       [Op.and]: [
+//         {
+//           startDate: {
+//             [Op.lte]: endDate,
+//           },
+//         },
+//         {
+//           endDate: {
+//             [Op.gte]: startDate,
+//           },
+//         },
+//       ],
+//     },
+//   });
+//   if (bookConflict.length) {
+//     const err = new Error(
+//       "Sorry, this spot is booked for these specified dates"
+//     );
+//     err.status = 403;
+//     err.errors = {
+//       startDate: "Start date conflicts with an existing booking",
+//       endDate: "End date conflicts with an exisiting booking",
+//     };
+//     return next(err);
+//   }
+
+//   let newBook = await Booking.create({
+//     spotId,
+//     startDate,
+//     endDate,
+//     userId: req.user.id,
+//   });
+//   return res.json(newBook);
+// });
 
 //Edit a spot:
 router.put("/:spotId", requireAuth, validateSpot, async (req, res, next) => {

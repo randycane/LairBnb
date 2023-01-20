@@ -7,12 +7,18 @@ const UPDATE_BOOK = "/bookings/UPDATE";
 const DELETE_BOOK = "/bookings/DELETE";
 
 const LOAD_MY_BOOKS = "/bookings/LOAD_BY_USER";
+const LOAD_ALL_BOOKS ="/bookings/LOAD_ALL"
 
 //actual actions
 const loadBooks = (booking) => ({
   type: LOAD_BOOK,
   booking,
 });
+
+const loadAllBooks = (booking) => ({
+  type: LOAD_ALL_BOOKS,
+  booking,
+})
 
 const loadMyOwnBooks = (booking) => ({
   type: LOAD_MY_BOOKS,
@@ -41,7 +47,7 @@ const removeBooks = (booking) => {
   };
 };
 
-//thunks:
+// booking thunks:
 
 //get bookings by the spot:
 export const getSpotsBooksThunk = (spotId) => async (dispatch) => {
@@ -56,15 +62,31 @@ export const getSpotsBooksThunk = (spotId) => async (dispatch) => {
     return response;
 };
 
+//get all bookings no matter what:
+export const getAllBookingsThunk = () => async (dispatch) => {
+  const response = await csrfFetch(`/api/bookings/current`);
+  if (response.ok) {
+    const bookings = await response.json();
+    dispatch(loadAllBooks(bookings));
+    const all = {};
+    bookings.forEach((booking) => (all[booking.id] = booking));
+    return { ...all };
+  }
+  return {};
+};
+
+
 // get current user bookings:
 export const getMyOwnBooksThunk = () => async (dispatch) => {
   const response = await csrfFetch(`/api/bookings/current`);
-
   if (response.ok) {
-    const list = await response.json();
-    dispatch(loadMyOwnBooks(list));
-    return list;
+    const bookings = await response.json();
+    dispatch(loadAllBooks(bookings));
+    const all = {};
+    bookings.forEach((booking) => (all[booking.id] = booking));
+    return { ...all };
   }
+  return {};
 };
 
 //create booking thunk:
@@ -116,12 +138,12 @@ const initialState = {};
 
 const bookingsReducer = (state = initialState, action) => {
   switch (action.type) {
-    //   case LOAD_BOOK: {
-    //     const booksObjState = {};
-    //     action.booking.forEach((booking) => (booksObjState[booking.id] = booking));
-    //     let bookings = { ...booksObjState };
-    //     return bookings;
-    //   }
+      case LOAD_ALL_BOOKS: {
+        const booksObjState = {};
+        action.booking.forEach((booking) => (booksObjState[booking.id] = booking));
+        let bookings = { ...booksObjState };
+        return bookings;
+      }
     case LOAD_MY_BOOKS: {
       let newState = {};
       newState = action.booking

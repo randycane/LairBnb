@@ -111,16 +111,46 @@ router.get("/current", requireAuth, async (req, res, next) => {
       },
     ],
   });
-  // manipulate response array to include with previewImage
-  const array = [];
-  myOwnBook.forEach(async (book) => {
-    let bookWithImg = book.toJSON();
-    bookWithImg.Spot["previewImage"] = bookWithImg.Spot.Images[0].url;
-    delete bookWithImg.Spot.Images;
-    array.push(bookWithImg);
-  });
-  res.json({ Bookings: array });
+  res.json(myOwnBook);
 });
+
+//get all bookings route:
+
+router.get("/", requireAuth, async (req, res) => {
+  const bookings = await Booking.findAll({
+    include: [
+      {
+        model: Spot,
+        attributes: [
+          "id",
+          "ownerId",
+          "address",
+          "city",
+          "state",
+          "country",
+          "lat",
+          "lng",
+          "name",
+          "price",
+        ],
+        //include: [{ model: Image, where: { previewImage: true } }],
+      },
+    ],
+    // where: { userId: req.user.id },
+  });
+  res.json(bookings);
+});
+
+  // manipulate response array to include with previewImage
+//   const array = [];
+//   myOwnBook.forEach(async (book) => {
+//     let bookWithImg = book.toJSON();
+//     bookWithImg.Spot["previewImage"] = bookWithImg.Spot.Images[0].url;
+//     delete bookWithImg.Spot.Images;
+//     array.push(bookWithImg);
+//   });
+//   res.json({ Bookings: array });
+// });
 
 // Edit a Booking:
 router.put("/:bookingId", requireAuth, async (req, res, next) => {

@@ -13,14 +13,14 @@ const BookingConfirmedComponent = () => {
     Object.values(state?.bookings)
   );
   const findBooking = normalizedBookings.find(
-    (booking) => booking.id === bookingId
+    (booking) => booking.id == bookingId
     );
 
   const [isLoaded, setIsLoaded] = useState(false);
 
   console.log("harry potter", normalizedBookings);
   console.log("single harry", findBooking);
-  console.log("thjis is a numbner", bookingId);
+  console.log("this is a numbner", bookingId);
 
   useEffect(() => {
     dispatch(getMyOwnBooksThunk());

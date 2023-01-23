@@ -12,63 +12,63 @@ const validImages = [
   spotId: 2,
   reviewId: 2,
   previewImage: true,
-    url: "https://images.adsttc.com/media/images/5def/0114/3312/fdec/ff00/0046/newsletter/09-observatory.jpg?1575944451",
+    url: "https://external-preview.redd.it/qF1F11UWEbYTJS3RdHsNWk4Hpgn25kyXm8XUF0Thq2c.jpg?auto=webp&s=af797e98edf9528c9f3f2f9114a280a409eb64c7",
     userId: 3,
   },
   {
     spotId: 3,
     reviewId: 3,
     previewImage: true,
-    url: "https://a0.muscache.com/im/pictures/miso/Hosting-39563416/original/486128e9-7020-4b07-97c0-8f4fbe21e27a.jpeg?im_w=1200",
+    url: "https://qph.cf2.quoracdn.net/main-qimg-65f0b501ee1b349c20df1a19c596c1fb-pjlq",
     userId:4,
   },
   {
     spotId: 4,
     reviewId: 5,
     previewImage: true,
-    url: "https://img.gtsstatic.net/reno/imagereader.aspx?imageurl=https%3A%2F%2Fsir.azureedge.net%2F1103i215%2Ft8x5kxv6t2ez4ht76vvg6zj5p3i215&option=N&h=472&permitphotoenlargement=false",
+    url: "https://media-cdn.tripadvisor.com/media/photo-s/18/1d/e4/72/photo2jpg.jpg",
     userId: 5,
   },
   {
     spotId: 5,
     reviewId: 4,
     previewImage: true,
-    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIrE6f28oWB6Nd-sZNpeialVE3Zx_9pSUuPQ&usqp=CAU",
+    url: "https://i.pinimg.com/originals/9d/7b/a8/9d7ba8b2d9174aafe1cafc10f6fe9ce6.jpg",
     userId: 1
   },
   {
     spotId: 6,
       reviewId: 10,
       previewImage: true,
-      url: 'https://a0.muscache.com/im/pictures/8b49998c-569b-498d-8946-820a1a9f8633.jpg?im_w=1200',
+      url: 'http://pm1.narvii.com/6283/65cc4de7cb61da63ea45bbe88a07327633e4c426_00.jpg',
       userId: 2
     },
     {
     spotId: 7,
     reviewId: 9,
     previewImage: true,
-      url: "https://a0.muscache.com/im/pictures/c7f4f024-1561-4495-ab7d-8525264178e4.jpg?im_w=1200",
+      url: "https://pbs.twimg.com/media/EyOhe2IUYAcg8c-?format=jpg&name=large",
       userId: 3,
     },
     {
       spotId: 8,
       reviewId: 6,
       previewImage: true,
-      url: "https://a0.muscache.com/im/pictures/f520fa7c-ff9f-4e93-a815-08cd2a0d8a57.jpg?im_w=960",
+      url: "https://i.pinimg.com/originals/79/fb/05/79fb058f9b10733aa4460a26443a5873.jpg",
       userId:4,
     },
     {
       spotId: 9,
       reviewId: 8,
       previewImage: true,
-      url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-651470635531100051/original/59d618ce-1cfd-442e-8df9-add6401ed004.jpeg?im_w=960",
+      url: "https://qph.cf2.quoracdn.net/main-qimg-642af5926920a8dacd67632ef288f2fb-lq",
       userId: 5,
     },
     {
       spotId: 10,
       reviewId: 7,
       previewImage: true,
-      url: "https://a0.muscache.com/im/pictures/miso/Hosting-580351555068335274/original/94994b90-eab4-4e51-950f-07909eb24dce.jpeg?im_w=960",
+      url: "https://api.time.com/wp-content/uploads/2017/08/game-of-thrones-the-wall-history-03.jpg",
       userId: 1
     }
 ]

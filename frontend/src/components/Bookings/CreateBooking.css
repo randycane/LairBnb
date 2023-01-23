@@ -36,6 +36,13 @@
     margin-top: 5px;
 }
 
+.booking-img {
+    height: 400px;
+    width: 700px;
+    object-fit: cover;
+    margin-top: 20px;
+}
+
 .not-yet{
     font-weight: 600;
 }

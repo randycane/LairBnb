@@ -25,7 +25,7 @@ const validSpots = [
     description: 'Grassy and open area',
     price: 200,
     ownerId: 5,
-    previewImage: "https://external-preview.redd.it/qF1F11UWEbYTJS3RdHsNWk4Hpgn25kyXm8XUF0Thq2c.jpg?auto=webp&s=af797e98edf9528c9f3f2f9114a280a409eb64c7",
+    previewImage: "https://w0.peakpx.com/wallpaper/133/358/HD-wallpaper-massive-ancient-castle-grass-castle-wall-hill-turrets.jpg",
   },
   {
     address: '3 Convoy Street',

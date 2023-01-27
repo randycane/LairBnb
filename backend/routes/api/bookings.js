@@ -115,7 +115,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
   res.json(myOwnBook);
 });
 
-//get all bookings route using preview image for now:
+//get all bookings route using preview image:
 router.get("/", requireAuth, async (req, res) => {
   const bookings = await Booking.findAll({
     include: [
@@ -142,7 +142,7 @@ router.get("/", requireAuth, async (req, res) => {
   res.json(bookings);
 });
 
-  // manipulate response array to include with previewImage
+// unused:  manipulate response array to include with previewImage
 //   const array = [];
 //   myOwnBook.forEach(async (book) => {
 //     let bookWithImg = book.toJSON();

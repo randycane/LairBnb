@@ -106,15 +106,16 @@ router.get("/current", requireAuth, async (req, res, next) => {
           "lng",
           "name",
           "price",
+          "previewImage",
         ],
-        include: [{ model: Image, where: { previewImage: true } }],
+        //include: [{ model: Image, where: { previewImage: true } }],
       },
     ],
   });
   res.json(myOwnBook);
 });
 
-//get all bookings route removing images for now:
+//get all bookings route using preview image for now:
 router.get("/", requireAuth, async (req, res) => {
   const bookings = await Booking.findAll({
     include: [
@@ -131,6 +132,7 @@ router.get("/", requireAuth, async (req, res) => {
           "lng",
           "name",
           "price",
+          "previewImage",
         ],
         //include: [{ model: Image, where: { previewImage: true } }],
       },

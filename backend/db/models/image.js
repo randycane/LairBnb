@@ -20,16 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    // previewImage: {
-    //   type: DataTypes.BOOLEAN,
-    //   allowNull: false,
-    //   defaultValue: true
-    // },
-    imageableId: {
-      type: DataTypes.INTEGER,
-    },
-    imageableType: {
-      type: DataTypes.STRING,
+    previewImage: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     },
     spotId: {
       type: DataTypes.INTEGER,

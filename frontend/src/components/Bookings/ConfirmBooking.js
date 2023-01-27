@@ -18,9 +18,9 @@ const BookingConfirmedComponent = () => {
 
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // console.log("harry potter", normalizedBookings);
-  // console.log("single harry", findBooking);
-  // console.log("this is a numbner", bookingId);
+  console.log("harry potter", normalizedBookings);
+  console.log("single harry", findBooking);
+  console.log("this is a numbner", bookingId);
 
   useEffect(() => {
     dispatch(getMyOwnBooksThunk());
@@ -36,7 +36,7 @@ const BookingConfirmedComponent = () => {
       <div className="booked-city">
         You're going to {findBooking?.Spot?.city}!
       </div>
-      <img className="booking-img" src={findBooking?.Spot?.previewImage}></img>
+      <img className="booking-img" src={findBooking?.Spot?.Images[0].url}></img>
       <div className="booking-spot">{findBooking?.Spot?.name}</div>
       <div className="dates">
         <div className="start">Start Date: {findBooking?.startDate}</div>

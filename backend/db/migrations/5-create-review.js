@@ -22,10 +22,6 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Spots',
-          key: 'id',
-        },
         allowNull: false
       },
       createdAt: {

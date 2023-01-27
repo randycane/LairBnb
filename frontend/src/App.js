@@ -34,11 +34,11 @@ function App() {
           <Route exact path = '/spots/current'>
             <OwnSpotsComponent/>
           </Route>
-          <Route exact path="/bookings/:bookingId">
-            <BookingConfirmedComponent />
-          </Route>
           <Route exact path ="/bookings/current">
             <MyBookingComponent />
+          </Route>
+          <Route exact path="/bookings/:bookingId">
+            <BookingConfirmedComponent />
           </Route>
             <Route path='/spots/new'>
               <CreateNewSpotComponent/>

@@ -147,3 +147,10 @@
 .link {
     width: 260px;
 }
+
+.res-preview{
+    height: 300px;
+    width: 500px;
+    object-fit: cover;
+    margin-top: 20px;
+}

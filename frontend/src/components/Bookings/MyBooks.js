@@ -4,6 +4,7 @@ import { useHistory, useParams, NavLink } from "react-router-dom";
 
 import { getMyOwnBooksThunk, removeBookingThunk } from "../../store/bookings";
 import DeleteBookComponent from "./DelBooking";
+import DeleteBookingModal from ".";
 
 function MyBookingComponent() {
   const dispatch = useDispatch();
@@ -44,12 +45,12 @@ function MyBookingComponent() {
                 </div>
                 <img
                   className="res-preview"
-                  src={booking.Spot.previewImage}
+                  src={booking.Spot?.Images[0].url}
                 ></img>
               </NavLink>
             </div>
             <div className="deletion-button">
-              <DeleteBookComponent booking={booking} />
+              <DeleteBookingModal booking={booking} />
             </div>
           </div>
         );

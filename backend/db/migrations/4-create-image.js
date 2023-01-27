@@ -12,24 +12,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      // previewImage: {
-      //   type: Sequelize.BOOLEAN,
-      //   allowNull: false,
-      //   defaultValue: true
-      // },
+      previewImage: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
+      },
       spotId: {
         type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Spots',
-          key: 'id',
-        }
-      },
-      imageableId: {
-        type: Sequelize.INTEGER
-      },
-      imageableType: {
-        type: Sequelize.STRING,
+        allowNull: false
       },
       reviewId: {
         type: Sequelize.INTEGER,

@@ -5,21 +5,18 @@ import { useHistory, useParams, NavLink } from "react-router-dom";
 import { getMyOwnBooksThunk, removeBookingThunk } from "../../store/bookings";
 import DeleteBookComponent from "./DelBooking";
 import DeleteBookingModal from ".";
+import "./CreateBooking.css";
 
 function MyBookingComponent() {
   const dispatch = useDispatch();
 
   const ownBookings = useSelector((state) => Object.values(state?.bookings));
-  // let aBookMap = ownBookings
-  console.log("show me the encycolpedia", ownBookings);
-  //   const [isLoaded, setIsLoaded] = useState(false);
-  //   const [showChange, setShowChange] = useState(false);
 
   useEffect(() => {
     dispatch(getMyOwnBooksThunk());
   }, [dispatch, JSON.stringify(ownBookings)]);
   return (
-    <div className="main-container">
+    <div className="my-container">
       <div className="trips">Trips</div>
       <div className="upcoming">Upcoming Reservations</div>
       {ownBookings?.map((booking) => {

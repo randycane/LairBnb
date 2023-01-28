@@ -23,13 +23,10 @@ function SpotsBrowser() {
     dispatch(getSpotsReviewsThunk());
   }, [dispatch]);
 
-  //if (!normalizedSpots) return null;
   return (
     <div className="all-spots-container">
       {normalizedSpots.map((spot) => (
-        // <div className="inside-card">
         <SpotsCards spot={spot} />
-        // </div>
       ))}
     </div>
   );

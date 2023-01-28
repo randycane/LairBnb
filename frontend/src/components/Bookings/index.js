@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Modal } from '../../context/Modal'
 import DeleteBookComponent from './DelBooking.js'
+import "./CreateBooking.css";
 
 function DeleteBookingModal({ booking }) {
     const [showModal, setShowModal] = useState(false)

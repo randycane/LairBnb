@@ -36,6 +36,12 @@
     margin-top: 5px;
 }
 
+.deletion-button{
+    border-radius: 8px;
+    padding: 2px;
+    margin-top: 5px;
+}
+
 .booking-img {
     height: 400px;
     width: 700px;
@@ -146,6 +152,32 @@
 
 .link {
     width: 260px;
+}
+
+.my-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.trips{
+    margin: 15px;
+    font-weight: 600;
+}
+
+.upcoming{
+    margin: 15px;
+    font-weight: 500;
+}
+
+.which-booking{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .res-preview{

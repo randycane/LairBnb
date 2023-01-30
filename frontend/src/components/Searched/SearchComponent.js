@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, NavLink, useHistory} from "react-router-dom";
 import { getSpotsThunk } from "../../store/spots";
 import SpotsCards from "../SpotsCards";
+import "./Searched.css";
 
 function SearchedComponent() {
     const [spotsShowing, setSpotsShowing] = useState(false)

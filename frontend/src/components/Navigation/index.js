@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ProfileButton from "./ProfileButton";
 // import SignupFormPage from '../SignupFormPage';
@@ -14,22 +14,30 @@ import { getSpotsThunk } from "../../store/spots";
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
+  const location = useLocation();
+
   const [searchInput, setSearchInput] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
 
-  //need to fix handle search history
+
+  useEffect(() => {
+    const currLocation = location.pathname
+    if(!currLocation.startsWith(`/searched`)) setSearchInput("")
+  }, [location])
+
+  // handle search history
   const handleSearch = async () => {
-    history.push(`/spots/search?input=${searchInput}`);
+    history.push(`/searched?input=${searchInput}`);
   };
 
   useEffect(() => {
     dispatch(getSpotsThunk());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getSpotsThunk());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getSpotsThunk());
+  // }, [dispatch]);
 
   // const [loginForm, setLoginForm] = useState(false);
 

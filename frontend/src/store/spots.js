@@ -53,9 +53,11 @@ const remove =  spotId => {
 }
 
 
-// thunks:
-export const getSpotsThunk = () => async dispatch => {
-    const response = await csrfFetch(`/api/spots`);
+// thunk to get all spots, adding in search:
+export const getSpotsThunk = (search) => async dispatch => {
+    const response = search
+    ? await csrfFetch(`/api/spots?search=${search}`)
+    : await csrfFetch("/api/spots");
 
     if (response.ok) {
         const list = await response.json();
@@ -151,19 +153,17 @@ export const removeSpotsThunk = (spotId) => async dispatch => {
 
     }
 }
-
 const initialState = {};
+// const initialState = {allSpots: {order: []}, singleSpot: null};
 
 const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD: {
-            //cases for all my spots data
-            const spotsObjState = {};
-            //console.log('the action for spot reducer', action.list);
+            //get spots data
+            const spotsObjState = { ...state };
             action.list.forEach(spot => {
                 spotsObjState[spot.id] = spot;
             })
-            //console.log('the state to return', spotsObjState)
             return spotsObjState;
         };
         case LOAD_BY_SPOTID: {
@@ -186,7 +186,6 @@ const spotsReducer = (state = initialState, action) => {
         };
         case UPDATE: {
             const newState = { ...state }
-            //console.log('to edit a spot reduced action', action.payload)
             newState[action.payload.id] = action.payload;
             return newState;
 

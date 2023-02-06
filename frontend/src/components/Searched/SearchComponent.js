@@ -8,7 +8,8 @@ import "./Searched.css";
 function SearchedComponent() {
     const [spotsShowing, setSpotsShowing] = useState(false)
 
-    const searchspots = useSelector((state) => state?.spots?.allSpots)
+    const spots = useSelector((state) => state?.spots)
+    const normalizedSpots = Object.values(spots);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -21,15 +22,14 @@ function SearchedComponent() {
             setSpotsShowing(!spotsShowing);
           })();
 
-    },[dispatch, spotsShowing])
-
+    },[])
 
 
     return (
         <>
-            {searchspots.length ? <div className="nav-search">Search Results For: {searchspots}</div> : <div className="in-search">No Results</div>}
+            {normalizedSpots.length ? <div className="nav-search">Search Results For: {normalizedSpots}</div> : <div className="in-search">No Results</div>}
             <div className="property-of">
-                {searchspots.map((spot) => {
+                {normalizedSpots.map((spot) => {
                     return <div className="spotsss">
                         <NavLink to={`/spots/${spot}`}>
                             <SpotsCards/>
@@ -39,7 +39,6 @@ function SearchedComponent() {
                 </div>
             </>
     )
-
 }
 
 export default SearchedComponent;

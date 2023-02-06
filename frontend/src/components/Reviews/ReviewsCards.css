@@ -1,4 +1,3 @@
-
 .write-review{
     margin-top: 10px;
     height: 60px;
@@ -90,4 +89,23 @@ body {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     color: black;
     font-size: 12pt;
+}
+
+.reviews-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewed-by-me{
+    font-weight: 600;
+    font-size: 18pt;
+    margin-bottom: 12px;
+}
+
+.spot-link{
+    font-weight: 500;
+    color: royalblue;
+    text-decoration: underline;
 }

@@ -11,6 +11,7 @@ const {
 const { check, query} = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { Op, operatorsAliases, literal, where } = require("sequelize");
+const { response } = require("express");
 
 const router = express.Router();
 
@@ -154,26 +155,31 @@ router.get("/", async (req, res, next) => {
     });
   }
 
-  let spots;
+  let Spots;
 
   if (search) {
     const toLower = search.toLowerCase();
     const namedSpots = await Spot.findAll({
       group: ["Spot.id"],
       where: {
-        name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + toLower+ '%')
+        city: sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + toLower+ '%')
       }
     })
+    console.log("what is being look", search)
+    console.log("name of this pklace", namedSpots)
+    Spots = namedSpots;
   };
 
+  if (!search) {
+    Spots = await Spot.findAll({
+      where: {
+        [Op.and]: pagination.filter,
+      },
+      limit: pagination.limit,
+      offset: pagination.offset,
+    });
 
-  const Spots = await Spot.findAll({
-    where: {
-      [Op.and]: pagination.filter,
-    },
-    limit: pagination.limit,
-    offset: pagination.offset,
-  });
+  }
   for (let spot of Spots) {
     const spotReviewArray = await spot.getReviews({
       attributes: [

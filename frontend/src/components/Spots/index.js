@@ -15,12 +15,12 @@ function SpotsBrowser() {
   // use Selector to predict the state change
   const selectedSpots = useSelector((state) => state.spots);
 
-  const normalizedSpots = Object.values(selectedSpots);
+  let normalizedSpots = Object.values(selectedSpots);
   useEffect(() => {
     dispatch(getSpotsThunk());
 
     //see the reviews as well?
-    dispatch(getSpotsReviewsThunk());
+    // dispatch(getSpotsReviewsThunk());
   }, [dispatch]);
 
   return (

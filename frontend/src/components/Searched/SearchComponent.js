@@ -6,19 +6,24 @@ import SpotsCards from "../SpotsCards";
 import "./Searched.css";
 
 function SearchedComponent() {
-    const [spotsShowing, setSpotsShowing] = useState(false)
-
+    const [spotsShowing, setSpotsShowing] = useState(false);
+    const [spotLoaded, setSpotLoaded] = useState(false);
     const spots = useSelector((state) => state?.spots)
     const normalizedSpots = Object.values(spots);
     const dispatch = useDispatch();
     const history = useHistory();
-
+    //const location = useLocation();
+    console.log("tjis should be an array", normalizedSpots)
     useEffect(() => {
         const url = new URL(window.location.href)
-        const searchParameters = url.searchParams
+        const searchParameters = url.searchParams;
         (async () => {
             let searchInput = searchParameters.get("input");
+            console.log("searcghinput", searchInput)
             await dispatch(getSpotsThunk(searchInput));
+            // let newSpots = useSelector((state) => state?.spots)
+            // normalizedSpots = Object.values(newSpots);
+            console.log("normalized updating", normalizedSpots)
             setSpotsShowing(!spotsShowing);
           })();
 
@@ -27,12 +32,12 @@ function SearchedComponent() {
 
     return (
         <>
-            {normalizedSpots.length ? <div className="nav-search">Search Results For: {normalizedSpots}</div> : <div className="in-search">No Results</div>}
+            {normalizedSpots.length ? <div className="nav-search">Search Results For: </div> : <div className="in-search">No Results</div>}
             <div className="property-of">
                 {normalizedSpots.map((spot) => {
                     return <div className="spotsss">
-                        <NavLink to={`/spots/${spot}`}>
-                            <SpotsCards/>
+                        <NavLink to={`/spots/${spot.id}`}>
+                            <SpotsCards spot={spot}/>
                         </NavLink>
                     </div>
                 })}

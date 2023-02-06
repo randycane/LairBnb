@@ -73,7 +73,7 @@ function Navigation({ isLoaded }) {
                   type="text"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
-                  placeholder="Search by city, name..."
+                  placeholder="Search by city"
                   onKeyPress={(e) => {
                     if (e.key === "Enter") handleSearch();
                   }}

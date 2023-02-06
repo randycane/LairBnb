@@ -61,6 +61,7 @@ export const getSpotsThunk = (search) => async dispatch => {
 
     if (response.ok) {
         const list = await response.json();
+        console.log("show me the data spot", list)
         //console.log('get spots thunk', list.Spots)
         dispatch(load(list.Spots));
         return list;
@@ -160,7 +161,8 @@ const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD: {
             //get spots data
-            const spotsObjState = { ...state };
+            const spotsObjState = {};
+
             action.list.forEach(spot => {
                 spotsObjState[spot.id] = spot;
             })

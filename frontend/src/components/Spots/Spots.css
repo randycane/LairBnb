@@ -263,3 +263,23 @@ label{
     width: 88px;
     margin-bottom: 5px;
 }
+.own-spots-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.my-spot-container{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.own-details{
+    /* border: 1px solid black;
+    border-radius: 33px; */
+    display: flex;
+    flex-direction: column;
+    margin: 3px;
+}

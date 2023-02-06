@@ -19,12 +19,12 @@ function OwnSpotsComponent() {
     }, [dispatch])
 
     return myList && (
-        <div className="spots-container">
+        <div className="own-spots-container">
             <h1>My Listings</h1>
 
             <div className="my-spot-container">
                 {normalizedSpots.map(spot => (
-                    <div className="details">
+                    <div className="own-details">
                         <SpotsCards spot={spot} />
                     </div>))}
             </div>

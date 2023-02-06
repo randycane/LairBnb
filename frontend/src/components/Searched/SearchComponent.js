@@ -19,10 +19,8 @@ function SearchedComponent() {
         const searchParameters = url.searchParams;
         (async () => {
             let searchInput = searchParameters.get("input");
-            console.log("searcghinput", searchInput)
+            //console.log("searcghinput", searchInput)
             await dispatch(getSpotsThunk(searchInput));
-            // let newSpots = useSelector((state) => state?.spots)
-            // normalizedSpots = Object.values(newSpots);
             console.log("normalized updating", normalizedSpots)
             setSpotsShowing(!spotsShowing);
           })();
@@ -32,7 +30,7 @@ function SearchedComponent() {
 
     return (
         <>
-            {normalizedSpots.length ? <div className="nav-search">Search Results For: </div> : <div className="in-search">No Results</div>}
+            {normalizedSpots.length ? <div className="nav-search">Search Results: </div> : <div className="in-search">No Results</div>}
             <div className="property-of">
                 {normalizedSpots.map((spot) => {
                     return <div className="spotsss">

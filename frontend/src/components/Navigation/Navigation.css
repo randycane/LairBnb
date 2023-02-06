@@ -31,6 +31,10 @@ nav {
     align-items: center;
 }
 
+.search-input-container{
+    border-style: hidden;
+}
+
 .search-input{
     border: none;
 }

@@ -11,15 +11,12 @@ function SearchedComponent() {
   const normalizedSpots = Object.values(spots);
   const dispatch = useDispatch();
   const history = useHistory();
-  //console.log("this should be an array", normalizedSpots)
   useEffect(() => {
     const url = new URL(window.location.href);
     const searchParameters = url.searchParams;
     (async () => {
       let searchInput = searchParameters.get("input");
-      //console.log("searcghinput", searchInput)
       await dispatch(getSpotsThunk(searchInput));
-      //console.log("normalized updating", normalizedSpots)
       setSpotsShowing(!spotsShowing);
     })();
   }, []);

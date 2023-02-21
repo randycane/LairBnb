@@ -11,6 +11,8 @@ import SignupFormModal from "../SignupFormPage";
 import "./Navigation.css";
 import { getSpotsThunk } from "../../store/spots";
 
+import magnify from "./magnify.png";
+
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -66,6 +68,7 @@ function Navigation({ isLoaded }) {
               />
               <div className="LairBnbText">LairBnb</div>
             </NavLink>
+            <div className="sandwich-search">
             <div className="header-search-container">
               <div className="search-input-container">
                 <input
@@ -80,9 +83,13 @@ function Navigation({ isLoaded }) {
                 />
               </div>
               <button className="magnify" onClick={() => handleSearch()}>
-                <i></i>
+                  <i>
+                  {/* <img src={magnify} alt="glass"></img> */}
+                </i>
               </button>
             </div>
+
+              </div>
 
             {isLoaded}
           </div>

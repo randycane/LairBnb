@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ProfileButton from "./ProfileButton";
-// import SignupFormPage from '../SignupFormPage';
-// import LoginFormPage from '../LoginFormModal';
 
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormPage";
@@ -11,7 +9,7 @@ import SignupFormModal from "../SignupFormPage";
 import "./Navigation.css";
 import { getSpotsThunk } from "../../store/spots";
 
-import magnify from "./magnify.png";
+// import magnify from "./magnify.png";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);

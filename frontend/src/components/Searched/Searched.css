@@ -1,3 +1,19 @@
 a {
     text-decoration: none;
   }
+
+  .nav-search{
+    display: flex;
+    flex-direction: column;
+    margin-top:  30px;
+    margin-left: 6%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+  }
+
+  .property-of{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }

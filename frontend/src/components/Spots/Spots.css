@@ -85,12 +85,15 @@
 
 }
 form{
-    width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
     color: black;
+    padding-left: 22px;
+    margin-bottom: 23px;
+    margin-top: 23px;
 }
 input{
     height: 32px;

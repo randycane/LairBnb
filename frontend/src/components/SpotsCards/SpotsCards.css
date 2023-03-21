@@ -9,10 +9,9 @@
 
 
 .price-by-night{
-    color: black;
+    color: rgb(21, 19, 19);
     font-weight: bold;
-    margin-top: 25px;
-
+    margin-top: 33px;
 }
 .topline{
     display: flex;

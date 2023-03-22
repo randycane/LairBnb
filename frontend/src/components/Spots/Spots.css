@@ -1,289 +1,289 @@
-.all-spots-container{
-    display: flex;
-    flex-wrap: wrap;
-    border-radius: 20px;
-    margin: 1%;
-    text-decoration: none;
+.all-spots-container {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 20px;
+  margin: 1%;
+  text-decoration: none;
 }
 
-.spots-container{
-    display: flex;
-    flex-wrap: wrap;
-    height: 530px;
-    width: 460px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 10px;
-    border-radius: 15px;
-    text-decoration: none;
-    padding: 0.4%;
+.spots-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 530px;
+  width: 460px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+  border-radius: 15px;
+  text-decoration: none;
+  padding: 0.4%;
 }
 
-.spots-container:hover{
-    background-color: whitesmoke;
+.spots-container:hover {
+  background-color: whitesmoke;
 }
 
-.image-show{
-    height: 420px;
-    width: 450px;
-    border-radius: 15px;
+.image-show {
+  height: 420px;
+  width: 450px;
+  border-radius: 15px;
 }
-.ratings-and-where{
-    display: flex;
-    align-items: center;
-
+.ratings-and-where {
+  display: flex;
+  align-items: center;
 }
-.spot-where{
-    display: flex;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 20px;
-}
-
-.describe-spot{
-    display: flex;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.spot-info-addy{
-    text-decoration: none;
-    color: black;
-    font-weight: 700;
+.spot-where {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
 }
 
-.spot-info{
-    text-decoration: none;
-    color: gray;
-    font-weight: 400;
+.describe-spot {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-.reviews-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    width: 70%;
-    border-radius: 8px;
-    padding: 1%;
+.spot-info-addy {
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+}
+
+.spot-info {
+  text-decoration: none;
+  color: gray;
+  font-weight: 400;
+}
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 70%;
+  border-radius: 8px;
+  padding: 1%;
 }
 .reviews-container:hover {
-    background-color: gainsboro;
+  background-color: gainsboro;
 }
 
 .actual-pic,
 .image-container {
-    height: 33%;
-    width: 100%;
-    border-radius: 25px;
+  height: 33%;
+  width: 100%;
+  border-radius: 25px;
 }
-.encompass-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
+.encompass-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-form{
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    color: black;
-    padding-left: 22px;
-    margin-bottom: 23px;
-    margin-top: 23px;
+form {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  color: black;
+  padding-left: 22px;
+  margin-bottom: 23px;
+  margin-top: 23px;
 }
-input{
-    height: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-label{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-.creation-button{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 30px;
-    border-radius: 25px;
-    width: 80%;
-    margin-left: 40px;
-    background-color: red;
-    color: white;
-    font-weight: 500;
-    font-size: 14pt;
-    margin-top: 8px;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
-.hey-spot{
-    font-weight: 700;
-    margin-top: 10px;
-    margin-bottom: 10px;
+input {
+  height: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
-.encompass-spot{
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
+label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.creation-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 30px;
+  border-radius: 25px;
+  width: 80%;
+  margin-left: 40px;
+  background-color: red;
+  color: white;
+  font-weight: 500;
+  font-size: 14pt;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.hey-spot {
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.spot-right-card{
-    display: flex;
-    flex-direction: row;
-    height: 140px;
-    width: 350px;
-    border: whitesmoke 1px solid;
-    box-shadow: 0px 0px 3px 3px gray;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 20px;
-    margin-top: 10px;
-    padding: 1%;
-}
-.let-there-be-review{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100px;
-    width: 700px;
+.encompass-spot {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
-.let-there-be-bookings{
-    border: 1px solid black;
-    border-radius: 7px;
-    padding-left: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 500px;
-    width: 700px;
+.spot-right-card {
+  display: flex;
+  flex-direction: row;
+  height: 140px;
+  width: 350px;
+  border: whitesmoke 1px solid;
+  box-shadow: 0px 0px 3px 3px gray;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 10px;
+  padding: 1%;
 }
-.spot-big-nest{
-    display: flex;
-    justify-content: space-between;
-    height: 300px;
-}
-.avg-rating{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-right: 20px;
-}
-
-.starry{
-    margin-right: 5px;
-    width: 20px;
-    height: 20px;
-}
-.writtenby{
-    display: flex;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 8px;
-    font-weight: 450;
+.let-there-be-review {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+  width: 700px;
 }
 
-.actual-review-text{
-    display: flex;
-    align-items: center;
-    color: black;
+.let-there-be-bookings {
+  border: 1px solid black;
+  border-radius: 7px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  height: 500px;
+  width: 700px;
 }
-.nest-review{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 20px;
+.spot-big-nest {
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
 }
-
-.nest-review:hover{
-    background-color: gainsboro;
-}
-
-.describe-spot{
-    display: flex;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.actual-stars{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 20px;
-    margin-left: 20px;
+.avg-rating {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 20px;
 }
 
-.spot-new{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.starry {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+.writtenby {
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 8px;
+  font-weight: 450;
 }
 
-.error-msgs{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: red;
-    font-weight: 400;
-    margin-top: 7px;
+.actual-review-text {
+  display: flex;
+  align-items: center;
+  color: black;
+}
+.nest-review {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
 }
 
-.errors{
-    color: red;
-    font-weight: 400;
-    margin-top: 7px;
+.nest-review:hover {
+  background-color: gainsboro;
 }
 
-.make-edits-to-my-spot{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 15px;
-    height: 32px;
-    background-color: red;
-    border-radius: 10px;
-    color: white;
-    font-size: 11pt;
-    font-weight: 600;
-    cursor: pointer;
-    width: 88px;
-    margin-bottom: 5px;
+.describe-spot {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
 }
-.own-spots-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+.actual-stars {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
+  margin-left: 20px;
 }
-.my-spot-container{
-    /* border: 1px solid black; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+.spot-new {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.own-details{
-    /* border: 1px solid black;
+
+.error-msgs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: red;
+  font-weight: 400;
+  margin-top: 7px;
+}
+
+.errors {
+  color: red;
+  font-weight: 400;
+  margin-top: 7px;
+}
+
+.make-edits-to-my-spot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 15px;
+  height: 32px;
+  background-color: red;
+  border-radius: 10px;
+  color: white;
+  font-size: 11pt;
+  font-weight: 600;
+  cursor: pointer;
+  width: 88px;
+  margin-bottom: 5px;
+}
+.own-spots-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.my-spot-container {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.own-details {
+  /* border: 1px solid black;
     border-radius: 33px; */
-    display: flex;
-    flex-direction: column;
-    margin: 3px;
+  display: flex;
+  flex-direction: column;
+  margin: 3px;
 }

@@ -54,7 +54,7 @@ function GetSpotById() {
     owner = spotById?.ownerId === thisUser;
   }
   const reviewMap = reviewsArray.map((review) => (
-    <div className="reviews-container">
+    <div className="reviewed-container">
       <div className="nest-review">
         <div className="writtenby">Reviewed by: {review?.User?.firstName}</div>
         <div className="actual-stars">

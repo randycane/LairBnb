@@ -1,111 +1,112 @@
-.write-review{
-    margin-top: 10px;
-    height: 60px;
-    width: 200px;
+.write-review {
+  margin-top: 10px;
+  height: 60px;
+  width: 170px;
+  padding-left: 2%;
 }
 
-.create-wrap{
-    display: flex;
-    flex-direction: column;
-    margin-top: 7px;
-    justify-content: center;
-    align-items: center;
+.create-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+  justify-content: center;
+  align-items: center;
 }
-.created{
-    display: flex;
-    flex-direction: column;
-    background-color: red;
-    border-radius: 10px;
-    color: white;
+.created {
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+  border-radius: 10px;
+  color: white;
 }
-.new-review{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    background-color: red;
-    border-radius: 10px;
-    color: white;
-    padding: 1%;
-    align-items: center;
-    height: 20px;
-    margin-top: 30px;
+.new-review {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: red;
+  border-radius: 10px;
+  color: white;
+  padding: 1%;
+  align-items: center;
+  height: 20px;
+  margin-top: 30px;
 }
-.remove-button{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 15px;
-    height: 30px;
-    width: 55px;
-
+.remove-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 12px;
+  height: 30px;
+  width: 55px;
+  padding-left: 2%;
 }
-.delete-button{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 15px;
-    height: 30px;
-    background-color: red;
-    border-radius: 10px;
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
+.delete-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 15px;
+  height: 30px;
+  background-color: red;
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
 }
-.form-button{
-    text-decoration: none;
-    height: 40px;
-    border: 0.5px black solid;
-    color: black;
-    background-color: ivory;
-    border-radius: 5px;
-}
-
-.form-button:hover{
-    box-shadow: 2px 5px 15px rgba(93, 93, 93, 0.298);
-    background-color: whitesmoke
+.form-button {
+  text-decoration: none;
+  height: 40px;
+  border: 0.5px black solid;
+  color: black;
+  background-color: ivory;
+  border-radius: 5px;
 }
 
+.form-button:hover {
+  box-shadow: 2px 5px 15px rgba(93, 93, 93, 0.298);
+  background-color: whitesmoke;
+}
 
-.deletion-button{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 15px;
-    height: 32px;
-    background-color: red;
-    border-radius: 10px;
-    color: white;
-    font-size: 10pt;
-    font-weight: 600;
-    cursor: pointer;
-    width: 88px;
-    margin-bottom: 5px;
+.deletion-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid black;
+  border-radius: 15px;
+  height: 29px;
+  background-color: red;
+  border-radius: 10px;
+  color: white;
+  font-size: 10pt;
+  font-weight: 600;
+  cursor: pointer;
+  width: 88px;
+  margin-bottom: 5px;
 }
 
 body {
-    text-decoration: none;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-    color: black;
-    font-size: 12pt;
+  text-decoration: none;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  color: black;
+  font-size: 12pt;
 }
 
-.reviews-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
 }
 
-.reviewed-by-me{
-    font-weight: 600;
-    font-size: 18pt;
-    margin-bottom: 12px;
+.reviewed-by-me {
+  font-weight: 600;
+  font-size: 18pt;
+  margin-bottom: 12px;
 }
 
-.spot-link{
-    font-weight: 500;
-    color: royalblue;
-    text-decoration: underline;
+.spot-link {
+  font-weight: 500;
+  color: royalblue;
+  text-decoration: underline;
 }

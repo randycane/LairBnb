@@ -157,6 +157,7 @@ label {
   flex-direction: column;
   justify-content: space-between;
   height: 100px;
+  margin-top: 2px;
   width: 700px;
 }
 

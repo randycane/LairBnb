@@ -17,7 +17,7 @@ export default function CreateReviewComponent() {
   let { spotId } = useParams();
   spotId = Number(spotId);
 
-  const sessionUser = useSelector((state) => state?.session.user);
+  const sessionUser = useSelector((state) => state?.session?.user);
 
   const normalizedReviews = useSelector((state) => Object.values(sessionUser));
 

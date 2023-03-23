@@ -5,12 +5,20 @@
   padding-left: 2%;
 }
 
+.class-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
 .create-wrap {
   display: flex;
   flex-direction: column;
-  margin-top: 7px;
+  margin-top: 3px;
   justify-content: center;
   align-items: center;
+  height: 100px;
 }
 .created {
   display: flex;
@@ -18,6 +26,15 @@
   background-color: red;
   border-radius: 10px;
   color: white;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.created:hover{
+  cursor: pointer;
+  box-shadow: 2px 5px 11px rgba(93, 93, 93, 0.298);
 }
 .new-review {
   display: flex;
@@ -30,6 +47,18 @@
   align-items: center;
   height: 20px;
   margin-top: 30px;
+}
+
+.review-written{
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.stars-given{
+  font-weight: 600;
 }
 .remove-button {
   display: flex;
@@ -51,6 +80,11 @@
   color: white;
   font-weight: 500;
   cursor: pointer;
+  margin-top: 9px;
+}
+
+.delete-button:hover{
+  box-shadow: 2px 5px 15px rgba(93, 93, 93, 0.298);
 }
 .form-button {
   text-decoration: none;
@@ -72,8 +106,8 @@
   justify-content: center;
   align-items: center;
   border: 0.5px solid black;
-  border-radius: 15px;
-  height: 29px;
+  border-radius: 10px;
+  height: 32px;
   background-color: red;
   border-radius: 10px;
   color: white;
@@ -82,6 +116,11 @@
   cursor: pointer;
   width: 88px;
   margin-bottom: 5px;
+  padding: 2px;
+}
+
+.deletion-button:hover{
+  box-shadow: 2px 5px 15px rgba(93, 93, 93, 0.298);
 }
 
 body {
@@ -96,17 +135,40 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
+  padding-left: 25%;
+  margin: 5%;
 }
 
 .reviewed-by-me {
   font-weight: 600;
   font-size: 18pt;
   margin-bottom: 12px;
+  padding-left: 2%;
 }
 
+.review-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 15px;
+  margin-bottom: 12px;
+  padding-left: 1%;
+}
 .spot-link {
-  font-weight: 500;
-  color: royalblue;
-  text-decoration: underline;
+  display: flex;
+  flex-direction: column;
+  height: 25px;
+  width: 38%;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  font-weight: 800;
+  color: rgb(158, 42, 230);
+  padding-left: 2%;
+  /* text-decoration: underline; */
+}
+
+.spot-link:hover{
+  box-shadow: 2px 5px 15px rgba(93, 93, 93, 0.298);
 }

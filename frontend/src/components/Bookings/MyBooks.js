@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
 
 import { getMyOwnBooksThunk, removeBookingThunk } from "../../store/bookings";
-import DeleteBookComponent from "./DelBooking";
+// import DeleteBookComponent from "./DelBooking";
 import DeleteBookingModal from ".";
 import "./CreateBooking.css";
 

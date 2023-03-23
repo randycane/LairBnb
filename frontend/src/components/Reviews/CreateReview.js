@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import { createReviewsThunk } from "../../store/reviews";
-// import { getSpotsByTheirId } from "../../store/spots";
+import "./ReviewsCards.css";
 
 export default function CreateReviewComponent() {
   const dispatch = useDispatch();
@@ -52,10 +52,8 @@ export default function CreateReviewComponent() {
         spotId,
       })
     );
-
-    //await dispatch(getSpotsByTheirId(spotId));
     history.push(`/spots/${spotId}`);
-    //return <Redirect to={`/spots/:spotId/reviews`} />
+
   };
 
   const ErrorMsgs = errors.map((error) => (
@@ -67,39 +65,39 @@ export default function CreateReviewComponent() {
   return (
     <div className="create-review-container">
       <div className="encompass-form">
-        <form className="review-form" onSubmit={handleSubmit}>
-          <h1 className="review-title">Create a Review</h1>
-          <div className="errors">{isCreated && ErrorMsgs}</div>
+        <div className="class-form">
+          <form className="review-form" onSubmit={handleSubmit}>
+            <h1 className="review-title">Create a Review</h1>
+            <div className="errors">{isCreated && ErrorMsgs}</div>
 
-          <label className="create-review">
-            <span> Review: </span>
-            <input
-              type="text"
-              placeholder="Review Text"
-              value={review}
-              onChange={(e) => setReview(e.target.value)}
-            //   required
-            />
-          </label>
+            <label className="create-review">
+              <span> Review: </span>
+              <input
+                type="text"
+                placeholder="Review Text"
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+              />
+            </label>
 
-          <label>
-            <span> Stars (out of 5): </span>
-            <input
-              type="Number"
-              min={1}
-              max={5}
-              placeholder="0"
-              value={stars}
-              onChange={(e) => setStars(e.target.value)}
-            //   required
-            />
-          </label>
-          <div className="create-wrap">
-            <button className="created" type="submit">
-              Create Review
-            </button>
-          </div>
-        </form>
+            <label>
+              <span> Stars (out of 5): </span>
+              <input
+                type="Number"
+                min={1}
+                max={5}
+                placeholder="0"
+                value={stars}
+                onChange={(e) => setStars(e.target.value)}
+              />
+            </label>
+            <div className="create-wrap">
+              <button className="created" type="submit">
+                Create Review
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

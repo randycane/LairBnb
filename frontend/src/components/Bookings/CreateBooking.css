@@ -37,7 +37,9 @@
 }
 
 .deletion-button {
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px;
   padding: 2px;
   margin-top: 5px;
 }
@@ -178,7 +180,7 @@
   flex-direction: column;
   border: 1px solid black;
   margin: 5px;
-  border-radius: 5px;
+  border-radius: 7px;
   padding: 5px;
 }
 
@@ -187,4 +189,59 @@
   width: 500px;
   object-fit: cover;
   margin-top: 20px;
+}
+
+.deletion-head{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  width: 450px;
+  font-weight: 600;
+}
+
+.underbelly-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.choose-one{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 15px;
+  height: 34px;
+  width: 94px;
+  background-color: #2dc225;
+  border-radius: 10px;
+  color: white;
+  font-size: 12pt;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.choose-two{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 15px;
+  height: 34px;
+  width: 94px;
+  background-color: #de2215;
+  border-radius: 10px;
+  color: white;
+  font-size: 12pt;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }

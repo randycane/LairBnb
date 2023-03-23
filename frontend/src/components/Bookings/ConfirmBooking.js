@@ -18,9 +18,9 @@ const BookingConfirmedComponent = () => {
 
   const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log("harry potter", normalizedBookings);
-  console.log("single harry", findBooking);
-  console.log("this is a numbner", bookingId);
+  // console.log("harry potter", normalizedBookings);
+  // console.log("single harry", findBooking);
+  // console.log("this is a numbner", bookingId);
 
   useEffect(() => {
     dispatch(getMyOwnBooksThunk());

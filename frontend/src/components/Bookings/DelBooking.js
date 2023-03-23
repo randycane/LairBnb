@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
-import moment from "moment";
+// import moment from "moment";
 
 import { getMyOwnBooksThunk, removeBookingThunk } from "../../store/bookings";
+import "./CreateBooking.css";
 
 function DeleteBookComponent({ booking, onClick }) {
     let dispatch = useDispatch();
@@ -23,15 +24,15 @@ function DeleteBookComponent({ booking, onClick }) {
                     Delete this reservation?
                 </div>
                 <div className="deletion-confirm">
-                    Do you want to confirm this cancellation?
+                    Please confirm this cancellation below:
                 </div>
             </div>
             <div className="underbelly-container">
-                <div className="choose" onClick={onClick}>
-                    Cancel
+                <div className="choose-one" onClick={onClick}>
+                    Exit
                 </div>
-                <div className="choose" onClick={onSubmit}>
-                    Delete
+                <div className="choose-two" onClick={onSubmit}>
+                    Cancel!
                 </div>
             </div>
         </div>

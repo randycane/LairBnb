@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
-// import moment from "moment";
 
 import { getMyOwnBooksThunk, removeBookingThunk } from "../../store/bookings";
 import "./CreateBooking.css";

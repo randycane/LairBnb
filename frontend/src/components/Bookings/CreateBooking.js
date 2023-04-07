@@ -3,13 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useHistory, useParams } from "react-router-dom";
-import {
-  getSpotsBooksThunk,
-  createBookingThunk,
-  editingBookingThunk,
-} from "../../store/bookings";
+import { createBookingThunk } from "../../store/bookings";
 import moment from "moment-timezone";
-import { format } from "date-fns";
+
 import "./CreateBooking.css";
 
 const CreateBookComponent = ({ spot }) => {

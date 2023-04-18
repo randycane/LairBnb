@@ -24,11 +24,11 @@ Live Link: https://airbnb-clone-lair.herokuapp.com/
 
 ## Site Preview
 ### Home Page
-![Screen Shot 2022-09-25 at 11 52 02 PM](https://user-images.githubusercontent.com/92779080/192211656-db765c54-b034-41e2-bb57-0c2f15088279.png)
+![Screen Shot 2023-04-18 at 4 02 28 PM](https://user-images.githubusercontent.com/92779080/232923292-8364baf4-39d1-448a-8969-c22dfa88a64f.png)
 
 
 ### Spot Details Page
-![Screen Shot 2022-09-25 at 11 54 48 PM](https://user-images.githubusercontent.com/92779080/192212108-e571eeee-c6b8-43b7-9921-34fa98943aa1.png)
+![Screen Shot 2023-04-18 at 4 01 55 PM](https://user-images.githubusercontent.com/92779080/232923216-532dc536-b7f0-4ec8-aa0a-6d6fd6c4ca73.png)
 
 
 ### Login Form Modal

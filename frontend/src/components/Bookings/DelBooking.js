@@ -26,10 +26,10 @@ function DeleteBookComponent({ booking, onClick }) {
       </div>
       <div className="underbelly-container">
         <div className="choose-one" onClick={onClick}>
-          Exit
+          No, Keep It
         </div>
         <div className="choose-two" onClick={onSubmit}>
-          Delete!
+          Yes, Cancel
         </div>
       </div>
     </div>

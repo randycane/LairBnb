@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-//import { useHistory, useParams, NavLink } from "react-router-dom";
 
 import { getMyOwnBooksThunk, removeBookingThunk } from "../../store/bookings";
 import "./CreateBooking.css";
 
 function DeleteBookComponent({ booking, onClick }) {
   let dispatch = useDispatch();
-  //let history = useHistory();
 
   const onSubmit = (e) => {
     e.preventDefault();
